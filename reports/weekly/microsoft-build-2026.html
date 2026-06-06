@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Microsoft Build 2026 — 深度分析</title>
+<style>
+:root {
+  --bg: #0a0e17;
+  --bg-card: #111827;
+  --bg-card-hover: #1a2332;
+  --accent: #00b4d8;
+  --accent2: #0077b6;
+  --text: #d1d5db;
+  --text-muted: #9ca3af;
+  --text-bright: #f3f4f6;
+  --border: #1e293b;
+  --tag-bg: #0d2137;
+  --tag-text: #38bdf8;
+  --highlight: #f59e0b;
+  --red: #ef4444;
+  --green: #10b981;
+  --purple: #8b5cf6;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.75;
+  font-size: 15px;
+}
+.container { max-width:960px; margin:0 auto; padding:60px 24px 100px; }
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 80px 0 60px;
+  position: relative;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 200px; height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+.header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-bright);
+  letter-spacing: -0.5px;
+}
+.header .subtitle {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-top: 12px;
+}
+.header .meta-badges {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.meta-badges span {
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  border: 1px solid rgba(56,189,248,0.2);
+}
+
+/* TOC */
+.toc {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 32px;
+  margin-bottom: 48px;
+}
+.toc h2 {
+  font-size: 1rem;
+  color: var(--accent);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 8px;
+}
+.toc-grid a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.88rem;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  border-left: 2px solid transparent;
+}
+.toc-grid a:hover {
+  background: var(--bg-card-hover);
+  color: var(--accent);
+  border-left-color: var(--accent);
+}
+
+/* Overview */
+.overview {
+  background: linear-gradient(135deg, rgba(0,180,216,0.08), rgba(139,92,246,0.06));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 48px;
+}
+.overview h2 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+.overview p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin-bottom: 12px;
+}
+
+/* Themes */
+.theme-section {
+  margin-bottom: 48px;
+}
+.theme-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.theme-num {
+  width: 36px; height: 36px;
+  background: var(--accent2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #fff;
+}
+.theme-header h2 {
+  font-size: 1.15rem;
+  color: var(--text-bright);
+}
+.theme-header .range {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-left: auto;
+}
+
+/* Segment Card */
+.segment {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 16px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.segment:hover {
+  border-color: rgba(0,180,216,0.3);
+}
+.seg-header {
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.seg-header .timestamp {
+  min-width: 64px;
+  padding: 3px 10px;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-family: "SF Mono", "Consolas", "Monaco", monospace;
+  text-align: center;
+  margin-top: 2px;
+}
+.seg-header .title {
+  font-weight: 600;
+  color: var(--text-bright);
+  font-size: 0.95rem;
+  flex: 1;
+}
+.seg-body {
+  padding: 0 20px 20px 98px;
+  display: none;
+}
+.seg-body.open { display: block; }
+.seg-body p {
+  font-size: 0.89rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.seg-body ul {
+  list-style: none;
+  padding: 0;
+}
+.seg-body ul li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 6px;
+  font-size: 0.87rem;
+  color: var(--text);
+}
+.seg-body ul li::before {
+  content: '';
+  position: absolute;
+  left: 2px; top: 9px;
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+.seg-body ul li.sub::before {
+  background: transparent;
+  border: 1.5px solid var(--text-muted);
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+.tag-spec { background: rgba(245,158,11,0.15); color: var(--highlight); }
+.tag-ecosystem { background: rgba(16,185,129,0.15); color: var(--green); }
+.tag-strategic { background: rgba(139,92,246,0.15); color: var(--purple); }
+.tag-risk { background: rgba(239,68,68,0.15); color: var(--red); }
+
+.expand-all {
+  text-align: right;
+  margin-bottom: 12px;
+}
+.expand-all button {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 6px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+.expand-all button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Insight box */
+.insight-box {
+  background: rgba(0,180,216,0.06);
+  border-left: 3px solid var(--accent);
+  padding: 14px 18px;
+  margin-top: 14px;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.85rem;
+}
+.insight-box strong {
+  color: var(--accent);
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Summary */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 48px;
+}
+.summary-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+}
+.summary-card h3 {
+  color: var(--accent);
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+.summary-card p { font-size: 0.85rem; color: var(--text-muted); }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>Microsoft Build 2026<br>深度视频分析</h1>
+  <p class="subtitle">按时间轴逐段拆解 · 要点提炼 · 知识延展</p>
+  <div class="meta-badges">
+    <span>26 个时间段</span>
+    <span>8 大主题</span>
+    <span>深度扩展分析</span>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>内容导航</h2>
+  <div class="toc-grid">
+    <a href="#t1">一、硬件革命：RTX Spark & Surface</a>
+    <a href="#t2">二、Windows 开发者体验重塑</a>
+    <a href="#t3">三、云基础设施与自研芯片</a>
+    <a href="#t4">四、AI Agent 操作系统：Project Solara</a>
+    <a href="#t5">五、数据与搜索基础设施</a>
+    <a href="#t6">六、Agent 安全与开源框架</a>
+    <a href="#t7">七、开发工具与新生态</a>
+    <a href="#t8">八、AI 模型、量子与未来展望</a>
+  </div>
+</div>
+
+<!-- Overview -->
+<div class="overview">
+  <h2>全局洞察</h2>
+  <p>本次 Build 2026 不是一次常规的产品迭代发布会，而是微软战略转向的宣言——<strong>从"应用程序的操作系统"到"AI Agent 的运行时环境"</strong>。底层逻辑是：如果 AI 正在从被动问答进化为自主执行，那么操作系统需要从"应用容器"进化为"Agent 容器"。这条主线贯穿了从硬件（RTX Spark）到安全（MXC 沙箱）、从框架（WAF/OpenClaw）到分发（Agent Store）的全部发布。</p>
+  <p>值得追问的是：这条路径是否过于超前？Agent 对普通用户的真实价值尚未被充分验证，微软却已经在全栈推进基础设施。这是前瞻性布局还是过度投资？——这个问题可能要到 2027 年才有答案。</p>
+</div>
+
+<!-- ===== THEME 1 ===== -->
+<div class="theme-section" id="t1">
+  <div class="expand-all"><button onclick="toggleTheme('t1')">全部展开/折叠</button></div>
+  <div class="theme-header">
+    <div class="theme-num">1</div>
+    <h2>硬件革命：NVIDIA RTX Spark 与 Surface 开发者设备</h2>
+    <span class="range">00:00 – 02:10</span>
+  </div>
+
+  <div class="segment" data-theme="t1">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">00:00</div>
+      <div class="title">开场：Build 2026 主题定调</div>
+    </div>
+    <div class="seg-body">
+      <p>视频以大会全景切入，快速锚定本次 Build 的核心叙事——Agent-First。微软 CEO 纳德拉将 AI Agent 定位为"新一代计算的基本单位"，而非传统意义上的应用功能叠加。</p>
+      <ul>
+        <li>开场即抛出核心命题：Windows 不是为 Agent 加功能，而是以 Agent 为操作系统设计原语</li>
+        <li>这个定调不是修辞技巧，而是贯穿后续 20+ 项发布的一致逻辑</li>
+      </ul>
+      <div class="insight-box"><strong>Nova 思考</strong>当一家公司开始用"原语"（primitive）而非"功能"（feature）来描述某项技术时，意味着它已进入架构层面的重构。这通常比功能叠加慢得多，但一旦完成，护城河也深得多。</div>
+    </div>
+  </div>
+
+  <div class="segment" data-theme="t1">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">00:43</div>
+      <div class="title">NVIDIA RTX Spark 超级芯片发布</div>
+    </div>
+    <div class="seg-body">
+      <p>NVIDIA CEO 黄仁勋远程连线，正式发布 RTX Spark——英伟达首款面向 Windows PC 的 Arm 架构 AI 超级芯片。这是高通骁龙 X 系列之外，Windows on Arm 生态的第二个重磅玩家。</p>
+      <ul>
+        <li><span class="tag tag-spec">规格</span>台积电 3nm 制程，SoC 单芯片集成 20 核 Grace CPU（联发科联合研发）+ Blackwell RTX GPU（6144 CUDA）+ 独立 NPU</li>
+        <li><span class="tag tag-spec">规格</span>最高 128GB 统一 LPDDR5X 内存（CPU/GPU/NPU 共享内存池）</li>
+        <li><span class="tag tag-spec">规格</span>AI 算力标称 1 petaFLOP（千万亿次/秒），可本地运行 120B 参数大模型</li>
+        <li><span class="tag tag-spec">规格</span>1440p 3A 游戏 100+ FPS（DLSS 4.5），支持 12K 视频编辑和 90GB+ 3D 场景渲染</li>
+        <li><span class="tag tag-ecosystem">生态</span>Adobe 全系（PS/Premiere）已完成架构级适配，性能最高提升 2 倍</li>
+      </ul>
+      <div class="insight-box"><strong>Nova 思考</strong>RTX Spark 真正的战略意义不在于参数规格，而在于它打破了高通在 Windows on Arm 领域的独供格局。一旦 NVIDIA + 联发科入局，Windows on Arm 就从"高通的实验"变成了"行业标准方向"。同理，苹果 M 系列的成功也建立在软硬一体化 + 统一内存架构上——NVIDIA 正在复刻这条路径，但面向的是开放的 Windows 生态。</div>
+    </div>
+  </div>
+
+  <div class="segment" data-theme="t1">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">01:14</div>
+      <div class="title">Surface RTX Spark Dev Box 开发者工作站</div>
+    </div>
+    <div class="seg-body">
+      <p>微软发布搭载 RTX Spark 芯片的 Surface 开发者盒子，定位为"开发者本地 AI 工作站"。支持同时运行 3 个大模型（最大 1200 亿参数），GPU 占用 90GB 内存处理 340 万 token。</p>
+      <ul>
+        <li>首批搭载设备为轻薄本形态：14mm 厚度、约 1.36kg、OLED 屏幕（14/16 英寸）</li>
+        <li>合作 OEM 包括华硕、戴尔、惠普、联想、微软 Surface、微星</li>
+        <li>2026 年秋季正式发售</li>
+        <li><span class="tag tag-strategic">战略</span>从此 Apple Silicon 不再是唯一能跑大模型的轻薄 PC——Windows 第一次在移动端拥有匹敌 M 系列的本地 AI 算力</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===== THEME 2 ===== -->
+<div class="theme-section" id="t2">
+  <div class="expand-all"><button onclick="toggleTheme('t2')">全部展开/折叠</button></div>
+  <div class="theme-header">
+    <div class="theme-num">2</div>
+    <h2>Windows 开发者体验重塑</h2>
+    <span class="range">02:10 – 05:42</span>
+  </div>
+
+  <div class="segment" data-theme="t2">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">02:10</div>
+      <div class="title">面向开发者的 Windows 优化功能</div>
+    </div>
+    <div class="seg-body">
+      <p>微软发布了一系列针对开发者工作流的 Windows 原生功能增强，核心思路是将 AI 能力嵌入开发者日常操作的最底层。</p>
+      <ul>
+        <li>DirectML 2.0：统一抽象 Intel、AMD、Qualcomm NPU 的芯片差异，设备端直接运行 Whisper 级转录和 Stable Diffusion 级图像生成</li>
+        <li>WSL 3：Linux 内核运行在轻量级 VM 中，半虚拟化访问 Windows GPU/NPU，PyTorch/JAX/CUDA 以接近原生速度运行</li>
+        <li>组合价值：Windows 首次成为有生产质量的本地 AI 开发环境</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="segment" data-theme="t2">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">03:14</div>
+      <div class="title">Windows 开发者 UI 演示</div>
+    </div>
+    <div class="seg-body">
+      <p>舞台演示展示了一个全新的开发者仪表盘，整合了项目状态、Agent 任务列表、系统资源监控和代码建议流。</p>
+      <ul>
+        <li>UI 设计趋向于"Agent 工作台"而非传统 IDE 布局</li>
+        <li>实时显示 WAF Agent 的执行状态和资源占用</li>
+        <li>集成 Copilot 上下文感知的代码建议面板</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="segment" data-theme="t2">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">03:55</div>
+      <div class="title">文件资源管理器原生支持 Git</div>
+    </div>
+    <div class="seg-body">
+      <p>文件资源管理器将原生感知 Git 仓库状态，不再需要切换到终端或 VS Code 来查看版本状态。</p>
+      <ul>
+        <li>文件夹图标叠加层显示分支状态、未提交变更、冲突标记</li>
+        <li>右键菜单集成 Git 操作（commit、pull、push）</li>
+        <li><span class="tag tag-strategic">战略</span>微软在降低 Git 的使用门槛——让版本控制"无处不在"而非"开发者专属"</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="segment" data-theme="t2">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">04:06</div>
+      <div class="title">智能终端（Intelligent Terminal）</div>
+    </div>
+    <div class="seg-body">
+      <p>全新终端体验，内置 AI 上下文感知——理解当前目录、项目类型、运行历史，主动提供命令建议和错误诊断。</p>
+    </div>
+  </div>
+
+  <div class="segment" data-theme="t2">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">04:56</div>
+      <div class="title">RTX Spark Token 处理能力演示</div>
+    </div>
+    <div class="seg-body">
+      <p>演示展示了 RTX Spark 在本地处理 340 万 token 的能力——相当于一次处理数十本书的内容量。</p>
+    </div>
+  </div>
+
+  <div class="segment" data-theme="t2">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">05:12</div>
+      <div class="title">语音控制终端</div>
+    </div>
+    <div class="seg-body">
+      <p>终端支持自然语言语音命令——"找出所有的日志文件"、"重启 Docker 容器"等操作可直接语音触发。</p>
+    </div>
+  </div>
+
+  <div class="segment" data-theme="t2">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">05:42</div>
+      <div class="title">智能终端高级搜索功能</div>
+    </div>
+    <div class="seg-body">
+      <p>终端内语义搜索——"查找所有超过 100MB 的日志文件"无需手动构造 find 命令，AI 自动生成并执行。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== THEME 3 ===== -->
+<div class="theme-section" id="t3">
+  <div class="expand-all"><button onclick="toggleTheme('t3')">全部展开/折叠</button></div>
+  <div class="theme-header">
+    <div class="theme-num">3</div>
+    <h2>云基础设施与微软自研芯片</h2>
+    <span class="range">06:18 – 11:10</span>
+  </div>
+
+  <div class="segment" data-theme="t3">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">06:18</div>
+      <div class="title">微软大规模数据中心展示</div>
+    </div>
+    <div class="seg-body">
+      <p>展示微软全球数据中心的规模和布局，强调 Azure 作为 Agent 部署的计算底座。核心信息：从本地 RTX Spark 到 Azure 云端的无缝扩展。</p>
+    </div>
+  </div>
+
+  <div class="segment" data-theme="t3">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">06:39</div>
+      <div class="title">Maia 200 — 微软自研 AI 加速芯片</div>
+    </div>
+    <div class="seg-body">
+      <p>微软自研 AI 芯片 Maia 200 正式亮相，这是继 Maia 100 之后的第二代产品，专为 Azure 上的大模型推理优化。</p>
+      <ul>
+        <li>Maia 200 将作为 Project Polaris 的运行底座，降低推理延迟和成本</li>
+        <li><span class="tag tag-strategic">战略</span>微软正在构建从芯片到模型到应用的全栈 AI 闭环，摆脱对 NVIDIA GPU 的外部依赖</li>
+        <li><span class="tag tag-risk">风险</span>自研芯片的软件生态成熟度远落后于 CUDA，短期内仍需要 NVIDIA 作为补充</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="segment" data-theme="t3">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">07:02</div>
+      <div class="title">Cobalt 200 VMs 预览版发布</div>
+    </div>
+    <div class="seg-body">
+      <p>基于微软自研 Arm 芯片 Cobalt 200 的 Azure 虚拟机预览版发布，定位通用计算场景，与 Maia 200 形成"通用 + AI"的双芯布局。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== THEME 4 ===== -->
+<div class="theme-section" id="t4">
+  <div class="expand-all"><button onclick="toggleTheme('t4')">全部展开/折叠</button></div>
+  <div class="theme-header">
+    <div class="theme-num">4</div>
+    <h2>AI Agent 操作系统：Project Solara</h2>
+    <span class="range">07:53 – 08:58</span>
+  </div>
+
+  <div class="segment" data-theme="t4">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">07:53</div>
+      <div class="title">Project Solara 正式发布</div>
+    </div>
+    <div class="seg-body">
+      <p>微软发布 Project Solara——基于 AOSP（Android 开源项目）构建的全新操作系统，核心设计理念是：<strong>不是运行传统的"应用程序"（Apps），而是专为"智能体"（Agents）打造</strong>。</p>
+      <ul>
+        <li>颠覆性设计：屏幕不再是主要交互界面，Agent 是操作系统的一等公民</li>
+        <li>配套两款概念设备：桌面便携立方体（带触控屏 + 语音激活）+ 可穿戴 AI 门禁徽章（指纹解锁 + 摄像感知）</li>
+        <li>目前仅内部试点（数百名微软员工），暂无量产计划</li>
+        <li><span class="tag tag-strategic">战略</span>如果 Windows 是"笔记本 + 桌面"的操作系统，Solara 则是"AI 可穿戴 + 万物互联"的操作系统</li>
+        <li><span class="tag tag-risk">风险</span>隐私合规是最大拦路虎——全天候感知环境的可穿戴设备，数据存储和使用边界尚未明确</li>
+      </ul>
+      <div class="insight-box"><strong>Nova 思考</strong>Solara 是本届 Build 最激进的项目，也是最具不确定性的。它试图在新硬件形态（后手机时代）定义新的操作系统范式——就像 2007 年 iOS 重新定义了触屏交互。但问题在于：Agent 的价值主张远不如"触屏"直观，用户能否接受"把工作交给一个看不见的 Agent"还有很大疑问。微软在 HoloLens 上的教训已经证明：技术领先不等于市场接受。</div>
+    </div>
+  </div>
+
+  <div class="segment" data-theme="t4">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">08:58</div>
+      <div class="title">Project Solara 便携设备舞台演示</div>
+    </div>
+    <div class="seg-body">
+      <p>纳德拉在舞台上展示了 Solara 设备的概念原型：小巧的立方体设备放置在办公桌上，实时显示 Agent 的工作进度；可穿戴徽章支持语音唤醒和环境感知。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== THEME 5 ===== -->
+<div class="theme-section" id="t5">
+  <div class="expand-all"><button onclick="toggleTheme('t5')">全部展开/折叠</button></div>
+  <div class="theme-header">
+    <div class="theme-num">5</div>
+    <h2>数据与搜索基础设施</h2>
+    <span class="range">10:24 – 14:17</span>
+  </div>
+
+  <div class="segment" data-theme="t5">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">10:24</div>
+      <div class="title">Azure Horizon DB — 新一代数据库服务</div>
+    </div>
+    <div class="seg-body">
+      <p>Azure 推出 Horizon DB，定位为 Agent 时代的多模态数据存储层，支持结构化、半结构化和非结构化数据的统一管理。</p>
+    </div>
+  </div>
+
+  <div class="segment" data-theme="t5">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">11:10</div>
+      <div class="title">Web IQ — 专为 AI 打造的搜索 API</div>
+    </div>
+    <div class="seg-body">
+      <p>微软发布 Microsoft Web IQ——一套专门为 AI Agent 设计的搜索 API，与人类使用的传统搜索引擎工作方式完全不同。</p>
+      <ul>
+        <li>核心差异：返回结构化数据而非网页链接，减少 Agent 的 Token 消耗</li>
+        <li>提供上下文信息、网页文档、新闻、图片和视频等多种内容类型</li>
+        <li>由微软搜索与 AI 部门总裁 Jordi Ribas 主导</li>
+        <li><span class="tag tag-strategic">战略</span>搜索引擎正在分化——面向人类的搜索（Bing/Google）和面向 Agent 的搜索（Web IQ）。这背后是一个关键认知：Agent 需要的信息格式和人类完全不同，让它去"读网页"是低效的</li>
+        <li><span class="tag tag-risk">风险</span>如果 Web IQ 成为 Agent 获取信息的唯一渠道，微软将控制 AI 的信息入口——这是比浏览器市场份额更底层的入口竞争</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===== THEME 6 ===== -->
+<div class="theme-section" id="t6">
+  <div class="expand-all"><button onclick="toggleTheme('t6')">全部展开/折叠</button></div>
+  <div class="theme-header">
+    <div class="theme-num">6</div>
+    <h2>Agent 安全与开源框架</h2>
+    <span class="range">14:17 – 17:12</span>
+  </div>
+
+  <div class="segment" data-theme="t6">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">14:17</div>
+      <div class="title">Microsoft Execution Containers（MXC）— 内核级 Agent 沙箱</div>
+    </div>
+    <div class="seg-body">
+      <p>MXC 是本届 Build 最具技术含量的发布之一——在操作系统<strong>内核层</strong>为 Agent 操作提供强制执行边界，将权限控制从"应用层自律"升级为"内核强制执行"。</p>
+      <ul>
+        <li>四档隔离级别，可根据 Agent 的信任等级动态调整权限范围</li>
+        <li>演示案例：OpenClaw Agent 尝试删除桌面 94 张图片，被 MXC 只读沙箱成功拦截</li>
+        <li>SDK 早期预览版面向 Windows 及 WSL 平台发布</li>
+        <li>已开源至 GitHub（microsoft/mxc）</li>
+        <li>合作伙伴包括 OpenAI、NVIDIA、Manus、Nous Research、OpenClaw</li>
+        <li><span class="tag tag-strategic">战略</span>Agent 安全问题不是"功能"而是"前置条件"。如果一个 Agent 能自主读写文件、调用 API、发邮件，那么没有内核级沙箱的约束，企业就不可能大规模部署。MXC 是微软抢在"Agent 安全事故"爆发前建立的行业标准</li>
+      </ul>
+      <div class="insight-box"><strong>Nova 思考</strong>与 Docker 的应用层隔离不同，MXC 的"内核强制执行"意味着即使 Agent 试图绕过限制，操作系统本身也会阻止它。这种安全模型在金融、医疗等合规敏感行业是 Agent 商用的前提条件。微软正在用操作系统层面的安全能力建立竞争壁垒——这是 Google（ChromeOS）和 Apple（macOS/iOS）已有的能力，但微软率先将其应用于 Agent 场景。</div>
+    </div>
+  </div>
+
+  <div class="segment" data-theme="t6">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">14:40</div>
+      <div class="title">OpenClaw 正式进入 Windows 生态</div>
+    </div>
+    <div class="seg-body">
+      <p>开源 Agent 框架 OpenClaw（GitHub 29.5 万星标）获得微软官方支持，成为 Windows Agent Framework 的重要组成部分。</p>
+      <ul>
+        <li>同步成立 OpenClaw Foundation（非营利组织），确保框架的开放中立性</li>
+        <li>OpenClaw 主导者 Peter Steinberger 登台</li>
+        <li><span class="tag tag-strategic">战略</span>微软没有重新发明轮子，而是选择"收编"最成功的开源 Agent 框架——这是平台公司的经典策略：把生态中最有活力的部分纳入自己的轨道</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===== THEME 7 ===== -->
+<div class="theme-section" id="t7">
+  <div class="expand-all"><button onclick="toggleTheme('t7')">全部展开/折叠</button></div>
+  <div class="theme-header">
+    <div class="theme-num">7</div>
+    <h2>开发工具与新生态</h2>
+    <span class="range">17:12 – 22:12</span>
+  </div>
+
+  <div class="segment" data-theme="t7">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">17:12</div>
+      <div class="title">GitHub Copilot App — Agent-Native 桌面体验</div>
+    </div>
+    <div class="seg-body">
+      <p>GitHub 发布了独立的 Copilot 桌面应用，提供 Agent 原生的开发体验。不再局限于 IDE 插件，而是独立的开发工作空间。</p>
+      <ul>
+        <li>Copilot Workspace 正式 GA，从 Beta 毕业</li>
+        <li>Fleet mode：CLI 下自主运行，无需开发者逐步确认</li>
+        <li>Autopilot mode：后台计划性自主处理维护任务（依赖更新、测试覆盖、文档漂移）</li>
+        <li>Copilot Extensions 生态系统上线：Jira、Datadog、ServiceNow 可在工作区会话中直接调用</li>
+        <li><span class="tag tag-strategic">战略</span>GitHub Copilot 从一个"代码补全工具"进化成"Agentic 开发环境"，这个演变速度超出预期。背后的驱动力是微软 Project Polaris 模型的发布——拥有自有模型后，微软可以不受 OpenAI 限制地定义 Copilot 的能力边界</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="segment" data-theme="t7">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">20:26</div>
+      <div class="title">Agent 365 SDK 更新</div>
+    </div>
+    <div class="seg-body">
+      <p>Microsoft 365 的 Agent 开发工具包更新，开发者可以通过 SDK 构建跨 Teams、Outlook、SharePoint 的企业级 Agent。</p>
+    </div>
+  </div>
+
+  <div class="segment" data-theme="t7">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">20:41</div>
+      <div class="title">The Chainsmokers 表演 — 大会氛围</div>
+    </div>
+    <div class="seg-body">
+      <p>大会穿插 The Chainsmokers 乐队现场表演。大型技术发布会的"娱乐化"策略——用文化元素降低技术内容的认知门槛，提升传播效果。</p>
+    </div>
+  </div>
+
+  <div class="segment" data-theme="t7">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">21:20</div>
+      <div class="title">Microsoft Scout — 永不休眠的个人 AI 代理</div>
+    </div>
+    <div class="seg-body">
+      <p>Scout 是本届 Build 最具商业想象力的产品——一个"永不休眠"的 AI 代理，常驻 Microsoft 365 应用中，主动跨应用管理工作。</p>
+      <ul>
+        <li>可加入 Teams 群聊，作为独立参与者存在</li>
+        <li>常驻 Outlook，自主处理邮件分类和回复</li>
+        <li>拥有独立身份和 Microsoft 365 生产力许可证</li>
+        <li>支持 7×24 小时运行</li>
+        <li>基于 OpenClaw 框架构建</li>
+        <li><span class="tag tag-strategic">战略</span>从"AI 助手"到"数字员工"是商业模式的质变。助手是一人一份，数字员工可以按席位收费。Scout 需要独立许可证——这是微软把 AI 从"增值功能"变成"独立收入线"的关键一步</li>
+        <li><span class="tag tag-risk">风险</span>Scout 在群聊中作为"参与者"存在会引发严重的社交边界问题：当它代替用户发言时，发言权归谁？群聊中的其他人如何区分真人和 Agent？</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===== THEME 8 ===== -->
+<div class="theme-section" id="t8">
+  <div class="expand-all"><button onclick="toggleTheme('t8')">全部展开/折叠</button></div>
+  <div class="theme-header">
+    <div class="theme-num">8</div>
+    <h2>AI 模型、量子与未来展望</h2>
+    <span class="range">22:12 – 23:50</span>
+  </div>
+
+  <div class="segment" data-theme="t8">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">22:12</div>
+      <div class="title">新 MAI 模型家族发布</div>
+    </div>
+    <div class="seg-body">
+      <p>微软 MAI 模型系列迎来 v2 重大升级，涵盖图像、语音、代码和推理四项能力，标志着微软在模型层面正式走向"全栈自研"。</p>
+      <ul>
+        <li><strong>MAI-Thinking-1</strong>：推理模型，AIME 2025 数学推理达 97%（接近人类顶尖），SWE-bench Pro 53%（软件工程仍有空间）</li>
+        <li><strong>MAI-Image-2.5</strong>：新增图像输入能力，支持编辑工作流，对标 GPT-4o 图像功能</li>
+        <li><strong>MAI-Voice-2</strong>：扩展至 15 种语言（含中文），支持更丰富的情感语调</li>
+        <li><strong>MAI-Transcribe-1.5</strong>：FLEURS 测试 25 种语言最低词错误率 3.9%，已击败 Whisper</li>
+        <li>强调"零蒸馏"——使用企业级商用授权数据从零训练，在合规性上做差异化</li>
+        <li><span class="tag tag-strategic">战略</span>MAI 系列背后是微软与 OpenAI 关系的再定义。Project Polaris 已宣布将在 2026 年 8 月取代 GPT-4 Turbo 成为 Copilot 默认模型——这意味着微软正在坚决执行"摆脱 OpenAI 依赖"的战略</li>
+      </ul>
+      <div class="insight-box"><strong>Nova 思考</strong>微软与 OpenAI 的关系正在从"合作伙伴"转变为"竞合关系"。一个关键信号是：MAI 系列强调"零蒸馏"（不使用 OpenAI 输出训练），这表明微软在法律和商业上都希望建立完全独立于 OpenAI 的模型能力。对 OpenAI 来说，失去 Copilot 这个最大应用场景，压力巨大。</div>
+    </div>
+  </div>
+
+  <div class="segment" data-theme="t8">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">23:40</div>
+      <div class="title">微软 × 梅奥诊所 — 健康 AI 模型</div>
+    </div>
+    <div class="seg-body">
+      <p>微软与全球顶级医疗机构梅奥诊所（Mayo Clinic）合作开发专用健康 AI 模型。这是 AI 在垂直行业深度应用的典型案例——医疗领域对模型准确性、合规性和可解释性的要求远超通用场景。</p>
+    </div>
+  </div>
+
+  <div class="segment" data-theme="t8">
+    <div class="seg-header" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="timestamp">23:50</div>
+      <div class="title">Majorana 2 — 量子计算里程碑</div>
+    </div>
+    <div class="seg-body">
+      <p>微软发布第二代拓扑量子芯片 Majorana 2，将量子计算实用化时间表大幅提前至 2029 年。</p>
+      <ul>
+        <li><span class="tag tag-spec">突破</span>量子比特可靠性提升 1000 倍，比特寿命从 1-12 毫秒提升至 20 秒以上（部分可达分钟级）</li>
+        <li><span class="tag tag-spec">材料</span>超导体从铝升级为铅；半导体活性区域升级为砷化铟 + 砷化铟锑组合</li>
+        <li>研发过程中使用微软自研 Discovery Agent AI 辅助设计</li>
+        <li><span class="tag tag-strategic">战略</span>拓扑量子比特的优势在于天然抗噪声——这是实用量子计算的最大技术障碍。如果微软在 2029 年兑现承诺，这将是量子计算赛道中第一个可商用的拓扑量子芯片</li>
+        <li><span class="tag tag-risk">风险</span>学界对微软拓扑量子比特的声明仍有争议（Nature 2025 年曾发表质疑文章），技术路线尚未得到独立第三方充分验证</li>
+      </ul>
+      <div class="insight-box"><strong>Nova 思考</strong>量子计算和 AI 的关系常被忽略。如果 Majorana 2 路线走通，大规模量子计算机将彻底改变 AI 训练的算力约束——目前受限于 GPU 集群的训练范式将不再成立。这意味着今天的 AI 模型架构可能只是算力受限阶段的"临时方案"。但这是至少 5-10 年后的故事，短期内仍需关注 GPU 和 NPU 的演进。</div>
+    </div>
+  </div>
+</div>
+
+<!-- Summary -->
+<div class="summary-grid">
+  <div class="summary-card">
+    <h3>核心战略转变</h3>
+    <p>从"应用操作系统"到"Agent 运行时环境"——硬件（RTX Spark）、安全（MXC）、框架（WAF/OpenClaw）、分发（Agent Store）四层全栈布局。</p>
+  </div>
+  <div class="summary-card">
+    <h3>去 OpenAI 化</h3>
+    <p>Project Polaris 8 月取代 GPT-4 Turbo，MAI 系列强调"零蒸馏"，自研 Maia 200 芯片提供推理底座——微软正在坚决建立独立 AI 能力。</p>
+  </div>
+  <div class="summary-card">
+    <h3>商业模式升级</h3>
+    <p>Scout"数字员工"需要独立许可证，Agent Store 提供 85% 分成——AI 从"增值功能"变为"独立收入线"。</p>
+  </div>
+  <div class="summary-card">
+    <h3>前瞻性布局</h3>
+    <p>Solara 定义后手机时代的交互范式，Majorana 2 锁定 2029 年量子商用——微软正在同时押注中期（Agent）和长期（量子）未来。</p>
+  </div>
+  <div class="summary-card">
+    <h3>最大的风险</h3>
+    <p>Agent 对普通用户的价值尚未验证；Scout 的社交边界问题；Solara 隐私合规挑战；Majorana 2 学术争议——这些都不是技术问题，而是"人的问题"。</p>
+  </div>
+  <div class="summary-card">
+    <h3>值得关注</h3>
+    <p>NVIDIA 入局 Windows on Arm 对高通构成的竞争压力；MXC 安全模型能否成为行业标准；Copilot 从工具到环境的进化路径。</p>
+  </div>
+</div>
+
+</div>
+
+<script>
+function toggleTheme(themeId) {
+  const segs = document.querySelectorAll(`[data-theme="${themeId}"] .seg-body`);
+  const allOpen = Array.from(segs).every(s => s.classList.contains('open'));
+  segs.forEach(s => {
+    if (allOpen) s.classList.remove('open');
+    else s.classList.add('open');
+  });
+}
+</script>
+</body>
+</html>

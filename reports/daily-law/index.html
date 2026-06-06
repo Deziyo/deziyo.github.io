@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日常法 - 面包渣</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, "Noto Sans SC", "Microsoft YaHei", sans-serif;
+            font-size: 15px;
+            line-height: 1.7;
+            background: #0A0E17;
+            color: #D1D5DB;
+        }
+        .dl-header {
+            text-align: center;
+            padding: 44px 20px 36px;
+        }
+        .dl-header h1 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #EEEDFE;
+            letter-spacing: 0.03em;
+        }
+        .dl-header p {
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: #9CA3AF;
+        }
+        .dl-header .count {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 5px 18px;
+            background: #1E293B;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #CECBF6;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 8px 20px 60px;
+        }
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 16px;
+        }
+        .category-card {
+            background: #111827;
+            border: 0.5px solid #1E293B;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+        .category-card:hover {
+            border-color: #7F77DD;
+        }
+        .category-header {
+            padding: 16px 20px 10px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #EEEDFE;
+            border-bottom: 0.5px solid #1E293B;
+        }
+        .category-header .emoji {
+            margin-right: 6px;
+        }
+        .category-header .badge {
+            display: inline-block;
+            margin-left: 8px;
+            padding: 1px 10px;
+            background: #1E293B;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: #9CA3AF;
+        }
+        .article-list {
+            list-style: none;
+            padding: 4px 0;
+        }
+        .article-list li {
+            border-bottom: 0.5px solid #1E293B;
+        }
+        .article-list li:last-child {
+            border-bottom: none;
+        }
+        .article-list a {
+            display: block;
+            padding: 9px 20px;
+            text-decoration: none;
+            color: #9CA3AF;
+            font-size: 0.88rem;
+            transition: all 0.15s;
+        }
+        .article-list a:hover {
+            background: #1E293B;
+            color: #CECBF6;
+        }
+        .dl-footer {
+            text-align: center;
+            padding: 24px 20px 32px;
+            color: #6B7280;
+            font-size: 0.82rem;
+            border-top: 0.5px solid #1E293B;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        @media (max-width: 700px) {
+            .dl-header h1 { font-size: 1.4rem; }
+            .categories { grid-template-columns: 1fr; }
+            .container { padding: 4px 12px 32px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container" style="max-width:1100px;">
+            <a href="../../index.html" class="logo">面包渣</a>
+            <div class="nav-links">
+                <a href="../../index.html">首页</a>
+                <a href="../../about.html">关于</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dl-header">
+        <h1>日常法</h1>
+        <p>14 个类别 · 62 篇文章 · 涵盖生活方方面面</p>
+        <span class="count">最后更新：2026年06月06日</span>
+    </div>
+
+    <div class="container">
+        <div class="categories">
+
+        <div class="category-card">
+            <div class="category-header"><span class="emoji">💼</span>工作与收入<span class="badge">6 篇</span></div>
+            <ul class="article-list">
+            <li><a href="工作与收入/《劳动合同法》下的劳动者权益保护规则详解.html">《劳动合同法》下的劳动者权益保护规则详解</a></li>
+            <li><a href="工作与收入/《劳动合同法》下的裁员补偿规则详解.html">《劳动合同法》下的裁员补偿规则详解</a></li>
+            <li><a href="工作与收入/《劳动合同法》下试用期规则全面解析.html">《劳动合同法》下试用期规则全面解析</a></li>
+            <li><a href="工作与收入/《民法典》下劳务合同规则全面解析.html">《民法典》下劳务合同规则全面解析</a></li>
+            <li><a href="工作与收入/社保公积金全面解析.html">社保公积金全面解析</a></li>
+            <li><a href="工作与收入/竞业限制法律实务指南.html">竞业限制法律实务指南</a></li>
+            </ul>
+        </div>
+
+        <div class="category-card">
+            <div class="category-header"><span class="emoji">⚖️</span>灰色边界<span class="badge">5 篇</span></div>
+            <ul class="article-list">
+            <li><a href="灰色边界/信息差盈利法律知识全面解读.html">信息差盈利法律知识全面解读</a></li>
+            <li><a href="灰色边界/引流变现法律知识全解析.html">引流变现法律知识全解析</a></li>
+            <li><a href="灰色边界/私域交易系统性讲解.html">私域交易系统性讲解</a></li>
+            <li><a href="灰色边界/职业打假与刷单炒信法律知识全解析.html">职业打假与刷单炒信法律知识全解析</a></li>
+            <li><a href="灰色边界/边缘合规法律知识全解析.html">边缘合规法律知识全解析</a></li>
+            </ul>
+        </div>
+
+        <div class="category-card">
+            <div class="category-header"><span class="emoji">💍</span>婚姻与家庭<span class="badge">6 篇</span></div>
+            <ul class="article-list">
+            <li><a href="婚姻与家庭/《民法典》下婚前财产认定与保护法律分析.html">《民法典》下婚前财产认定与保护法律分析</a></li>
+            <li><a href="婚姻与家庭/《民法典》下抚养权纠纷处理规则详解.html">《民法典》下抚养权纠纷处理规则详解</a></li>
+            <li><a href="婚姻与家庭/《民法典》下的夫妻共同财产制度研究.html">《民法典》下的夫妻共同财产制度研究</a></li>
+            <li><a href="婚姻与家庭/《民法典》下的继承与遗嘱规则全面解析.html">《民法典》下的继承与遗嘱规则全面解析</a></li>
+            <li><a href="婚姻与家庭/《民法典》下的赡养义务规则全面解析.html">《民法典》下的赡养义务规则全面解析</a></li>
+            <li><a href="婚姻与家庭/《民法典》离婚财产分割规则详解.html">《民法典》离婚财产分割规则详解</a></li>
+            </ul>
+        </div>
+
+        <div class="category-card">
+            <div class="category-header"><span class="emoji">🏠</span>家庭内部<span class="badge">3 篇</span></div>
+            <ul class="article-list">
+            <li><a href="家庭内部/家庭借款法律知识全解析.html">家庭借款法律知识全解析</a></li>
+            <li><a href="家庭内部/父母出资法律知识全解析.html">父母出资法律知识全解析</a></li>
+            <li><a href="家庭内部/监护责任法律知识全解析.html">监护责任法律知识全解析</a></li>
+            </ul>
+        </div>
+
+        <div class="category-card">
+            <div class="category-header"><span class="emoji">🚗</span>交通与出行<span class="badge">4 篇</span></div>
+            <ul class="article-list">
+            <li><a href="交通与出行/交通事故责任全方位解析.html">交通事故责任全方位解析</a></li>
+            <li><a href="交通与出行/交通违章处理全方位解析.html">交通违章处理全方位解析</a></li>
+            <li><a href="交通与出行/车辆借用责任全方位解析.html">车辆借用责任全方位解析</a></li>
+            <li><a href="交通与出行/酒驾责任全方位解析.html">酒驾责任全方位解析</a></li>
+            </ul>
+        </div>
+
+        <div class="category-card">
+            <div class="category-header"><span class="emoji">🏘️</span>居住与房产<span class="badge">6 篇</span></div>
+            <ul class="article-list">
+            <li><a href="居住与房产/共有产权全面解析.html">共有产权全面解析</a></li>
+            <li><a href="居住与房产/定金与订金法律实务指南.html">定金与订金法律实务指南</a></li>
+            <li><a href="居住与房产/房屋产权详解.html">房屋产权详解</a></li>
+            <li><a href="居住与房产/押金纠纷全面解析.html">押金纠纷全面解析</a></li>
+            <li><a href="居住与房产/租赁合同法律实务全解析.html">租赁合同法律实务全解析</a></li>
+            <li><a href="居住与房产/转租风险全面分析报告.html">转租风险全面分析报告</a></li>
+            </ul>
+        </div>
+
+        <div class="category-card">
+            <div class="category-header"><span class="emoji">💰</span>钱与资产<span class="badge">5 篇</span></div>
+            <ul class="article-list">
+            <li><a href="钱与资产/《民法典》下担保责任的全面解析.html">《民法典》下担保责任的全面解析</a></li>
+            <li><a href="钱与资产/借贷关系全面解析.html">借贷关系全面解析</a></li>
+            <li><a href="钱与资产/民间借贷利息合法性认定指南.html">民间借贷利息合法性认定指南</a></li>
+            <li><a href="钱与资产/财产归属的法律认定规则分析.html">财产归属的法律认定规则分析</a></li>
+            <li><a href="钱与资产/资产隔离的法律机制与实务风险分析.html">资产隔离的法律机制与实务风险分析</a></li>
+            </ul>
+        </div>
+
+        <div class="category-card">
+            <div class="category-header"><span class="emoji">🤝</span>人情与合作<span class="badge">4 篇</span></div>
+            <ul class="article-list">
+            <li><a href="人情与合作/口头协议法律知识全面解读.html">口头协议法律知识全面解读</a></li>
+            <li><a href="人情与合作/合伙经营五维解析.html">合伙经营五维解析</a></li>
+            <li><a href="人情与合作/熟人借贷全解析.html">熟人借贷全解析</a></li>
+            <li><a href="人情与合作/股权分配全解析.html">股权分配全解析</a></li>
+            </ul>
+        </div>
+
+        <div class="category-card">
+            <div class="category-header"><span class="emoji">📋</span>税务<span class="badge">3 篇</span></div>
+            <ul class="article-list">
+            <li><a href="税务/个人所得税法律知识全解析.html">个人所得税法律知识全解析</a></li>
+            <li><a href="税务/副业报税法律知识全解析.html">副业报税法律知识全解析</a></li>
+            <li><a href="税务/灰色收入法律知识全解析.html">灰色收入法律知识全解析</a></li>
+            </ul>
+        </div>
+
+        <div class="category-card">
+            <div class="category-header"><span class="emoji">📈</span>投资与金融<span class="badge">4 篇</span></div>
+            <ul class="article-list">
+            <li><a href="投资与金融/信息披露法律知识全解析.html">信息披露法律知识全解析</a></li>
+            <li><a href="投资与金融/内幕交易法律知识全解析.html">内幕交易法律知识全解析</a></li>
+            <li><a href="投资与金融/金融诈骗法律知识全解析.html">金融诈骗法律知识全解析</a></li>
+            <li><a href="投资与金融/非法集资法律知识全解析.html">非法集资法律知识全解析</a></li>
+            </ul>
+        </div>
+
+        <div class="category-card">
+            <div class="category-header"><span class="emoji">🚨</span>突发事件<span class="badge">4 篇</span></div>
+            <ul class="article-list">
+            <li><a href="突发事件/公共场所事故法律知识全解析.html">公共场所事故法律知识全解析</a></li>
+            <li><a href="突发事件/意外伤害责任法律知识全解析.html">意外伤害责任法律知识全解析</a></li>
+            <li><a href="突发事件/正当防卫法律知识全解析.html">正当防卫法律知识全解析</a></li>
+            <li><a href="突发事件/防卫过当法律知识全解析.html">防卫过当法律知识全解析</a></li>
+            </ul>
+        </div>
+
+        <div class="category-card">
+            <div class="category-header"><span class="emoji">🌐</span>网络与信息<span class="badge">5 篇</span></div>
+            <ul class="article-list">
+            <li><a href="网络与信息/名誉侵权的法律分析.html">名誉侵权的法律分析</a></li>
+            <li><a href="网络与信息/数据泄露全解析.html">数据泄露全解析</a></li>
+            <li><a href="网络与信息/电信诈骗全面解析.html">电信诈骗全面解析</a></li>
+            <li><a href="网络与信息/网络言论责任全方位解析.html">网络言论责任全方位解析</a></li>
+            <li><a href="网络与信息/隐私保护指南.html">隐私保护指南</a></li>
+            </ul>
+        </div>
+
+        <div class="category-card">
+            <div class="category-header"><span class="emoji">🛒</span>消费与服务<span class="badge">4 篇</span></div>
+            <ul class="article-list">
+            <li><a href="消费与服务/消费维权法律知识全面解读.html">消费维权法律知识全面解读</a></li>
+            <li><a href="消费与服务/虚假宣传法律知识全面解读.html">虚假宣传法律知识全面解读</a></li>
+            <li><a href="消费与服务/退款规则法律知识全面解读.html">退款规则法律知识全面解读</a></li>
+            <li><a href="消费与服务/预付费陷阱法律知识全面解读.html">预付费陷阱法律知识全面解读</a></li>
+            </ul>
+        </div>
+
+        <div class="category-card">
+            <div class="category-header"><span class="emoji">🏥</span>医疗与健康<span class="badge">3 篇</span></div>
+            <ul class="article-list">
+            <li><a href="医疗与健康/医疗责任法律知识全面解读.html">医疗责任法律知识全面解读</a></li>
+            <li><a href="医疗与健康/医美纠纷法律知识全面解读.html">医美纠纷法律知识全面解读</a></li>
+            <li><a href="医疗与健康/知情同意法律知识全面解读.html">知情同意法律知识全面解读</a></li>
+            </ul>
+        </div>
+
+        </div>
+    </div>
+
+    <div class="dl-footer">
+        面包渣 · 日常法 · 仅供参考，不构成法律建议
+    </div>
+</body>
+</html>

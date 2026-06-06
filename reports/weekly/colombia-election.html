@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>哥伦比亚2026大选 — 深度分析报告 | The Economist</title>
+<style>
+  :root {
+    --bg-primary: #0a0e14;
+    --bg-card: #131820;
+    --bg-card-hover: #1a1f2e;
+    --border: #1e2a3a;
+    --text-primary: #e0e6f0;
+    --text-secondary: #8899b4;
+    --text-muted: #5a6a7e;
+    --accent-blue: #4a9eff;
+    --accent-red: #ff5e5b;
+    --accent-gold: #f5a623;
+    --accent-green: #34d399;
+    --accent-purple: #a78bfa;
+    --accent-orange: #fb923c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+  
+  /* Header */
+  .report-header {
+    text-align: center;
+    padding: 60px 0 40px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+    position: relative;
+  }
+  .report-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-red));
+    border-radius: 2px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .badge-series { background: rgba(74, 158, 255, 0.15); color: var(--accent-blue); border: 1px solid rgba(74, 158, 255, 0.3); }
+  .header-title { font-size: 2.2rem; font-weight: 800; margin: 12px 0 8px; letter-spacing: -0.5px; }
+  .header-subtitle { color: var(--text-secondary); font-size: 1.05rem; }
+  .header-meta { display: flex; justify-content: center; gap: 24px; margin-top: 16px; flex-wrap: wrap; }
+  .meta-item { color: var(--text-muted); font-size: 0.85rem; display: flex; align-items: center; gap: 6px; }
+  .meta-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-blue); }
+
+  /* Sections */
+  .section { margin-bottom: 48px; }
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    transition: background 0.2s;
+  }
+  .card:hover { background: var(--bg-card-hover); }
+  .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; color: var(--accent-blue); }
+  .card-subtitle { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 16px; }
+
+  /* Tables */
+  .data-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+  .data-table th {
+    text-align: left; padding: 10px 14px;
+    background: rgba(74, 158, 255, 0.08);
+    border-bottom: 2px solid var(--border);
+    color: var(--accent-blue); font-weight: 600; font-size: 0.8rem;
+    letter-spacing: 0.5px; text-transform: uppercase;
+  }
+  .data-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(30, 42, 58, 0.5);
+  }
+  .data-table tr:hover td { background: rgba(74, 158, 255, 0.03); }
+  .highlight { color: var(--accent-gold); font-weight: 700; }
+  .danger { color: var(--accent-red); }
+  .success { color: var(--accent-green); }
+
+  /* Tags */
+  .tag {
+    display: inline-block; padding: 3px 10px;
+    border-radius: 12px; font-size: 0.75rem; font-weight: 600;
+    margin-right: 6px; margin-bottom: 4px;
+  }
+  .tag-red { background: rgba(255,94,91,0.15); color: var(--accent-red); }
+  .tag-blue { background: rgba(74,158,255,0.15); color: var(--accent-blue); }
+  .tag-gold { background: rgba(245,166,35,0.15); color: var(--accent-gold); }
+  .tag-green { background: rgba(52,211,153,0.15); color: var(--accent-green); }
+
+  /* Grid */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 768px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+  /* Highlight boxes */
+  .quote-box {
+    border-left: 4px solid var(--accent-gold);
+    background: rgba(245, 166, 35, 0.06);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-style: italic;
+    color: var(--accent-gold);
+  }
+  .info-box {
+    border-left: 4px solid var(--accent-blue);
+    background: rgba(74, 158, 255, 0.06);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+  }
+
+  /* Stat cards */
+  .stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-value { font-size: 2rem; font-weight: 800; }
+  .stat-label { font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px; }
+
+  /* Chart containers */
+  .chart-container {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    overflow-x: auto;
+  }
+  .chart-title { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px; text-align: center; }
+
+  .footer-note {
+    text-align: center; padding: 40px 0 20px;
+    color: var(--text-muted); font-size: 0.8rem;
+    border-top: 1px solid var(--border); margin-top: 40px;
+  }
+
+  .candidate-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 768px) { .candidate-grid { grid-template-columns: 1fr; } }
+  .candidate-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px;
+  }
+  .candidate-card.left { border-top: 3px solid var(--accent-red); }
+  .candidate-card.far-right { border-top: 3px solid var(--accent-orange); }
+  .candidate-card.trad-right { border-top: 3px solid var(--accent-blue); }
+  .candidate-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 4px; }
+  .candidate-party { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 12px; }
+  .candidate-stat { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(30,42,58,0.3); font-size: 0.85rem; }
+  .candidate-stat:last-child { border-bottom: none; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="report-header">
+    <div class="badge badge-series">YouTube 深度分析 #13</div>
+    <h1 class="header-title">哥伦比亚 2026 总统大选深度分析</h1>
+    <p class="header-subtitle">"Is Colombia heading for its most polarised election yet?" — The Economist</p>
+    <div class="header-meta">
+      <span class="meta-item"><span class="meta-dot"></span>频道：The Economist</span>
+      <span class="meta-item"><span class="meta-dot" style="background:var(--accent-red)"></span>第一轮：2026.5.31</span>
+      <span class="meta-item"><span class="meta-dot" style="background:var(--accent-gold)"></span>决选：2026.6.21</span>
+      <span class="meta-item"><span class="meta-dot" style="background:var(--accent-green)"></span>14位候选人</span>
+    </div>
+  </div>
+
+  <!-- Section 1: Core Numbers -->
+  <div class="section">
+    <h2 class="section-title">
+      <span class="section-icon" style="background:rgba(74,158,255,0.15);color:var(--accent-blue)">&#9881;</span>
+      核心数据速览
+    </h2>
+    <div class="grid-3">
+      <div class="stat-card">
+        <div class="stat-value" style="color:var(--accent-gold)">43.77%</div>
+        <div class="stat-label">德拉埃斯普列利亚 第一轮得票</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color:var(--accent-red)">40.88%</div>
+        <div class="stat-label">塞佩达 第一轮得票</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color:var(--accent-blue)">6.91%</div>
+        <div class="stat-label">瓦伦西亚 第一轮得票</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">第一轮投票结果 — 97.58% 计票完成</div>
+      <svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bar1" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#fb923c"/><stop offset="100%" stop-color="#f5a623"/></linearGradient>
+          <linearGradient id="bar2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ff5e5b"/><stop offset="100%" stop-color="#ef4444"/></linearGradient>
+          <linearGradient id="bar3" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#4a9eff"/><stop offset="100%" stop-color="#3b82f6"/></linearGradient>
+        </defs>
+        <text x="40" y="35" fill="#8899b4" font-size="12" font-family="sans-serif">得票率 %</text>
+        <!-- Grid lines -->
+        <line x1="80" y1="50" x2="80" y2="240" stroke="#1e2a3a" stroke-width="1"/>
+        <line x1="80" y1="240" x2="660" y2="240" stroke="#1e2a3a" stroke-width="1"/>
+        <line x1="80" y1="50" x2="660" y2="50" stroke="#1e2a3a" stroke-width="1" stroke-dasharray="4,4"/>
+        <text x="70" y="54" fill="#5a6a7e" font-size="10" text-anchor="end">50%</text>
+        <line x1="80" y1="50" x2="660" y2="50" stroke="#ff5e5b" stroke-width="1" stroke-dasharray="4,4" opacity="0.4"/>
+        <!-- Bars -->
+        <rect x="100" y="92" width="160" height="148" rx="4" fill="url(#bar1)" opacity="0.9"/>
+        <text x="180" y="85" fill="#f5a623" font-size="28" font-weight="700" text-anchor="middle">43.77%</text>
+        <text x="180" y="256" fill="#8899b4" font-size="11" text-anchor="middle">德拉埃斯普列利亚</text>
+        <text x="180" y="270" fill="#5a6a7e" font-size="9" text-anchor="middle">极右翼 · 独立候选人</text>
+
+        <rect x="280" y="99" width="160" height="141" rx="4" fill="url(#bar2)" opacity="0.9"/>
+        <text x="360" y="92" fill="#ff5e5b" font-size="28" font-weight="700" text-anchor="middle">40.88%</text>
+        <text x="360" y="256" fill="#8899b4" font-size="11" text-anchor="middle">伊万·塞佩达</text>
+        <text x="360" y="270" fill="#5a6a7e" font-size="9" text-anchor="middle">左翼 · 历史公约联盟</text>
+
+        <rect x="460" y="199" width="160" height="41" rx="4" fill="url(#bar3)" opacity="0.9"/>
+        <text x="540" y="192" fill="#4a9eff" font-size="24" font-weight="700" text-anchor="middle">6.91%</text>
+        <text x="540" y="256" fill="#8899b4" font-size="11" text-anchor="middle">帕洛玛·瓦伦西亚</text>
+        <text x="540" y="270" fill="#5a6a7e" font-size="9" text-anchor="middle">传统右翼 · 民主中心党</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Section 2: Candidates -->
+  <div class="section">
+    <h2 class="section-title">
+      <span class="section-icon" style="background:rgba(245,166,35,0.15);color:var(--accent-gold)">&#9733;</span>
+      三大候选人/阵营深度剖析
+    </h2>
+
+    <div class="candidate-grid">
+      <!-- Cepeda -->
+      <div class="candidate-card left">
+        <div class="candidate-name" style="color:var(--accent-red)">伊万·塞佩达</div>
+        <div class="candidate-party">Iván Cepeda · 左翼 · 历史公约联盟</div>
+        <div class="candidate-stat"><span>党内初选支持</span><span class="highlight">64.4%</span></div>
+        <div class="candidate-stat"><span>民调峰值（3月）</span><span style="color:var(--accent-red)">37.5%</span></div>
+        <div class="candidate-stat"><span>正面形象</span><span style="color:var(--accent-green)">48.3%</span></div>
+        <div class="candidate-stat"><span>负面形象</span><span>46.7%</span></div>
+        <div class="candidate-stat"><span>决不投票比例</span><span class="danger">37.2%（最高）</span></div>
+        <div class="candidate-stat"><span>竞选搭档</span><span>Aida Quilcué（原住民）</span></div>
+        <div style="margin-top:12px">
+          <span class="tag tag-red">深化和平政策</span>
+          <span class="tag tag-red">土地再分配</span>
+          <span class="tag tag-red">宪法会议</span>
+          <span class="tag tag-red">福利扩张</span>
+        </div>
+      </div>
+
+      <!-- De la Espriella -->
+      <div class="candidate-card far-right">
+        <div class="candidate-name" style="color:var(--accent-gold)">阿韦拉多·德拉埃斯普列利亚</div>
+        <div class="candidate-party">Abelardo de la Espriella · 极右翼 · 独立</div>
+        <div class="candidate-stat"><span>民调峰值（2月）</span><span style="color:var(--accent-gold)">22.6%</span></div>
+        <div class="candidate-stat"><span>第一轮实际</span><span class="highlight">43.77%（爆冷）</span></div>
+        <div class="candidate-stat"><span>正面形象</span><span class="danger">35.9%（最低）</span></div>
+        <div class="candidate-stat"><span>负面形象</span><span class="danger">49.5%（最高）</span></div>
+        <div class="candidate-stat"><span>政治身份</span><span>刑事律师、百万富翁</span></div>
+        <div class="candidate-stat"><span>风格</span><span>特朗普/布克尔式民粹</span></div>
+        <div style="margin-top:12px">
+          <span class="tag tag-gold">90天空袭毒贩</span>
+          <span class="tag tag-gold">10座巨型监狱</span>
+          <span class="tag tag-gold">紧急状态</span>
+          <span class="tag tag-gold">精简政府</span>
+        </div>
+      </div>
+
+      <!-- Valencia -->
+      <div class="candidate-card trad-right">
+        <div class="candidate-name" style="color:var(--accent-blue)">帕洛玛·瓦伦西亚</div>
+        <div class="candidate-party">Paloma Valencia · 传统右翼 · 民主中心党</div>
+        <div class="candidate-stat"><span>民调峰值（3月）</span><span style="color:var(--accent-blue)">22.2%</span></div>
+        <div class="candidate-stat"><span>第一轮实际</span><span>6.91%（远低预期）</span></div>
+        <div class="candidate-stat"><span>右翼初选</span><span class="highlight">320万票获胜</span></div>
+        <div class="candidate-stat"><span>政治传承</span><span>乌里韦门生</span></div>
+        <div class="candidate-stat"><span>竞选搭档</span><span>Juan Daniel Oviedo</span></div>
+        <div class="candidate-stat"><span>历史意义</span><span>首位女总统候选人</span></div>
+        <div style="margin-top:12px">
+          <span class="tag tag-blue">亲华盛顿</span>
+          <span class="tag tag-blue">减税扩投资</span>
+          <span class="tag tag-blue">强硬反毒</span>
+          <span class="tag tag-blue">缩减政府</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Polarization Drivers -->
+  <div class="section">
+    <h2 class="section-title">
+      <span class="section-icon" style="background:rgba(255,94,91,0.15);color:var(--accent-red)">&#9888;</span>
+      极化驱动力：五大核心因素
+    </h2>
+    
+    <div class="quote-box">
+      "哥伦比亚可能迎来近代史上全球范围内受政治极端主义影响最严重的选举。" — The Economist, 2026.5.25
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">&#9312; 佩特罗政府的消耗与磨损</div>
+        <p style="color:var(--text-secondary);font-size:0.9rem;">
+          被评价为"混乱的"执政——全面和平政策基本崩溃，几乎所有暴力指标上升，财政赤字创纪录高位。但2026年4月支持率意外回升至47.4%（两年最高），经济管理正面评价达51.7%。
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title">&#9313; 武装组织急剧扩张</div>
+        <p style="color:var(--text-secondary);font-size:0.9rem;">
+          活跃战斗人员从2022年约1.3万增至2025年约2.7万（翻倍）。武装团体间争端比2024年增加34%，十年来最高。古柯种植面积253,000公顷创历史纪录。
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title">&#9314; 截然对立的解决方案</div>
+        <p style="color:var(--text-secondary);font-size:0.9rem;">
+          三位候选人在安全、经济与和平方面提出根本对立的方案：左翼主张谈判和平与土地改革；极右翼主张军事镇压与私营监狱；传统右翼主张恢复乌里韦式深度安全合作。
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title">&#9315; 世界最不平等国家之一</div>
+        <p style="color:var(--text-secondary);font-size:0.9rem;">
+          根深蒂固的阶层分化加剧政治对立。Petro支持者认为精英阻碍结构性改革，反对者指控改革破坏制度。左右翼对2016年FARC和平协议的解读完全对立。
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">&#9316; 数十年暴力历史的延续</div>
+      <p style="color:var(--text-secondary);font-size:0.9rem;">
+        从1948年"La Violencia"内战到FARC冲突再到准军事组织暴力——哥伦比亚社会政治暴力根深蒂固。选举周期中至少61名政治领导人遇害，185个市镇被列为选举暴力高风险区。总统候选人Miguel Uribe Turbay在竞选期间于波哥大遇刺身亡。
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 4: Security Data -->
+  <div class="section">
+    <h2 class="section-title">
+      <span class="section-icon" style="background:rgba(251,146,60,0.15);color:var(--accent-orange)">&#9762;</span>
+      安全形势：决定性议题
+    </h2>
+    <div class="chart-container">
+      <div class="chart-title">佩特罗执政期安全指标恶化轨迹</div>
+      <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="areaGrad1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ff5e5b" stop-opacity="0.3"/><stop offset="100%" stop-color="#ff5e5b" stop-opacity="0"/></linearGradient>
+        </defs>
+        <!-- Axes -->
+        <line x1="60" y1="30" x2="60" y2="190" stroke="#1e2a3a" stroke-width="1"/>
+        <line x1="60" y1="190" x2="660" y2="190" stroke="#1e2a3a" stroke-width="1"/>
+        <!-- Y labels -->
+        <text x="50" y="70" fill="#5a6a7e" font-size="10" text-anchor="end">253,000 ha</text>
+        <text x="50" y="110" fill="#5a6a7e" font-size="10" text-anchor="end">27,000人</text>
+        <text x="50" y="150" fill="#5a6a7e" font-size="10" text-anchor="end">13,000人</text>
+        <text x="50" y="185" fill="#5a6a7e" font-size="10" text-anchor="end">0</text>
+        <!-- X labels -->
+        <text x="120" y="210" fill="#5a6a7e" font-size="11" text-anchor="middle">2022</text>
+        <text x="300" y="210" fill="#5a6a7e" font-size="11" text-anchor="middle">2023</text>
+        <text x="480" y="210" fill="#5a6a7e" font-size="11" text-anchor="middle">2024</text>
+        <text x="660" y="210" fill="#5a6a7e" font-size="11" text-anchor="middle">2025</text>
+        <!-- Fighting forces line -->
+        <polyline points="120,145 300,130 480,115 660,80" fill="none" stroke="#ff5e5b" stroke-width="2.5" stroke-dasharray="6,3"/>
+        <circle cx="120" cy="145" r="4" fill="#ff5e5b"/><circle cx="660" cy="80" r="4" fill="#ff5e5b"/>
+        <text x="670" y="78" fill="#ff5e5b" font-size="10">武装人员 ↑108%</text>
+        <!-- Coca area line -->
+        <polyline points="120,135 300,127 480,105 660,75" fill="none" stroke="#34d399" stroke-width="2.5" stroke-dasharray="4,4"/>
+        <circle cx="120" cy="135" r="4" fill="#34d399"/><circle cx="660" cy="75" r="4" fill="#34d399"/>
+        <text x="670" y="73" fill="#34d399" font-size="10">古柯面积 ▲3x</text>
+        <!-- Armed disputes line -->
+        <polyline points="120,160 300,153 480,142 660,118" fill="none" stroke="#f5a623" stroke-width="2.5"/>
+        <circle cx="120" cy="160" r="4" fill="#f5a623"/><circle cx="660" cy="118" r="4" fill="#f5a623"/>
+        <text x="670" y="116" fill="#f5a623" font-size="10">武装争端 +34%</text>
+      </svg>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">选举暴力</div>
+        <table class="data-table">
+          <tr><td>遇害政治领导人</td><td class="danger">至少61人</td></tr>
+          <tr><td>高风险投票市镇</td><td>185个（共1,122个）</td></tr>
+          <tr><td>已记录政治暴力事件</td><td class="danger">超过400起</td></tr>
+          <tr><td>武装组织影响投票站</td><td>30%-35%（中高风险）</td></tr>
+          <tr><td>重大事件</td><td>候选人 Uribe Turbay 遇刺</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">毒品与犯罪经济</div>
+        <table class="data-table">
+          <tr><td>古柯种植面积</td><td class="danger">253,000公顷（创纪录）</td></tr>
+          <tr><td>近十年增长</td><td class="danger">几乎翻三倍</td></tr>
+          <tr><td>可卡因产量</td><td class="danger">全球最大生产国</td></tr>
+          <tr><td>武装人员数量</td><td class="danger">~27,000（翻倍+）</td></tr>
+          <tr><td>武装争端年增幅</td><td class="danger">+34%（十年最高）</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: Runoff Preview -->
+  <div class="section">
+    <h2 class="section-title">
+      <span class="section-icon" style="background:rgba(167,139,250,0.15);color:var(--accent-purple)">&#9878;</span>
+      决选前瞻：6月21日
+    </h2>
+
+    <div class="chart-container">
+      <div class="chart-title">决选关键变量分析</div>
+      <svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg">
+        <!-- Center circle -->
+        <circle cx="340" cy="140" r="60" fill="none" stroke="#4a9eff" stroke-width="2" opacity="0.3"/>
+        <text x="340" y="135" fill="#e0e6f0" font-size="14" font-weight="700" text-anchor="middle">决选</text>
+        <text x="340" y="155" fill="#8899b4" font-size="11" text-anchor="middle">6月21日</text>
+        
+        <!-- Nodes -->
+        <circle cx="120" cy="60" r="8" fill="#ff5e5b"/><text x="140" y="64" fill="#e0e6f0" font-size="11">安全议题（核心战场）</text>
+        <line x1="128" y1="60" x2="290" y2="125" stroke="#1e2a3a" stroke-width="1.5"/>
+
+        <circle cx="620" cy="60" r="8" fill="#f5a623"/><text x="460" y="56" fill="#e0e6f0" font-size="11">佩特罗质疑计票 → 影响左翼士气</text>
+        <line x1="612" y1="60" x2="390" y2="125" stroke="#1e2a3a" stroke-width="1.5"/>
+
+        <circle cx="90" cy="200" r="8" fill="#4a9eff"/><text x="110" y="204" fill="#8899b4" font-size="11">传统右翼6.91%流向何方？</text>
+        <line x1="98" y1="200" x2="290" y2="155" stroke="#1e2a3a" stroke-width="1.5"/>
+
+        <circle cx="580" cy="210" r="8" fill="#34d399"/><text x="430" y="214" fill="#8899b4" font-size="11">10%-15%未决定中间选民</text>
+        <line x1="572" y1="210" x2="390" y2="155" stroke="#1e2a3a" stroke-width="1.5"/>
+
+        <!-- Bottom note -->
+        <text x="340" y="260" fill="#5a6a7e" font-size="10" text-anchor="middle">
+          德拉埃斯普列利亚负面形象最高(49.5%)，但第一轮远超预期 | 塞佩达决不投票比例最高(37.2%)
+        </text>
+      </svg>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">塞佩达胜选 → 市场影响</div>
+        <ul style="color:var(--text-secondary);font-size:0.9rem;padding-left:18px;line-height:2;">
+          <li>市场信心立即受挫，可能资本外逃</li>
+          <li>比索贬值压力</li>
+          <li>央行独立性风险</li>
+          <li>宪法制定会议风险</li>
+          <li>更深度的拉美一体化外交</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">德拉埃斯普列利亚胜选 → 市场影响</div>
+        <ul style="color:var(--text-secondary);font-size:0.9rem;padding-left:18px;line-height:2;">
+          <li>市场短期利好</li>
+          <li>政策执行面临制度和社会阻力</li>
+          <li>能源和采矿许可可能加速</li>
+          <li>加强与美国军事安全合作</li>
+          <li>核心挑战：执行力而非意识形态</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong style="color:var(--accent-blue)">二轮数学分析：</strong>
+      预计约2,300万选民参与投票。关键在于塞佩达与德拉埃斯普列利亚的差距——若二者差距≤150万票，德拉埃斯普列利亚获胜概率极高。
+    </div>
+  </div>
+
+  <!-- Section 6: International -->
+  <div class="section">
+    <h2 class="section-title">
+      <span class="section-icon" style="background:rgba(52,211,153,0.15);color:var(--accent-green)">&#127758;</span>
+      国际视角与地缘影响
+    </h2>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title">美国</div>
+        <p style="color:var(--text-secondary);font-size:0.85rem;">
+          优先事项：反毒品合作、移民管理、限制中俄影响。佩特罗与特朗普曾因非法移民遣返公开冲突引发关税对峙，但2026年2月关系意外缓和。选举结果将直接影响美哥安全合作深度。
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title">委内瑞拉</div>
+        <p style="color:var(--text-secondary);font-size:0.85rem;">
+          边境军事化以防难民外逃。保守派候选人积极利用委内瑞拉作为警告范例。马杜罗被捕后边境局势持续紧张。厄瓜多尔已与德拉埃斯普列利亚就联合打击毒品达成协议。
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title">中国 &amp; 地区趋势</div>
+        <p style="color:var(--text-secondary);font-size:0.85rem;">
+          中国通过基建、采矿、电信大幅扩展经济角色。左翼政府可能加深经济渗透，但安全机构传统上亲美。地区趋势：阿根廷、智利、厄瓜多尔等国极右翼已接连胜选，哥伦比亚将影响拉美意识形态天平。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 7: Key Insights -->
+  <div class="section">
+    <h2 class="section-title">
+      <span class="section-icon" style="background:rgba(74,158,255,0.15);color:var(--accent-blue)">&#10004;</span>
+      核心洞察
+    </h2>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">民调严重失准</div>
+        <p style="color:var(--text-secondary);font-size:0.9rem;">
+          所有主流民调均低估德拉埃斯普列利亚（预测15%-22% → 实际43.77%），同时高估瓦伦西亚（预测20%-22% → 实际6.91%）。极右翼局外人民调偏差与2016年特朗普现象高度相似。
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title">安全压倒一切</div>
+        <p style="color:var(--text-secondary);font-size:0.9rem;">
+          安全、医疗、腐败是选民最关注的三大议题，安全排首位。佩特罗"全面和平"政策的失败直接推动了极右翼候选人的崛起。"硬汉"叙事在暴力恶化背景下具有空前吸引力。
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title">传统右翼的瓦解</div>
+        <p style="color:var(--text-secondary);font-size:0.9rem;">
+          瓦伦西亚6.91%的惨败标志着乌里韦主义传统右翼的结构性衰退。该阵营选票大量流向极右翼局外人，显示传统政治机器的动员能力已被民粹主义叙事侵蚀。
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-title">投票本身就是高风险行为</div>
+        <p style="color:var(--text-secondary);font-size:0.9rem;">
+          61名政治领导人遇害、400+起政治暴力事件——这场选举的"极化"不仅是观点的对立，更表现为物理暴力。30%-35%投票站处于武装组织中高风险影响区，民主程序本身受到威胁。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    YouTube 深度分析系列 #13 | The Economist | 研究日期 2026.06.04 | 报告生成：Nova &amp; WorkBuddy
+  </div>
+</div>
+</body>
+</html>

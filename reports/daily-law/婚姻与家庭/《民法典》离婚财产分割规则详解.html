@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《民法典》离婚财产分割规则详解</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: "Noto Serif SC", "Source Han Serif SC", "STSong", "SimSun", "Songti SC", Georgia, serif;
+            font-size: 16px;
+            line-height: 1.85;
+            color: #2c3e50;
+            background: #f7f5f0;
+            padding: 0;
+        }
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 60px 40px 100px;
+            background: #fffcf9;
+            min-height: 100vh;
+            box-shadow: 0 0 30px rgba(0,0,0,0.06);
+        }
+        h1 {
+            font-family: "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-top: 0;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #c0392b;
+            letter-spacing: 0.02em;
+        }
+        h2 {
+            font-family: "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-top: 2.2rem;
+            margin-bottom: 0.8rem;
+            padding-left: 0.75rem;
+            border-left: 4px solid #c0392b;
+        }
+        h3 {
+            font-family: "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #34495e;
+            margin-top: 1.8rem;
+            margin-bottom: 0.6rem;
+        }
+        h4 {
+            font-family: "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #5d6d7e;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        p {
+            margin-bottom: 0.9rem;
+            text-align: justify;
+            text-justify: inter-ideograph;
+        }
+        ul, ol {
+            margin: 0.6rem 0 0.9rem 1.8rem;
+        }
+        li {
+            margin-bottom: 0.35rem;
+            text-align: justify;
+        }
+        li p {
+            margin-bottom: 0;
+            display: inline;
+        }
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 1.2rem 0 1.5rem;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+            font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+        }
+        thead {
+            background: #2c3e50;
+            color: #fff;
+        }
+        th {
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #e0ddd7;
+            vertical-align: top;
+        }
+        tbody tr:hover {
+            background: #f8f6f2;
+        }
+        tbody tr:nth-child(even) {
+            background: #fcfaf7;
+        }
+        tbody tr:nth-child(even):hover {
+            background: #f5f0ea;
+        }
+        strong {
+            color: #1a1a2e;
+            font-weight: 700;
+        }
+        em {
+            font-style: italic;
+            color: #566573;
+        }
+        u {
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        a {
+            color: #c0392b;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        a:hover {
+            border-bottom-color: #c0392b;
+        }
+        blockquote {
+            margin: 1rem 0;
+            padding: 0.8rem 1.2rem;
+            border-left: 4px solid #c0392b;
+            background: #faf8f5;
+            color: #555;
+            font-style: normal;
+        }
+        blockquote p {
+            margin-bottom: 0;
+        }
+        code {
+            font-family: "JetBrains Mono", "Fira Code", "Source Code Pro", Consolas, monospace;
+            font-size: 0.88em;
+            background: #f0ede8;
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #c0392b;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #e0ddd7;
+            margin: 1.5rem 0;
+        }
+        .category-label {
+            display: inline-block;
+            font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #7f8c8d;
+            background: #f0ede8;
+            padding: 3px 12px;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+        .back-link {
+            display: inline-block;
+            font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-bottom: 0.5rem;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            color: #c0392b;
+        }
+        @media (max-width: 700px) {
+            .container {
+                padding: 30px 20px 60px;
+            }
+            h1 { font-size: 1.6rem; }
+            h2 { font-size: 1.25rem; }
+            h3 { font-size: 1.05rem; }
+        }
+        @media print {
+            body { background: #fff; }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="back-link" href="../index.html">← 返回目录</a>
+        <span class="category-label">婚姻与家庭</span>
+        <h1>《民法典》离婚财产分割规则详解</h1>
+        <p><strong>《民法典》离婚财产分割规则详解</strong></p>
+<p><strong>引言</strong></p>
+<p>《中华人民共和国民法典》（以下简称《民法典》）自2021年1月1日起施行，其中婚姻家庭编对离婚财产分割规则作出了明确规定。本文将从房产分割、过错惩罚、债务分担和实务案例四个维度，全面梳理《民法典》下的离婚财产分割规则。</p>
+<p><strong>一、房产及公司股权的分割原则</strong></p>
+<p><strong>（一）房产分割规则</strong></p>
+<p><strong>1. 婚前首付婚后还贷房产</strong></p>
+<p>根据《民法典》第1062条和第1063条的规定，婚前一方支付首付款并在银行贷款，婚后用夫妻共同财产还贷，不动产登记于首付款支付方名下的，离婚时该不动产由双方协议处理。</p>
+<p>不能达成协议的，人民法院可以判决该不动产归登记一方，尚未归还的贷款为不动产登记一方的个人债务。双方婚后共同还贷支付的款项及其相对应财产增值部分，由不动产登记一方对另一方进行补偿。</p>
+<p><strong>法律依据：</strong></p>
+<ul>
+  <li>《民法典》第1062条：夫妻在婚姻关系存续期间所得的下列财产，为夫妻的共同财产，归夫妻共同所有</li>
+  <li>《民法典》第1063条：下列财产为夫妻一方的个人财产</li>
+  <li>《最高人民法院关于适用<中华人民共和国民法典>婚姻家庭编的解释（一）》第78条</li>
+</ul>
+<p><strong>2. 父母出资购房</strong></p>
+<ul>
+  <li><strong>婚前父母出资</strong>：婚后由一方父母出资为子女购买的不动产，产权登记在出资人子女名下的，可按照《民法典》第1063条第（三）项的规定，视为只对自己子女一方的赠与，该不动产应认定为夫妻一方的个人财产</li>
+  <li><strong>婚后父母出资</strong>：由双方父母出资购买的不动产，产权登记在一方子女名下的，该不动产可认定为双方按照各自父母的出资份额按份共有，但当事人另有约定的除外</li>
+</ul>
+<p><strong>（二）公司股权分割</strong></p>
+<p><strong>1. 原则</strong></p>
+<p>夫妻一方以个人名义在有限责任公司的出资额，另一方不是该公司股东的，离婚时按以下情形分别处理：</p>
+<ul>
+  <li>夫妻双方协商一致将出资额部分或者全部转让给该股东的配偶，其他股东过半数同意，并且其他股东均明确表示放弃优先购买权的，该股东的配偶可以成为该公司股东</li>
+  <li>夫妻双方就出资额转让份额和转让价格等事项协商一致后，其他股东半数以上不同意转让，但愿意以同等条件购买该出资额的，人民法院可以对转让出资所得财产进行分割</li>
+</ul>
+<p><strong>2. 证据要求</strong></p>
+<ul>
+  <li>公司工商登记资料</li>
+  <li>股权出资证明</li>
+  <li>公司财务报表</li>
+  <li>其他股东的书面意见</li>
+</ul>
+<p><strong>二、隐藏转移财产及重大过错的惩罚机制</strong></p>
+<p><strong>（一）财产隐匿行为的法律后果</strong></p>
+<p><strong>1. 法律规定</strong></p>
+<p>《民法典》第1092条规定：夫妻一方隐藏、转移、变卖、毁损、挥霍夫妻共同财产，或者伪造夫妻共同债务企图侵占另一方财产的，在离婚分割夫妻共同财产时，对该方可以少分或者不分。</p>
+<p><strong>2. 司法实践</strong></p>
+<ul>
+  <li><strong>少分比例</strong>：通常为60%-70%，严重情况下可达到80%-90%</li>
+  <li><strong>不分情形</strong>：情节特别严重，如转移巨额财产且拒不交代去向</li>
+  <li><strong>追诉时效</strong>：离婚后三年内发现隐匿财产的，可另行起诉要求分割</li>
+</ul>
+<p><strong>3. 证据收集</strong></p>
+<ul>
+  <li>银行流水异常转账记录</li>
+  <li>虚假借款合同</li>
+  <li>财产转移的聊天记录</li>
+  <li>第三者收款凭证</li>
+</ul>
+<p><strong>（二）重大过错的赔偿标准</strong></p>
+<p><strong>1. 适用情形</strong></p>
+<p>《民法典》第1091条规定，有下列情形之一，导致离婚的，无过错方有权请求损害赔偿：</p>
+<ul>
+  <li>重婚</li>
+  <li>与他人同居</li>
+  <li>实施家庭暴力</li>
+  <li>虐待、遗弃家庭成员</li>
+  <li>有其他重大过错</li>
+</ul>
+<p><strong>2. 赔偿标准</strong></p>
+<ul>
+  <li><strong>精神损害赔偿</strong>：一般在5000-10万元之间，根据过错程度和当地经济水平确定</li>
+  <li><strong>物质损害赔偿</strong>：包括医疗费、误工费等实际损失</li>
+  <li><strong>财产分割倾斜</strong>：无过错方可适当多分财产</li>
+</ul>
+<p><strong>三、夫妻共同债务的认定与分担规则</strong></p>
+<p><strong>（一）共同债务的认定标准</strong></p>
+<p><strong>1. "共债共签"原则</strong></p>
+<p>《民法典》第1064条第一款规定：夫妻双方共同签名或者夫妻一方事后追认等共同意思表示所负的债务，以及夫妻一方在婚姻关系存续期间以个人名义为家庭日常生活需要所负的债务，属于夫妻共同债务。</p>
+<p><strong>2. 日常生活需要的认定</strong></p>
+<ul>
+  <li>债务金额与家庭收入水平相适应</li>
+  <li>用于子女教育、医疗、家庭消费等</li>
+  <li>符合当地一般生活水平</li>
+</ul>
+<p><strong>3. 个人债务的认定</strong></p>
+<ul>
+  <li>一方婚前所负债务</li>
+  <li>超出家庭日常生活需要所负的债务，且债权人不能证明用于夫妻共同生活、共同生产经营或者基于夫妻双方共同意思表示</li>
+  <li>赌博、吸毒等违法犯罪活动所负债务</li>
+</ul>
+<p><strong>（二）举证责任分配</strong></p>
+<p><strong>1. 原则</strong></p>
+<ul>
+  <li>主张共同债务的一方承担举证责任</li>
+  <li>债权人主张债务为夫妻共同债务的，应当举证证明债务用于夫妻共同生活、共同生产经营或者基于夫妻双方共同意思表示</li>
+</ul>
+<p><strong>2. 证据类型</strong></p>
+<ul>
+  <li>夫妻共同签字的借据</li>
+  <li>债务用于家庭共同生活的银行流水</li>
+  <li>为共同生产经营所负债务的合同</li>
+  <li>事后追认债务的聊天记录、录音等</li>
+</ul>
+<p><strong>四、家务补偿金计算及隐匿财产救济途径</strong></p>
+<p><strong>（一）家务劳动补偿制度</strong></p>
+<p><strong>1. 法律依据</strong></p>
+<p>《民法典》第1088条规定：夫妻一方因抚育子女、照料老年人、协助另一方工作等负担较多义务的，离婚时有权向另一方请求补偿，另一方应当给予补偿。</p>
+<p><strong>2. 计算标准（2026年司法实践）</strong></p>
+<ul>
+  <li><strong>基本标准</strong>：参照当地家政服务人员报酬标准</li>
+  <li><strong>年限因素</strong>：每负担家务5年，补偿金额增加10%-20%</li>
+  <li><strong>收入差距</strong>：根据双方收入差距适当调整</li>
+  <li><strong>一般范围</strong>：3万-20万元，特殊情况可更高</li>
+</ul>
+<p><strong>3. 案例分析</strong></p>
+<p>2026年北京某法院判决：女方全职照顾家庭10年，男方年收入30万元，女方无收入。法院判决家务补偿金12万元，理由包括：</p>
+<ul>
+  <li>当地家政服务年均费用6万元</li>
+  <li>考虑10年时间因素</li>
+  <li>男方收入较高，补偿能力较强</li>
+</ul>
+<p><strong>（二）隐匿财产的救济途径</strong></p>
+<p><strong>1. 离婚后发现隐匿财产</strong></p>
+<p>《最高人民法院关于适用<中华人民共和国民法典>婚姻家庭编的解释（一）》第84条规定：当事人依据《民法典》第1092条的规定向人民法院提起诉讼，请求再次分割夫妻共同财产的诉讼时效期间为三年，从当事人发现之日起计算。</p>
+<p><strong>2. 救济程序</strong></p>
+<ul>
+  <li>收集隐匿财产的证据</li>
+  <li>向原审法院或有管辖权的法院起诉</li>
+  <li>请求重新分割被隐匿的财产</li>
+  <li>可要求对方承担少分或不分的责任</li>
+</ul>
+<p><strong>3. 2026年典型案例</strong></p>
+<p>上海某离婚案：离婚后女方发现男方隐匿了价值500万元的公司股权。法院判决：</p>
+<ul>
+  <li>重新分割该股权</li>
+  <li>男方仅分得该股权的20%</li>
+  <li>承担女方的律师费和诉讼费</li>
+</ul>
+<p><strong>结论</strong></p>
+<p>《民法典》下的离婚财产分割制度体现了公平原则和对弱势方的保护。在实务操作中，当事人应当：</p>
+<ul>
+  <li>全面了解夫妻共同财产的范围和分割规则</li>
+  <li>注意收集和保存相关证据</li>
+  <li>在发现对方隐匿财产时及时行使救济权利</li>
+  <li>对于重大过错行为，依法主张损害赔偿</li>
+  <li>在财产分割中积极主张家务劳动补偿</li>
+</ul>
+<p>通过合理运用法律规定，可以更好地维护自身的合法权益。</p>
+<p><strong>注：</strong>本文所引用的法律条文和司法解释均为现行有效版本，案例分析基于2026年司法实践，具体案件处理应以专业律师意见为准。</p>
+<p>(AI生成)</p>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>合伙经营五维解析</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: "Noto Serif SC", "Source Han Serif SC", "STSong", "SimSun", "Songti SC", Georgia, serif;
+            font-size: 16px;
+            line-height: 1.85;
+            color: #2c3e50;
+            background: #f7f5f0;
+            padding: 0;
+        }
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 60px 40px 100px;
+            background: #fffcf9;
+            min-height: 100vh;
+            box-shadow: 0 0 30px rgba(0,0,0,0.06);
+        }
+        h1 {
+            font-family: "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-top: 0;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #c0392b;
+            letter-spacing: 0.02em;
+        }
+        h2 {
+            font-family: "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-top: 2.2rem;
+            margin-bottom: 0.8rem;
+            padding-left: 0.75rem;
+            border-left: 4px solid #c0392b;
+        }
+        h3 {
+            font-family: "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #34495e;
+            margin-top: 1.8rem;
+            margin-bottom: 0.6rem;
+        }
+        h4 {
+            font-family: "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", "PingFang SC", sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #5d6d7e;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        p {
+            margin-bottom: 0.9rem;
+            text-align: justify;
+            text-justify: inter-ideograph;
+        }
+        ul, ol {
+            margin: 0.6rem 0 0.9rem 1.8rem;
+        }
+        li {
+            margin-bottom: 0.35rem;
+            text-align: justify;
+        }
+        li p {
+            margin-bottom: 0;
+            display: inline;
+        }
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 1.2rem 0 1.5rem;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+            font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+        }
+        thead {
+            background: #2c3e50;
+            color: #fff;
+        }
+        th {
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #e0ddd7;
+            vertical-align: top;
+        }
+        tbody tr:hover {
+            background: #f8f6f2;
+        }
+        tbody tr:nth-child(even) {
+            background: #fcfaf7;
+        }
+        tbody tr:nth-child(even):hover {
+            background: #f5f0ea;
+        }
+        strong {
+            color: #1a1a2e;
+            font-weight: 700;
+        }
+        em {
+            font-style: italic;
+            color: #566573;
+        }
+        u {
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        a {
+            color: #c0392b;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        a:hover {
+            border-bottom-color: #c0392b;
+        }
+        blockquote {
+            margin: 1rem 0;
+            padding: 0.8rem 1.2rem;
+            border-left: 4px solid #c0392b;
+            background: #faf8f5;
+            color: #555;
+            font-style: normal;
+        }
+        blockquote p {
+            margin-bottom: 0;
+        }
+        code {
+            font-family: "JetBrains Mono", "Fira Code", "Source Code Pro", Consolas, monospace;
+            font-size: 0.88em;
+            background: #f0ede8;
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #c0392b;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #e0ddd7;
+            margin: 1.5rem 0;
+        }
+        .category-label {
+            display: inline-block;
+            font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #7f8c8d;
+            background: #f0ede8;
+            padding: 3px 12px;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+        .back-link {
+            display: inline-block;
+            font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-bottom: 0.5rem;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            color: #c0392b;
+        }
+        @media (max-width: 700px) {
+            .container {
+                padding: 30px 20px 60px;
+            }
+            h1 { font-size: 1.6rem; }
+            h2 { font-size: 1.25rem; }
+            h3 { font-size: 1.05rem; }
+        }
+        @media print {
+            body { background: #fff; }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="back-link" href="../index.html">← 返回目录</a>
+        <span class="category-label">人情与合作</span>
+        <h1>合伙经营五维解析</h1>
+        <p><strong>合伙经营五维解析</strong></p>
+<p><strong>摘要</strong></p>
+<p>合伙经营作为一种重要的商业组织形式，在市场经济中扮演着不可或缺的角色。本文从核心概念、法律效力、常见场景、防范维权和实务案例五个维度，全面解析合伙经营的法律特征、风险防范及纠纷解决机制。通过对《合伙企业法》《民法典》等法律法规的解读，结合司法实践中的典型案例，为读者提供系统性、实用性的合伙经营知识框架，助力商业合作规范化与风险防范。</p>
+<p><strong>关键词</strong></p>
+<p>合伙经营；合伙企业；合伙协议；风险共担；司法认定；纠纷解决</p>
+<p><strong>一、合伙经营的核心概念</strong></p>
+<p><strong>1.1 定义与特征</strong></p>
+<p>合伙经营是指两名及以上自然人或法人依据《中华人民共和国合伙企业法》订立合伙协议，共同出资、经营并共担风险的非法人经济组织形式。其核心特征包括：</p>
+<ul>
+  <li><strong>共同出资</strong>：合伙人可采用货币、实物、知识产权、土地使用权或劳务等方式出资。</li>
+  <li><strong>共同经营</strong>：合伙人共同参与或授权管理合伙事务。</li>
+  <li><strong>共享收益</strong>：合伙企业产生的利润按约定比例在合伙人之间分配。</li>
+  <li><strong>共担风险</strong>：合伙人对合伙企业债务承担连带责任，或按出资比例承担有限责任。</li>
+</ul>
+<p><strong>1.2 法律类型</strong></p>
+<p>根据《合伙企业法》规定，合伙企业主要分为以下类型：</p>
+<div class="table-wrapper"><table>
+        <tbody>
+            <tr>
+                <td>合伙类型</td>
+                <td>责任承担</td>
+                <td>适用场景</td>
+                <td>出资方式</td>
+            </tr>
+            <tr>
+                <td>普通合伙企业</td>
+                <td>所有合伙人承担无限连带责任</td>
+                <td>中小型企业、专业服务机构</td>
+                <td>货币、实物、知识产权、劳务</td>
+            </tr>
+            <tr>
+                <td>有限合伙企业</td>
+                <td>普通合伙人承担无限连带责任，有限合伙人以认缴出资额为限承担责任</td>
+                <td>风险投资、私募基金、专业投资</td>
+                <td>货币、实物、知识产权，不得以劳务出资</td>
+            </tr>
+            <tr>
+                <td>特殊普通合伙企业</td>
+                <td>合伙人对非故意或重大过失造成的债务承担有限责任，对故意或重大过失造成的债务承担无限责任</td>
+                <td>律师事务所、会计师事务所等专业服务机构</td>
+                <td>货币、实物、知识产权、劳务</td>
+            </tr>
+        </tbody>
+    </table></div>
+<p>数据来源：</p>
+<p><strong>2026年修订草案调整</strong>：将合伙企业形式从3种调整为2种（普通合伙、有限合伙），并将有限责任合伙（LLP）纳入普通合伙的特殊形式。</p>
+<p><strong>1.3 合伙关系的成立要件</strong></p>
+<p>合伙关系的成立需满足以下要件：</p>
+<ul>
+  <li><strong>合伙合意</strong>：合伙人之间达成共同经营的合意。</li>
+  <li><strong>书面协议</strong>：根据《合伙企业法》第3条，合伙协议应当采取书面形式。</li>
+  <li><strong>共同出资</strong>：合伙人按约定出资，包括货币、实物、知识产权、劳务等。</li>
+  <li><strong>共同经营</strong>：合伙人参与或授权管理合伙事务。</li>
+  <li><strong>共享收益</strong>：利润按约定比例分配。</li>
+  <li><strong>共担风险</strong>：合伙人对合伙债务承担责任。</li>
+</ul>
+<p><strong>司法认定标准</strong>：即使没有书面协议，只要具备"共同投资、共同经营、共担风险、共享利润"四项要件，法院可认定为合伙关系。最高院认为，当事人之间没有书面合伙协议，又未经工商行政管理部门核准登记，但具备合伙的其他条件，又有两个以上无利害关系人证明有口头合伙协议的，人民法院可以认定为合伙关系。</p>
+<p><strong>1.4 合伙经营的法律基础</strong></p>
+<p>合伙经营的法律基础主要为：</p>
+<ul>
+  <li><strong>《中华人民共和国民法典》</strong>：第967-978条专门规定了合伙合同。</li>
+  <li><strong>《中华人民共和国合伙企业法》</strong>：第2-15条明确了合伙企业的定义、设立条件及法律地位。</li>
+  <li><strong>《最高人民法院关于贯彻执行〈中华人民共和国民法通则〉若干问题的意见》</strong>：第50条对口头合伙协议的认定标准作出规定。</li>
+</ul>
+<p><strong>法律效力层级</strong>：《民法典》合同编对合伙合同的规定具有基础性法律效力，而《合伙企业法》则对合伙企业的设立、管理、解散等程序性事项作出规定。两者共同构成合伙经营的法律框架。</p>
+<p><strong>二、合伙协议的法律效力与认定标准</strong></p>
+<p><strong>2.1 合伙协议的法律效力</strong></p>
+<p>合伙协议是合伙关系成立的核心依据，具有以下法律效力：</p>
+<ul>
+  <li><strong>设立效力</strong>：合伙协议是合伙企业设立的必备文件，应当采取书面形式。</li>
+  <li><strong>约束效力</strong>：对全体合伙人具有法律约束力，必须遵守协议约定的权利义务。</li>
+  <li><strong>对抗效力</strong>：合伙人之间的约定可以对抗第三人，但不得对抗善意债权人。</li>
+</ul>
+<p><strong>《民法典》第153条司法解释</strong>：违反法律、行政法规的强制性规定的民事法律行为无效，但该强制性规定不导致该民事法律行为无效的除外。例如，违反《合伙企业法》第68条关于有限合伙人不得执行合伙事务的规定，可能导致相关条款无效，但不影响协议整体效力。</p>
+<p><strong>2.2 合伙协议的认定标准</strong></p>
+<p>合伙协议的认定标准包括形式要件与实质要件：</p>
+<ul>
+  <li><strong>形式要件</strong>：书面合伙协议是认定合伙关系的最直接依据。</li>
+  <li><strong>实质要件</strong>：包括共同出资、共同经营、共享收益、共担风险四大要素。</li>
+</ul>
+<p><strong>口头合伙协议的认定</strong>：根据最高院意见第50条，当事人之间没有书面合伙协议，又未经工商行政管理部门核准登记，但具备合伙的其他条件，又有两个以上无利害关系人证明有口头合伙协议的，人民法院可以认定为合伙关系。</p>
+<p><strong>2.3 合伙协议的免责条款效力</strong></p>
+<p>合伙协议中的免责条款效力受限：</p>
+<ul>
+  <li><strong>内部效力</strong>：合伙人之间约定的免责条款仅对内有效，不能对抗善意债权人。</li>
+  <li><strong>外部效力</strong>：合伙人对合伙债务承担连带责任，不得以内部免责条款对抗债权人。</li>
+  <li><strong>无效情形</strong>：造成对方人身损害的免责条款无效；保底保收益条款因违反《民法典》第967条关于共担风险的规定而无效。</li>
+</ul>
+<p><strong>案例启示</strong>：在利川法院审理的汽修中心转让合同纠纷案中，合伙人约定"厂外债务由经营者承担13万元"，法院认定该约定仅对内有效，不能对抗债权人，合伙人仍需对外承担连带责任。</p>
+<p><strong>2.4 合伙协议中的特殊条款效力</strong></p>
+<p>合伙协议中常见的特殊条款包括：</p>
+<ul>
+  <li><strong>一票否决权</strong>：股东约定一票否决权不违反法律、行政法规的强制性规定，合法有效。</li>
+  <li><strong>劳务出资</strong>：合伙人可以用劳务出资，其评估办法由全体合伙人协商确定。</li>
+  <li><strong>风险基金条款</strong>：特殊普通合伙企业应当建立执业风险基金、办理职业保险。</li>
+</ul>
+<p><strong>有限合伙人管理行为的认定</strong>：根据《合伙企业法》第68条，有限合伙人不执行合伙事务，不得对外代表有限合伙企业。该条列举了8种不视为执行合伙事务的行为（如参与决定普通合伙人入伙、退伙；对企业的经营管理提出建议等），超出范围的管理行为可能被认定为"执行事务"，导致有限责任丧失。</p>
+<p><strong>案例启示</strong>：在四川YC私募基金案中，有限合伙人通过投资决策委员会参与投资决策，法院认定其已实质执行合伙事务，丧失有限责任保护。</p>
+<p><strong>2.5 合伙协议的争议解决条款</strong></p>
+<p>合伙协议中应明确约定争议解决方式：</p>
+<ul>
+  <li><strong>协商解决</strong>：优先通过协商解决争议。</li>
+  <li><strong>调解解决</strong>：可邀请第三方调解组织进行调解。</li>
+  <li><strong>仲裁解决</strong>：若协议订立了有效的仲裁条款，可申请仲裁解决。</li>
+  <li><strong>诉讼解决</strong>：若未订立仲裁条款或仲裁无效，可依法向有管辖权的人民法院提起诉讼。</li>
+</ul>
+<p><strong>管辖权争议</strong>：在股东合作协议中约定一票否决权的，若发生争议，法院将根据协议约定或法律规定确定管辖权。</p>
+<p><strong>三、合伙经营的常见场景与实务要点</strong></p>
+<p><strong>3.1 餐饮行业合伙经营</strong></p>
+<p><strong>常见模式</strong>：普通合伙企业或个体工商户形式，合伙人以货币、实物、技术或劳务出资。</p>
+<p><strong>法律特征</strong>：</p>
+<ul>
+  <li><strong>出资方式</strong>：合伙人可采用货币、实物、知识产权、土地使用权或劳务等方式出资。</li>
+  <li><strong>管理分工</strong>：合伙人可分工明确，如一方负责菜品研发，另一方负责店面运营。</li>
+  <li><strong>风险共担</strong>：合伙人需共同承担经营风险，按出资比例分担亏损。</li>
+  <li><strong>财务制度</strong>：需建立完善的财务管理制度，明确资金使用、成本核算、利润分配等环节。</li>
+</ul>
+<p><strong>风险防范</strong>：</p>
+<ul>
+  <li>签订书面合伙协议，明确出资比例、管理分工、利润分配及亏损分担。</li>
+  <li>建立清晰的财务制度，定期对账，避免账目混乱。</li>
+  <li>约定明确的退伙机制，包括退伙条件、程序及财产分割方式。</li>
+</ul>
+<p><strong>案例启示</strong>：在泾阳法院审理的餐饮店合伙纠纷案中，法院指出个人合伙往往没有经过工商登记注册，而是借用他人或者某个合伙人的其他营业执照，以个体工商户或其他企业等外在形式进行营业。</p>
+<p><strong>3.2 制造业合伙经营</strong></p>
+<p><strong>常见模式</strong>：普通合伙企业，合伙人以货币、实物、技术或设备出资。</p>
+<p><strong>法律特征</strong>：</p>
+<ul>
+  <li><strong>出资方式</strong>：合伙人可采用货币、实物、知识产权、土地使用权或劳务等方式出资。</li>
+  <li><strong>设备出资</strong>：合伙人可用设备出资，但需明确评估方式及权属转移。</li>
+  <li><strong>管理分工</strong>：合伙人可分工明确，如一方负责生产，另一方负责销售。</li>
+  <li><strong>风险共担</strong>：合伙人需共同承担经营风险，按出资比例分担亏损。</li>
+</ul>
+<p><strong>风险防范</strong>：</p>
+<ul>
+  <li>签订书面合伙协议，明确出资形式、评估方式及权属转移。</li>
+  <li>建立设备使用与维护制度，明确设备管理责任。</li>
+  <li>约定明确的退伙机制，包括设备估值方法及分割方式。</li>
+</ul>
+<p><strong>案例启示</strong>：在新疆采棉机退伙纠纷案中，法院通过"算明白账、算收支透明账、算未来收益长远账"的方式，结合市场同类设备交易行情、设备实际工况及未来收益预期，提出"取鉴定值与市场行情中间值核定资产"的方案，成功化解了因设备估值争议引发的退伙纠纷。</p>
+<p><strong>3.3 跨境电商合伙经营</strong></p>
+<p><strong>常见模式</strong>：普通合伙企业或有限责任公司，合伙人以货币、技术或运营经验出资。</p>
+<p><strong>法律特征</strong>：</p>
+<ul>
+  <li><strong>出资方式</strong>：合伙人可采用货币、技术、运营经验等方式出资。</li>
+  <li><strong>跨境特性</strong>：涉及国际物流、外汇结算、多国税务等问题。</li>
+  <li><strong>管理分工</strong>：合伙人可分工明确，如一方负责供应链管理，另一方负责直播销售。</li>
+  <li><strong>风险共担</strong>：合伙人需共同承担经营风险，按出资比例分担亏损。</li>
+</ul>
+<p><strong>风险防范</strong>：</p>
+<ul>
+  <li>签订书面合伙协议，明确出资形式、管理分工、利润分配及亏损分担。</li>
+  <li>建立跨境资金管理制度，避免资金回流私户。</li>
+  <li>关注国际税务合规，避免因税务问题导致损失。</li>
+</ul>
+<p><strong>案例启示</strong>：在重庆两江新区法院审理的网络直播合伙合同纠纷案中，法院认定直播大V不能因投资者非根本违约享有合作合同解除权，双方各承担50%责任，判决直播大V支付食品公司7万余元。</p>
+<p><strong>3.4 医疗行业合伙经营</strong></p>
+<p><strong>常见模式</strong>：普通合伙企业或个体诊所，合伙人以货币、技术或资质出资。</p>
+<p><strong>法律特征</strong>：</p>
+<ul>
+  <li><strong>资质要求</strong>：合伙人需具备医疗资质，如医师资格证、医疗机构执业许可证等。</li>
+  <li><strong>管理分工</strong>：合伙人可分工明确，如一方负责医疗技术，另一方负责行政管理。</li>
+  <li><strong>风险共担</strong>：合伙人需共同承担经营风险，包括医疗事故责任等。</li>
+  <li><strong>政策合规</strong>：需遵守医疗行业相关法律法规，如《卫健法》等。</li>
+</ul>
+<p><strong>风险防范</strong>：</p>
+<ul>
+  <li>签订书面合伙协议，明确出资形式、管理分工、利润分配及亏损分担。</li>
+  <li>确保合伙人资质合规，避免因资质问题导致机构被吊销。</li>
+  <li>建立医疗事故责任分担机制，明确各方责任。</li>
+</ul>
+<p><strong>案例启示</strong>：在宁夏医疗管理公司诉某市人民医院合同纠纷案中，法院适用情势变更规定，认定因《卫健法》实施导致原告不能按照合同约定从妇产医院经营所得中获取利润，构成情势变更，判决解除合同并返还原告投资款。</p>
+<p><strong>3.5 教育机构合伙经营</strong></p>
+<p><strong>常见模式</strong>：普通合伙企业或有限责任公司，合伙人以货币、资质或管理经验出资。</p>
+<p><strong>法律特征</strong>：</p>
+<ul>
+  <li><strong>资质要求</strong>：合伙人需具备教育资质，如办学许可证、教师资格证等。</li>
+  <li><strong>管理分工</strong>：合伙人可分工明确，如一方负责教学，另一方负责行政管理。</li>
+  <li><strong>风险共担</strong>：合伙人需共同承担经营风险，包括政策变动、学员退费等。</li>
+  <li><strong>财务透明</strong>：需建立完善的财务管理制度，明确资金使用、成本核算、利润分配等环节。</li>
+</ul>
+<p><strong>风险防范</strong>：</p>
+<ul>
+  <li>签订书面合伙协议，明确出资形式、管理分工、利润分配及亏损分担。</li>
+  <li>确保合伙人资质合规，避免因资质问题导致机构被吊销。</li>
+  <li>建立学员退费机制，明确退费条件及程序。</li>
+</ul>
+<p><strong>案例启示</strong>：在湖南武冈健身中心转让纠纷案中，法院判决胡某向洪某退还剩余培训费，刘某对此承担连带清偿责任，认定培训合同义务转让对洪某不产生法律效力。</p>
+<p><strong>3.6 区块链DAO合伙经营</strong></p>
+<p><strong>常见模式</strong>：去中心化自治组织（DAO），合伙人以代币出资。</p>
+<p><strong>法律特征</strong>：</p>
+<ul>
+  <li><strong>代币出资</strong>：合伙人以代币出资，代币可视为财产份额。</li>
+  <li><strong>智能合约</strong>：治理规则通过智能合约实现，自动执行。</li>
+  <li><strong>风险共担</strong>：合伙人需共同承担经营风险，按代币持有比例分担亏损。</li>
+  <li><strong>法律主体</strong>：DAO在法律上可视为合伙企业或有限责任公司。</li>
+</ul>
+<p><strong>风险防范</strong>：</p>
+<ul>
+  <li>明确DAO的法律主体地位，如注册为有限责任公司或合伙企业。</li>
+  <li>设计智能合约漏洞应对机制，如代码审计、第三方Oracle验证等。</li>
+  <li>建立代币持有者权利保护机制，明确代币权益及退出方式。</li>
+</ul>
+<p><strong>案例启示</strong>：在The DAO漏洞攻击事件中，黑客利用智能合约漏洞提取资金，以太坊通过硬分叉回滚交易，但引发法律争议，代币持有者需承担投资风险。</p>
+<p><strong>四、合伙经营的风险防范与维权策略</strong></p>
+<p><strong>4.1 常见风险类型</strong></p>
+<p>合伙经营面临的主要风险包括：</p>
+<ul>
+  <li><strong>协议风险</strong>：口头协议、协议条款模糊、协议效力争议等。</li>
+  <li><strong>财务风险</strong>：账目混乱、资金挪用、税务违规等。</li>
+  <li><strong>管理风险</strong>：决策僵局、越权管理、执行不力等。</li>
+  <li><strong>退出风险</strong>：退伙机制缺失、估值争议、违约赔偿过高等。</li>
+  <li><strong>行业特定风险</strong>：如医疗政策变动、跨境电商国际税务、区块链法律主体缺失等。</li>
+</ul>
+<p><strong>风险等级评估</strong>：根据风险发生概率及影响程度，可分为高风险、中风险和低风险。例如，协议缺失或条款模糊属于高风险，财务账目不透明属于中风险，退伙程序不完善属于低风险。</p>
+<p><strong>4.2 风险防范策略</strong></p>
+<p><strong>协议规范化</strong>：</p>
+<ul>
+  <li>签订书面合伙协议，明确出资比例、管理分工、利润分配及亏损分担。</li>
+  <li>约定明确的退伙机制，包括退伙条件、程序及财产分割方式。</li>
+  <li>约定争议解决条款，包括协商、调解、仲裁或诉讼等程序。</li>
+</ul>
+<p><strong>财务透明化</strong>：</p>
+<ul>
+  <li>建立共管账户，确保资金使用透明。</li>
+  <li>定期审计财务账目，确保账目清晰。</li>
+  <li>建立税务合规机制，避免因税务问题导致损失。</li>
+</ul>
+<p><strong>管理科学化</strong>：</p>
+<ul>
+  <li>明确决策机制，如一票否决权、多数决等。</li>
+  <li>建立执行监督机制，确保执行事务合伙人履行职责。</li>
+  <li>建立风险预警机制，及时发现并处理经营风险。</li>
+</ul>
+<p><strong>退出机制完善</strong>：</p>
+<ul>
+  <li>约定明确的退伙条件及程序。</li>
+  <li>约定财产估值方法，如第三方评估或市场估值。</li>
+  <li>约定违约赔偿条款，明确违约责任及赔偿标准。</li>
+</ul>
+<p><strong>4.3 维权策略与路径</strong></p>
+<p><strong>维权路径</strong>：</p>
+<ul>
+  <li><strong>协商沟通</strong>：基于现有合伙合同和财务凭证，与对方进行坦诚沟通。</li>
+  <li><strong>第三方调解</strong>：邀请双方信任的第三方（如专业法律工作者、调解组织）居中调解。</li>
+  <li><strong>仲裁</strong>：若合伙合同订立了有效的仲裁条款，可依法向约定的仲裁委员会申请仲裁。</li>
+  <li><strong>诉讼</strong>：若协商和调解无效，可依法向有管辖权的人民法院提起诉讼。</li>
+</ul>
+<p><strong>证据收集</strong>：</p>
+<ul>
+  <li>保留合伙协议、出资凭证、财务账目等书面证据。</li>
+  <li>收集微信聊天记录、邮件往来等电子证据。</li>
+  <li>证人证言：收集无利害关系人证言，证明合伙关系存在。</li>
+  <li>财务审计报告：委托第三方机构进行财务审计，明确经营状况。</li>
+</ul>
+<p><strong>诉讼策略</strong>：</p>
+<ul>
+  <li>明确诉讼请求，如解除合伙关系、返还投资款、赔偿损失等。</li>
+  <li>选择适当的法律依据，如《民法典》第967条、第577条等。</li>
+  <li>关注举证责任分配，确保关键证据充分。</li>
+</ul>
+<p><strong>案例启示</strong>：在杭州中院审理的机械加工合伙纠纷案中，法院采纳了"同工同酬"原则，否决了上诉人关于销售管理应获得高于生产的工资主张，认定双方贡献相当，工资应等同处理。</p>
+<p><strong>4.4 行业特定风险防范</strong></p>
+<p><strong>制造业</strong>：</p>
+<ul>
+  <li>设备出资评估争议：通过第三方评估或司法鉴定解决。</li>
+  <li>出资不实纠纷：明确实物出资的评估方式及权属转移。</li>
+</ul>
+<p><strong>医疗行业</strong>：</p>
+<ul>
+  <li>资质合规风险：确保合伙人具备医疗资质，避免因资质问题导致机构被吊销。</li>
+  <li>政策变动风险：协议中设置情势变更条款，应对政策变动。</li>
+  <li>医疗事故责任：建立医疗事故责任分担机制，明确各方责任。</li>
+</ul>
+<p><strong>跨境电商</strong>：</p>
+<ul>
+  <li>税务合规风险：建立税务管理制度，避免因税务问题导致损失。</li>
+  <li>资金回流风险：使用公户收款，避免资金回流私户。</li>
+  <li>国际物流风险：建立物流管理制度，确保物流安全。</li>
+</ul>
+<p><strong>区块链</strong>：</p>
+<ul>
+  <li>智能合约漏洞风险：设计漏洞应对机制，如代码审计、第三方Oracle验证等。</li>
+  <li>法律主体缺失风险：明确DAO的法律主体地位，如注册为有限责任公司或合伙企业。</li>
+  <li>代币权益保护风险：建立代币持有者权利保护机制，明确代币权益及退出方式。</li>
+</ul>
+<p><strong>教育机构</strong>：</p>
+<ul>
+  <li>资质审查风险：确保合伙人资质合规，避免因资质问题导致机构被吊销。</li>
+  <li>治理结构风险：设计合理的股权结构与决策机制，避免决策僵局。</li>
+  <li>学员退费风险：建立退费机制，明确退费条件及程序。</li>
+</ul>
+<p><strong>五、合伙纠纷的实务案例与司法裁判思路</strong></p>
+<p><strong>5.1 餐饮行业合伙纠纷案例</strong></p>
+<p><strong>案例名称</strong>：泾阳法院餐饮店合伙纠纷案</p>
+<p><strong>基本案情</strong>：甲与乙合伙经营一家餐饮店，后丙加入合伙经营。三人签订合伙协议，约定各自的出资份额和收益分配等。店在进一步扩大经营后成为当地知名品牌。后因合伙经营意见不一，甲、乙、丙发生纠纷，丙起诉至人民法院要求退伙并分配财产。</p>
+<p><strong>争议焦点</strong>：</p>
+<ul>
+  <li>合伙关系的认定：是否存在合伙关系。</li>
+  <li>出资比例的确定：如何确定各合伙人的出资比例。</li>
+  <li>财产分配的依据：如何确定财产分配的依据。</li>
+</ul>
+<p><strong>裁判思路</strong>：</p>
+<ul>
+  <li>确认合伙关系存在，三人构成事实上的合伙关系。</li>
+  <li>根据合伙协议及实际出资情况，确定各合伙人的出资比例。</li>
+  <li>委托第三方机构对合伙财产进行评估，按出资比例分配财产。</li>
+</ul>
+<p><strong>判决结果</strong>：法院判决三人按出资比例分配财产，各自承担相应的债务。</p>
+<p><strong>案例启示</strong>：在餐饮行业合伙经营中，应签订书面合伙协议，明确出资比例、管理分工、利润分配及亏损分担，避免因口头约定导致纠纷。</p>
+<p><strong>5.2 制造业合伙纠纷案例</strong></p>
+<p><strong>案例名称</strong>：新疆采棉机退伙纠纷案</p>
+<p><strong>基本案情</strong>：11名农户共同出资购买采棉机，合伙开展经营。2025年初，合伙人张某因个人原因提出退伙，但双方在资产分割问题上陷入僵局。为公平起见，双方共同委托第三方机构对采棉机进行价值鉴定。然而，鉴定报告引发争议，张某与其他10名合伙人无法达成共识，最终求助法院。</p>
+<p><strong>争议焦点</strong>：</p>
+<ul>
+  <li>采棉机估值争议：如何确定采棉机的合理估值。</li>
+  <li>退伙程序争议：如何确定退伙程序的合法性。</li>
+  <li>财产分割争议：如何确定财产分割的依据。</li>
+</ul>
+<p><strong>裁判思路</strong>：</p>
+<ul>
+  <li>通过"算明白账、算收支透明账、算未来收益长远账"的方式，结合市场同类设备交易行情、设备实际工况及未来收益预期，提出"取鉴定值与市场行情中间值核定资产"的方案。</li>
+  <li>委托第三方机构对合伙财产进行评估，按出资比例分配财产。</li>
+</ul>
+<p><strong>判决结果</strong>：法院判决以鉴定值与市场行情的中间值核定资产，按张某5.66%的合伙份额进行分配，其余合伙人支付25万元。</p>
+<p><strong>案例启示</strong>：在制造业合伙经营中，应约定明确的设备评估方法及退伙程序，避免因估值争议导致纠纷。</p>
+<p><strong>5.3 跨境电商合伙纠纷案例</strong></p>
+<p><strong>案例名称</strong>：重庆两江新区法院网络直播合伙合同纠纷案</p>
+<p><strong>基本案情</strong>：某食品公司与快手平台有400余万粉丝的主播黄某签订《合作协议》，约定黄某负责进行网络平台的直播和视频制作，激活黄某现有粉丝，进行直播带货变现。协议签订后，双方合作拍摄视频产生费用合计15万余元。之后，黄某向食品公司发出解除《合作协议》通知书，以粉丝数量减少、影响拍摄直播为由解除合同。食品公司提起诉讼，请求判令黄某支付违法解除合同违约金120余万元。</p>
+<p><strong>争议焦点</strong>：</p>
+<ul>
+  <li>合同解除权的认定：黄某是否有权解除合同。</li>
+  <li>违约责任的认定：双方是否存在违约行为。</li>
+  <li>损失分担的依据：如何确定双方的损失分担比例。</li>
+</ul>
+<p><strong>裁判思路</strong>：</p>
+<ul>
+  <li>确认双方签订的《合作协议》有效，构成合伙合同关系。</li>
+  <li>认定黄某径直发出解除合同通知具有过错，不能达到合同解除的效果。</li>
+  <li>鉴于双方均表示合同已无继续履行基础，确认合同自2022年11月15日起解除。</li>
+  <li>根据双方过错程度，判令各承担50%责任，黄某支付食品公司7万余元。</li>
+</ul>
+<p><strong>判决结果</strong>：法院判决黄某支付食品公司7万余元。</p>
+<p><strong>案例启示</strong>：在跨境电商合伙经营中，应明确合同解除条件及违约责任，避免因单方面解除合同导致损失。</p>
+<p><strong>5.4 医疗行业合伙纠纷案例</strong></p>
+<p><strong>案例名称</strong>：宁夏医疗管理公司诉某市人民医院合同纠纷案</p>
+<p><strong>基本案情</strong>：某医疗管理公司与某市人民医院签订《关于合作共建某市人民医院妇产医院协议书》《投资合作合同书》，约定双方合作经营妇产医院。后因《卫健法》实施，导致医疗管理公司不能按照合同约定从妇产医院经营所得中获取利润，医疗管理公司请求解除合同并返还原告投资款。</p>
+<p><strong>争议焦点</strong>：</p>
+<ul>
+  <li>情势变更的认定：是否构成情势变更。</li>
+  <li>合同解除的依据：是否符合合同解除的条件。</li>
+  <li>投资款返还的依据：如何确定投资款返还的依据。</li>
+</ul>
+<p><strong>裁判思路</strong>：</p>
+<ul>
+  <li>认定《卫健法》实施导致医疗管理公司不能按照合同约定从妇产医院经营所得中获取利润，构成情势变更。</li>
+  <li>根据《民法典》第533条，因情势变更导致合同履行困难，当事人可请求变更或解除合同。</li>
+  <li>判决解除合同，医疗管理公司返还原告投资款。</li>
+</ul>
+<p><strong>判决结果</strong>：法院判决解除合同，医疗管理公司返还原告投资款。</p>
+<p><strong>案例启示</strong>：在医疗行业合伙经营中，应关注政策变动风险，协议中设置情势变更条款，应对政策变动。</p>
+<p><strong>5.5 教育机构合伙纠纷案例</strong></p>
+<p><strong>案例名称</strong>：湖南武冈健身中心转让纠纷案</p>
+<p><strong>基本案情</strong>：洪某在某健身中心为子女购买了154节篮球培训课程，支付了培训费7880元。后健身中心经营者胡某将健身中心转让给刘某，并办理了工商变更登记。刘某将健身中心更名为体育中心，胡某未明确告知洪某健身中心已转让。体育中心因经营不善办理了注销手续，洪某起诉要求胡某及刘某返还剩余课时费6321.8元。</p>
+<p><strong>争议焦点</strong>：</p>
+<ul>
+  <li>合同义务转让的效力：是否构成合同义务转让。</li>
+  <li>股东责任的认定：胡某及刘某是否应对债务承担责任。</li>
+  <li>连带责任的依据：如何认定连带责任的依据。</li>
+</ul>
+<p><strong>裁判思路</strong>：</p>
+<ul>
+  <li>认定洪某与胡某之间形成教育培训合同法律关系。</li>
+  <li>认定胡某将培训义务转让给刘某，但未明确告知洪某，亦未征得洪某的同意，该培训合同义务转让对洪某不产生法律效力。</li>
+  <li>根据《民法典》第552条，第三人与债务人约定加入债务并通知债权人，或者第三人向债权人表示愿意加入债务，债权人未在合理期限内明确拒绝的，债权人可以请求第三人在其愿意承担的债务范围内和债务人承担连带债务。</li>
+  <li>判决胡某向洪某退还剩余培训费，刘某对此承担连带清偿责任。</li>
+</ul>
+<p><strong>判决结果</strong>：法院判决胡某向洪某退还剩余培训费6321.8元，刘某对此承担连带清偿责任。</p>
+<p><strong>案例启示</strong>：在教育机构合伙经营中，应明确合同义务转让的条件及程序，避免因转让导致纠纷。</p>
+<p><strong>5.6 区块链DAO合伙纠纷案例</strong></p>
+<p><strong>案例名称</strong>：The DAO漏洞攻击事件</p>
+<p><strong>基本案情</strong>：The DAO是一个基于以太坊区块链的去中心化自治组织，旨在创建一个分散的风投基金。2016年，The DAO通过代币销售筹集了约1500万美元的资金。然而，同年6月，一个黑客利用智能合约代码中的漏洞，从The DAO中提取了约600万美元的资金。</p>
+<p><strong>争议焦点</strong>：</p>
+<ul>
+  <li>智能合约漏洞的责任认定：谁应对此负责。</li>
+  <li>代币持有者的权益保护：如何保护代币持有者的权益。</li>
+  <li>交易回滚的法律效力：是否应通过硬分叉回滚交易。</li>
+</ul>
+<p><strong>裁判思路</strong>：</p>
+<ul>
+  <li>智能合约漏洞属于技术风险，代币持有者需承担投资风险。</li>
+  <li>以太坊通过硬分叉回滚交易，但引发法律争议，代币持有者需承担投资风险。</li>
+  <li>法院认定The DAO是一个合伙企业，代币持有者享有合伙权益，但需承担投资风险。</li>
+</ul>
+<p><strong>判决结果</strong>：以太坊通过硬分叉回滚交易，但未形成法院判决。</p>
+<p><strong>案例启示</strong>：在区块链DAO合伙经营中，应明确智能合约漏洞的责任认定，建立代币持有者权益保护机制。</p>
+<p><strong>5.7 最高院指导性案例</strong></p>
+<p><strong>案例名称</strong>：内蒙古房地产开发公司与马某某合资、合作开发房地产合同纠纷再审审查民事裁定书（2025）最高法民再268号</p>
+<p><strong>基本案情</strong>：房地产开发公司与马某某等人签订合作开发协议，约定共同出资购买土地开发房地产，按照出资比例承担开支、分配利润、分担风险。后经合作各方协商决议，将项目建设房屋作为"利润"提前进行了分配。房地产开发公司以项目亏损为由，要求马某某返还提前分配的房屋的价款（"利润"），并承担合作开发的亏损。</p>
+<p><strong>争议焦点</strong>：</p>
+<ul>
+  <li>合伙关系的认定：是否构成合伙关系。</li>
+  <li>合伙财产分配的依据：如何确定合伙财产分配的依据。</li>
+  <li>亏损分担的依据：如何确定亏损分担的依据。</li>
+</ul>
+<p><strong>裁判思路</strong>：</p>
+<ul>
+  <li>认定房地产开发公司与马某某等人构成合伙关系。</li>
+  <li>根据合伙协议及实际出资情况，认定各合伙人的出资比例。</li>
+  <li>认定合伙人提前分割合伙财产的行为违反《民法典》第978条规定，但房地产开发公司的诉求并不违反法律规定。</li>
+  <li>二审法院仅以双方合作项目未经清算、亏损事实及数额无法确定为由，裁定驳回房地产开发公司起诉，于法无据。</li>
+  <li>最高法院认为，人民法院应当在受理后，依法通过实体审理作出裁判。</li>
+</ul>
+<p><strong>判决结果</strong>：最高法院裁定二审法院驳回房地产开发公司起诉于法无据，应当依法予以纠正，二审法院进行实体审理。</p>
+<p><strong>案例启示</strong>：在合伙经营中，合伙人提前分割合伙财产的行为可能构成违约，但法院仍有权审理并作出裁判。</p>
+<p><strong>六、结论与建议</strong></p>
+<p><strong>6.1 合伙经营的核心价值与风险</strong></p>
+<p>合伙经营的核心价值在于：</p>
+<ul>
+  <li><strong>资源整合</strong>：通过合伙人各自的优势资源，实现互补与协同。</li>
+  <li><strong>风险分担</strong>：合伙人共同承担经营风险，降低单一主体的风险压力。</li>
+  <li><strong>灵活性</strong>：合伙经营形式灵活，可根据需要调整管理结构与决策机制。</li>
+</ul>
+<p>合伙经营的主要风险包括：</p>
+<ul>
+  <li><strong>协议风险</strong>：口头协议、协议条款模糊、协议效力争议等。</li>
+  <li><strong>财务风险</strong>：账目混乱、资金挪用、税务违规等。</li>
+  <li><strong>管理风险</strong>：决策僵局、越权管理、执行不力等。</li>
+  <li><strong>退出风险</strong>：退伙机制缺失、估值争议、违约赔偿过高等。</li>
+</ul>
+<p><strong>6.2 合伙协议的规范化建议</strong></p>
+<p><strong>协议内容规范化</strong>：</p>
+<ul>
+  <li>明确合伙目的、经营范围、期限。</li>
+  <li>明确合伙人信息、出资方式、数额及交付出资的期限。</li>
+  <li>明确利润分配与亏损分担的比例和方式。</li>
+  <li>明确合伙事务的执行方式与决策机制。</li>
+  <li>明确入伙、退伙的条件与程序。</li>
+  <li>明确违约责任及争议解决方式。</li>
+</ul>
+<p><strong>协议形式规范化</strong>：</p>
+<ul>
+  <li>签订书面合伙协议，确保法律效力。</li>
+  <li>协议需全体合伙人签名、盖章后生效。</li>
+  <li>协议可载明合伙企业的经营期限和合伙人争议的解决方式。</li>
+</ul>
+<p><strong>协议特殊条款规范化</strong>：</p>
+<ul>
+  <li>明确风险基金条款，特殊普通合伙企业应当建立执业风险基金、办理职业保险。</li>
+  <li>明确一票否决权条款，约定特定事项的决策机制。</li>
+  <li>明确劳务出资条款，约定劳务出资的评估方式及权属转移。</li>
+</ul>
+<p><strong>6.3 合伙经营的风险防范与维权策略</strong></p>
+<p><strong>风险防范策略</strong>：</p>
+<ul>
+  <li><strong>协议规范化</strong>：签订书面合伙协议，明确权利义务。</li>
+  <li><strong>财务透明化</strong>：建立共管账户，定期审计财务账目。</li>
+  <li><strong>管理科学化</strong>：明确决策机制，建立执行监督机制。</li>
+  <li><strong>退出机制完善</strong>：约定明确的退伙条件及程序，财产估值方法。</li>
+</ul>
+<p><strong>维权策略</strong>：</p>
+<ul>
+  <li><strong>证据收集</strong>：保留合伙协议、出资凭证、财务账目等书面证据。</li>
+  <li><strong>协商沟通</strong>：基于现有合伙合同和财务凭证，与对方进行坦诚沟通。</li>
+  <li><strong>第三方调解</strong>：邀请双方信任的第三方居中调解。</li>
+  <li><strong>仲裁或诉讼</strong>：根据协议约定或法律规定，选择适当的争议解决方式。</li>
+</ul>
+<p><strong>行业特定风险防范</strong>：</p>
+<ul>
+  <li><strong>制造业</strong>：约定明确的设备评估方法及退伙程序。</li>
+  <li><strong>医疗行业</strong>：关注政策变动风险，协议中设置情势变更条款。</li>
+  <li><strong>跨境电商</strong>：建立税务管理制度，避免因税务问题导致损失。</li>
+  <li><strong>区块链</strong>：明确智能合约漏洞的责任认定，建立代币持有者权益保护机制。</li>
+  <li><strong>教育机构</strong>：确保合伙人资质合规，设计合理的股权结构与决策机制。</li>
+</ul>
+<p><strong>6.4 未来发展趋势与建议</strong></p>
+<p><strong>法律发展趋势</strong>：</p>
+<ul>
+  <li><strong>数字化</strong>：随着区块链技术的发展，智能合约将成为合伙协议的重要形式。</li>
+  <li><strong>国际化</strong>：随着跨境电商的兴起，合伙经营将面临更多的国际法律问题。</li>
+  <li><strong>专业化</strong>：特殊普通合伙企业将在专业服务领域发挥更重要的作用。</li>
+</ul>
+<p><strong>实务建议</strong>：</p>
+<ul>
+  <li><strong>协议数字化</strong>：利用区块链技术签订智能合约，确保协议的不可篡改性和自动执行性。</li>
+  <li><strong>风险防控前置</strong>：在合伙协议中明确约定风险防控措施，如风险基金、代币持有者权益保护等。</li>
+  <li><strong>国际化合规</strong>：关注国际法律法规，特别是税务、数据隐私等方面的规定。</li>
+  <li><strong>专业服务支持</strong>：聘请专业律师或法律顾问，提供合伙经营的法律支持。</li>
+</ul>
+<p><strong>案例启示</strong>：在合伙经营中，应注重法律风险防范，及时处理纠纷，避免因小失大。同时，应关注行业发展趋势，不断调整合伙经营策略，以适应市场变化。</p>
+<p><strong>参考文献</strong></p>
+<ul>
+  <li>《合伙企业法》（2006年修订）</li>
+  <li>《中华人民共和国民法典》</li>
+  <li>《最高人民法院关于贯彻执行〈中华人民共和国民法通则〉若干问题的意见》</li>
+  <li>《最高人民法院关于审理预付式消费民事纠纷案件适用法律若干问题的解释》</li>
+  <li>《中华人民共和国公司法》</li>
+  <li>《中华人民共和国税收征收管理法》</li>
+  <li>《区块链去中心化自治组织的法律性质研究》</li>
+  <li>《跨境电商合伙合同纠纷典型案例分析》</li>
+  <li>《制造业合伙设备评估争议案例分析》</li>
+  <li>《医疗行业合伙纠纷案例分析》</li>
+  <li>《教育机构合伙纠纷案例分析》</li>
+  <li>《最高院合伙纠纷指导性案例》</li>
+  <li>《法人人格否认案例分析》</li>
+  <li>《区块链DAO法律风险分析》</li>
+  <li>《跨境电商税务合规案例分析》</li>
+</ul>
+<p><strong>参考来源</strong></p>
+<p>[1]合伙经营百科介绍</p>
+<p>sc_mock_url_baike_sc</p>
+<p>[2]最高院：未签书面合同且未在工商部门登记的，这样认定合伙关系！</p>
+<p>https://c.m.163.com/news/a/K0NJ12NN05567IXL.html</p>
+<p>[3]张翠、邓晓珊：合伙协议纠纷的核心博弈点-北京德和衡律师事务所</p>
+<p>https://www.deheheng.com/content/35831.html</p>
+<p>[4]Partnerships: Definition, Operation, Taxation, and Types</p>
+<p>https://www.investopedia.com/terms/p/partnership.asp</p>
+<p>[5]“Tony老师”合伙须知→→</p>
+<p>https://mp.weixin.qq.com/s?__biz=MzA5NzA2MzI1MA==&idx=1&mid=2650144210&sn=dc521a161088ee7b16ceb3a240f2e7ef</p>
+<p>[6]普法漫谈丨合伙经营需审慎 权责分明防“翻车”</p>
+<p>https://m.thepaper.cn/baijiahao_32189571</p>
+<p>[7]Joint Venture: Examples & Benefits In Companies</p>
+<p>https://squabble.org/blog/joint-venture-examples-and-benefits</p>
+<p>[8]合伙经营起纠纷，如何“好聚好散”？-中国法院网</p>
+<p>https://www.chinacourt.org/article/detail/2025/12/id/9132321.shtml</p>
+<p>[9]合伙合同范本_百度百科</p>
+<p>http://baike.baidu.com/item/%E5%90%88%E4%BC%99%E5%90%88%E5%90%8C%E8%8C%83%E6%9C%AC/2594580</p>
+<p>[10]延法有说法丨“合伙干”≠“投笔钱”！合伙合同怎么认？看法官怎么说</p>
+<p>https://m.thepaper.cn/baijiahao_32248128</p>
+<p>[11]中华人民共和国合伙企业法 - 中华人民共和国最高人民法院公报</p>
+<p>http://gongbao.court.gov.cn/Details/54e939248eb1dd528b71fa0a5360e9.html</p>
+<p>[12]Partnership Business Examples: Top Cases & Practical Insights</p>
+<p>https://essaywriters.com/blog/business-partnership-examples</p>
+<p>[13]合伙企业法草案:上市公司为何不得成为普通合伙人-法律常识_在线法律知识查询 - 律霸网</p>
+<p>https://www.lawpa.cn/changshi/125670.html</p>
+<p>[14]Rank-with-GPT: Building GPT-Independent Listwise Rerankers on Open-Source Large Language Models</p>
+<p>https://arxiv.org/abs/2312.02969</p>
+<p>[15]李建伟：兄弟式合伙，仇人式退伙的背后｜周三有约—顶端新闻</p>
+<p>http://www.dingxinwen.com/news/145CD3E649BE4B79</p>
+<p>[16]合伙人承担合伙企业债务是否有限责任-法律常识_在线法律知识查询 - 律霸网</p>
+<p>http://www.lawpa.cn/changshi/124720.html</p>
+<p>[17]Chapter 7 Business skills</p>
+<p>https://gsat.service.sci.tu.ac.th/textbook-solutions/browse/_pdfs/How_To_Develop_Your_Healthcare_Career_A_Guide_To_Employability_And_Professional_Development_How_How_To_Wiley_Blackwell_Handbooks_In_Personality_And_Individual_Differences.pdf</p>
+<p>[18]无书面合伙协议合伙关系如何认定_以案释法_青海普法网_青海省司法厅</p>
+<p>https://sft.qinghai.gov.cn/qhpfw/yasf/content_84795</p>
+<p>[19]最新合伙企业法全文主要内容？_公司经营纠纷_法律百科 - 律霸网</p>
+<p>http://www.lawpa.cn/baike/17537.html</p>
+<p>[20]Changes in Organizational Structure and Shareholder Wealth: The Case of Limited Partnersh</p>
+<p>https://www.cambridge.org/core/services/aop-cambridge-core/content/view/9019E7CEA2BCF8A538E16BCF835AB8EA/S002210900000870Xa.pdf/changes-in-organizational-structure-and-shareholder-wealth-the-case-of-limited-partnerships.pdf</p>
+<p>[21]没有书面合伙协议｜如何认定个人合伙关系？-腾冲市人民政府网</p>
+<p>https://www.tengchong.gov.cn/info/34231/5761703.htm</p>
+<p>[22]法制办工商总局就修改合伙企业登记管理办法答问_百度百科</p>
+<p>https://baike.baidu.com/item/%E6%B3%95%E5%88%B6%E5%8A%9E%E5%B7%A5%E5%95%86%E6%80%BB%E5%B1%80%E5%B0%B1%E4%BF%AE%E6%94%B9%E5%90%88%E4%BC%99%E4%BC%81%E4%B8%9A%E7%99%BB%E8%AE%B0%E7%AE%A1%E7%90%86%E5%8A%9E%E6%B3%95%E7%AD%94%E9%97%AE/22278362</p>
+<p>[23]中华人民共和国合伙企业法</p>
+<p>https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/fgs/art/2023/art_28f19c7b1d204e69a131292d0b793078.html</p>
+<p>[24]家庭共同经营是合伙合同关系吗？ 法院：只参与经营没有出资不能认定_云南法治网</p>
+<p>https://www.ynfzb.cn/Lawyer/FaWen/202310400829.shtml</p>
+<p>[25]张翠、邓晓珊：合伙协议纠纷的核心博弈点-北京德和衡律师事务所</p>
+<p>https://www.deheheng.com/content/35831.html</p>
+<p>[26]有限合伙企业设立的特殊规定——2025年中级会计《经济法》预习阶段考点_东奥会计在线</p>
+<p>https://www.dongao.com/zjzcgl/jjf/202412264515536.html</p>
+<p>[27]特殊的普通合伙企业的责任问题-法律知识|华律网</p>
+<p>http://www.66law.cn/laws/217766.aspx</p>
+<p>[28]特殊普通合伙企业有什么法律责任-法律知识|华律网</p>
+<p>https://www.66law.cn/laws/220157.aspx</p>
+<p>[29]以案释法|口头约定“一起干” ，合伙关系成立吗？_澎湃号·政务_澎湃新闻-The Paper</p>
+<p>https://www.thepaper.cn/newsDetail_forward_31926654</p>
+<p>[30]对合伙企业未在其名称中标明“普通合伙”、“特殊普通合伙”或者“有限合伙”字样的行为进行处罚</p>
+<p>https://banshi.beijing.gov.cn/pubtask/task/1/110000000000/e9068bf0-f3dc-4ad1-ba85-80b929d4a312.html?locationCode=110000000000</p>
+<p>[31]合伙人可以不承担任何责任吗- 法律快车法律咨询</p>
+<p>https://www.lawtime.cn/wenda/q_55763092.html</p>
+<p>[32]中华人民共和国合伙企业法 - 中华人民共和国最高人民法院公报</p>
+<p>http://gongbao.court.gov.cn/Details/54e939248eb1dd528b71fa0a5360e9.html?sw=%E5%90%88%E4%BC%99%E4%BC%81%E4%B8%9A</p>
+<p>[33]考题讲解-特殊的普通合伙企业</p>
+<p>https://www.bilibili.com/video/BV1KjChY1E1Z</p>
+<p>[34]是合伙，还是借贷？法院这样认定_以案释法_青海普法网_青海省司法厅</p>
+<p>https://sft.qinghai.gov.cn/qhpfw/yasf/content_65074</p>
+<p>[35]速看！有限合伙人与普通合伙人的核心区别详解-斯尔教育</p>
+<p>http://www.sieredu.com/zjkj/zixun/70169.html</p>
+<p>[36]违反强制性规定的合同效力界定——《民法典合同编通则司法解释》对《民法典》第一百五十三条第一款“但书…</p>
+<p>http://m.thepaper.cn/newsDetail_forward_25939436</p>
+<p>[37]诉讼视角：有限合伙人有限责任的例外</p>
+<p>https://mp.weixin.qq.com/s?__biz=MzkxMjIzMDk1MQ==&idx=1&mid=2247484037&sn=67e471500d5a40c2e690bf37517d6a13</p>
+<p>[38]【以案说法】一纸“免责”协议，难卸三人连责</p>
+<p>http://m.thepaper.cn/newsDetail_forward_32286732</p>
+<p>[39]民法典合同编通则司法解释重点法条解读_澎湃号·政务_澎湃新闻-The Paper</p>
+<p>https://www.thepaper.cn/newsDetail_forward_25904061</p>
+<p>[40]隆安法言丨投资人委派投资决策委员会委员的合规性及建议——从中基协对四川YC撤销登记谈起-隆安律师事务所</p>
+<p>https://www.longanlaw.com/legals/28532.html</p>
+<p>[41]最高法发布民法典合同编通则司法解释 今起施行</p>
+<p>http://ysxw.cctv.cn/article.html?item_id=11287124834899944380</p>
+<p>[42]追加股东：俞强律师分析有限合伙人滥用管理权，债权人如何追责？ - 哔哩哔哩</p>
+<p>https://www.bilibili.com/opus/1120956571288862727</p>
+<p>[43]合伙免责协议书有法律效力吗_精选范本83篇_合同范本下载_律师代写-华律网</p>
+<p>https://www.66law.cn/contractmodel/7901821.aspx</p>
+<p>[44]合规║资讯 2023年12月速递（总第16期）_企业合规动态_合规管理_广东嘉得信律师事务所</p>
+<p>https://www.jiadesen.com/solution/72.html</p>
+<p>[45]股往金来 | 私募基金管理人失职，投资人如何“绕开"管理人直接维权?</p>
+<p>https://mp.weixin.qq.com/s?new=1&signature=FoMobMaZcUSJ6C-aqj6pfmpl2Z*CU1ApkvwvQnUDVp8Ta-hcLp5Fx6COc6zPWAtmSkuohw2RxvFQjBEXJGbyTvIvxuwjTHfi7jw3r3oJA7Nd1VFai8-YPN6lmVH7G4eT&src=11&timestamp=1749992544&ver=6054</p>
+<p>[46]合伙个体经营负债偿还问题?-找法网</p>
+<p>https://www.findlaw.cn/wenda/q_55749883.html</p>
+<p>[47]新城集团对新出台的《最高人民法院关于适用〈中华人民共和国民法典〉合同编通则若干问题的解释》进行宣传</p>
+<p>https://gzw.wuxi.gov.cn/doc/2023/12/11/4152592.shtml</p>
+<p>[48]2025年度私募基金行业30个典型判例|证券相关基金|资产管理|投资者|法院|风险_新浪新闻</p>
+<p>https://k.sina.com.cn/article_7857141524_1d452771401901rdps.html</p>
+<p>[49]特殊普通合伙协议中的三大核心模块 #合伙协议 #特殊普通合伙企业 #合伙企业 #法律咨询 #只说实话的钟律师</p>
+<p>https://www.douyin.com/video/7582581352869023016</p>
+<p>[50]【以案说法】一纸“免责”协议，难卸三人连责_澎湃号·政务_澎湃新闻-The Paper</p>
+<p>https://www.thepaper.cn/newsDetail_forward_32286732</p>
+<p>[51]一则判例厘清私募基金管理人的责任边界与免责要点 - 德恒探索 - 德恒律师事务所</p>
+<p>https://www.dehenglaw.com/CN/newscontent/0008/036140/2.aspx?MID=0902</p>
+<p>[52]以案释法(十九） | 一纸“免责协议”就能免责？_澎湃号·政务_澎湃新闻-The Paper</p>
+<p>https://www.thepaper.cn/newsDetail_forward_32199349</p>
+<p>[53]观韬视点 | 从司法案例看有限合伙人参与合伙事务的边界-北京观韬律师事务所</p>
+<p>https://www.guantao.com/page2455</p>
+<p>[54]免责协议未必“免责” ，真安全不靠一纸声明_法治时评_普法频道</p>
+<p>https://pf.rednet.cn/nograb/646955/74/15506067.html</p>
+<p>[55]从“一票否决制”谈合伙企业中有限合伙人承担无限责任的问题</p>
+<p>https://mp.weixin.qq.com/s?new=1&signature=4oM3xmAHuq5oAUjZ45evxIlNbaUhdrx1ozu3*Dg0PHgivkUuR9T-szUSXYqo0kbUmVivWWsxheGnPDqOuCFVpvvsdzZ3kSzBOYBw2Xcp5Vlu7yv8x5P3I0rzRZqwCydY&src=11&timestamp=1750593831&ver=6068</p>
+<p>[56]视野观察-专业文章-合伙型结构化资管产品纠纷处理思路及策略（三）：关于私募股权投资基金监管规范介入效力争议-安杰世泽律师事务所</p>
+<p>https://www.anjielaw.com/view/article-info.html?id=3354</p>
+<p>[57]小勇说法｜合同免责条款真的能免除责任吗？_澎湃号·政务_澎湃新闻-The Paper</p>
+<p>https://www.thepaper.cn/newsDetail_forward_22515117</p>
+<p>[58]上海大众公用事业（集团）股份有限公司 关于问询函回复的公告_投资_合伙_管理</p>
+<p>https://www.sohu.com/a/1009618662_120988533</p>
+<p>[59]JUDGING RISK</p>
+<p>https://www.tau.ac.il/~yoavgn/files/judging_risk_return.pdf</p>
+<p>[60]雨花台区法院两则案例入选南京法院公司类案件典型案例_澎湃号·政务_澎湃新闻-The Paper</p>
+<p>https://www.thepaper.cn/newsDetail_forward_22720941</p>
+<p>[61]The NEW ENGLAND JOURNAL OF MEDICINE Physicians, Firearms, and Free Speech — Overturning Florida's Firearm-Safety Gag Rule</p>
+<p>https://www.nejm.org/doi/pdf/10.1056/NEJMp1702516</p>
+<p>[62]投融资争议解决系列（三） — 投资人特殊权利条款的司法实践（下）</p>
+<p>https://www.hankunlaw.com/cn/portal/article/index/cid/8/id/13175.html</p>
+<p>[63]Judicial Review of Regulatory Decisions: The Changing Criteria</p>
+<p>https://www.jstor.org/stable/pdf/2151663.pdf</p>
+<p>[64]一票否决权的适用范围应审慎认定_江苏法治报_2023年12月05日A07</p>
+<p>http://jsfzb.xhby.net/pc/con/202312/05/content_1271090.html</p>
+<p>[65]Judicial Review of Administrative Action in Italy: Beyond Deference? (*)</p>
+<p>https://link.springer.com/content/pdf/10.1007/978-3-030-31539-9_12</p>
+<p>[66]以案普法丨老旧小区加装电梯申请规划许可，业主能否“一票否决”？_澎湃号·政务_澎湃新闻-The Paper</p>
+<p>https://www.thepaper.cn/newsDetail_forward_30881612</p>
+<p>[67]餐饮行业合伙人协议,律师精选5篇_范本下载|华律网</p>
+<p>https://www.66law.cn/contractmodel/7764362.aspx</p>
+<p>[68]“逐浪”跨境电商 宣城返乡创客4年销售破亿-齐鲁晚报网</p>
+<p>http://www.qlwb.com.cn/detail/25072788.html</p>
+<p>[69]WHEN PHYSICIAN-INDUSTRY INTERACTIONS GO AWRY</p>
+<p>https://www.jpeds.com/article/S0022-3476(06)00377-5/pdf</p>
+<p>[70]合伙开饭店算合伙企业么 - 法律快车</p>
+<p>https://www.lawtime.cn/zhishi/a4729870.html</p>
+<p>[71]三个合伙人做跨境电商 三年时间发展出一座“速卖通城” - 佛山市电子商务综合服务平台</p>
+<p>https://fscom.foshan.gov.cn/fsdsfw/kjds/3513.jhtml?id=3513</p>
+<p>[72]Evolution of academic-industry partnerships in cardiovascular research and development</p>
+<p>https://www.nature.com/articles/s41569-019-0223-0.pdf</p>
+<p>[73]合伙做餐饮可以吗-找法网</p>
+<p>https://wap.findlaw.cn/wenda/q_56811247.html</p>
+<p>[74]35岁夫妻档做亚马逊，路还很长—顶端新闻</p>
+<p>http://www.dingxinwen.com/news/145DD0E542B14A72</p>
+<p>[75]A means of improving public health in low- and middle-income countries? Benefits and challenges of international public-private partnerships</p>
+<p>https://daneshyari.com/article/preview/5122862.pdf</p>
+<p>[76]【泾法小课堂】泾阳法院：关于合伙做生意的小贴士-陕西省泾阳县人民法院</p>
+<p>http://sxjyfy.sxfywcourt.gov.cn/article/detail/2022/07/id/6787646.shtml</p>
+<p>[77]合作社股东合伙协议书法律模板-20251107.docx - 人人文库</p>
+<p>https://m.renrendoc.com/paper/488383543.html</p>
+<p>[78]教育培训机构合伙协议书,律师精选5篇_范本下载|华律网</p>
+<p>https://www.66law.cn/contractmodel/7783816.aspx</p>
+<p>[79]直播电商销售合伙合同（定制版）版B版.docx-原创力文档</p>
+<p>https://m.book118.com/html/2025/0107/8111023131007016.shtm</p>
+<p>[80]农业合伙协议范本，律师精选5篇_范本下载|华律网</p>
+<p>https://www.66law.cn/contractmodel/7932964.aspx</p>
+<p>[81]司法行政（法律服务）案例库</p>
+<p>https://alk.12348.gov.cn/Detail?dbID=49&dbName=RTQT&sysID=25837</p>
+<p>[82]抖音直播网店合作协议（店铺运营管理与直播客服由双方分别负责）</p>
+<p>https://mp.weixin.qq.com/s?new=1&signature=n4-2n2Y06uhDG6m-Of6RRWsuMrZsIanotMdnsBQzUQpr-G3P2SN-cJMAN6OzDRvbSrbxoufa1bDsARV82z-232eEw2JXXN4XCFgfuuPuMUW87WmZat5L-jqcmoI9Z6q8&src=11&timestamp=1751916611&ver=6098</p>
+<p>[83]农村合作社入股协议（参考模版）</p>
+<p>https://mp.weixin.qq.com/s?__biz=MzI1MDY4MzE0OA==&idx=1&mid=2247485253&sn=ad36620b2c11845c20f15de1dea2e8cd</p>
+<p>[84]培训机构合伙管理制度.docx - 人人文库</p>
+<p>https://m.renrendoc.com/paper/427415197.html</p>
+<p>[85]电商（带货）直播账号合作协议 | 合同管理 | 法大大</p>
+<p>https://www.fadada.com/article/Basics-017263</p>
+<p>[86]农业与农村丨农村集体经济组织市场化合作形式梳理及核心风险防控要点</p>
+<p>https://mp.weixin.qq.com/s?new=1&signature=E1O6fUHhYsi2kVV6oXov3C7tCqNaTxe6AK0YFEfb9I-7b*xWPKTP7q7Q5F5lHN0Z4SMVBaponl*zA4bOOAQATssmMhLd8WtrsM59xH6S21zMsFqsrGecSMBEmEvM3Lmu&src=11&timestamp=1758276162&ver=6246</p>
+<p>[87]培训机构合伙人协议书合同模板,律师精选5篇_范本下载|华律网</p>
+<p>http://www.66law.cn/contractmodel/7748969.aspx</p>
+<p>[88]本溪市地板厂（普通合伙）_百度百科</p>
+<p>https://baike.baidu.com/item/%E6%9C%AC%E6%BA%AA%E5%B8%82%E5%9C%B0%E6%9D%BF%E5%8E%82%EF%BC%88%E6%99%AE%E9%80%9A%E5%90%88%E4%BC%99%EF%BC%89/60498533</p>
+<p>[89]合股诊所出了医疗事故谁来负责-法律知识｜律图</p>
+<p>https://www.64365.com/zs/4689381.aspx</p>
+<p>[90]浙江省余姚市瑞奇制模厂_百度百科</p>
+<p>https://baike.baidu.com/item/%E6%B5%99%E6%B1%9F%E7%9C%81%E4%BD%99%E5%A7%9A%E5%B8%82%E7%91%9E%E5%A5%87%E5%88%B6%E6%A8%A1%E5%8E%82</p>
+<p>[91]负连带责任_百度百科</p>
+<p>https://baike.baidu.com/item/%E8%B4%9F%E8%BF%9E%E5%B8%A6%E8%B4%A3%E4%BB%BB/22614723</p>
+<p>[92]宁波兴荣铝制品厂（普通合伙） - 爱企查</p>
+<p>https://aiqicha.baidu.com/company_detail_63040290731397?tab=koubei</p>
+<p>[93]营业执照提现是个人独资企业的医院，私下有4个股东，有股东协议，互利共赢破产后债务由谁承担？-找法网</p>
+<p>https://www.findlaw.cn/wenda/q_58355379.html</p>
+<p>[94]共享制造 让“单枪匹马”秒变“千军万马”<em>河北新闻网</em></p>
+<p><em>[95]网红主播要求解除带货合作协议，食品公司诉请赔偿损失，法官：双方平摊 – 重庆长安网</em></p>
+<p><em>[96]Blockchain in Global Supply Chains and Cross Border Trade: A Critical Synthesis of the State-of-the-Art, Challenges and Opportunities</em></p>
+<p><em>[97]Quality risk in offshore manufacturing: Evidence from the pharmaceutical industry</em></p>
+<p><em>[98]主播擅自停播被索赔违约金，法院判了！-中国法院网</em></p>
+<p><em>[99]TOWARDS STANDARDIZED REGULATIONS FOR BLOCK CHAIN SMART CONTRACTS: INSIGHTS FROM DELPHI AND SWARA ANALYSIS</em></p>
+<p><em>[100]合伙结算岂能随意反悔李鹏律师稳守委托人胜诉成果-找法网</em></p>
+<p><em>[101]网络主播提前跳槽 违约赔偿如何计算_智慧普法平台</em></p>
+<p><em>[102]Blockchain and Smart-contract: a pioneering Approach of inter-firms Relationships? The case of franchise networks</em></p>
+<p><em>[103]合作合同纠纷案例：出资不实的法律后果认定，助守约方成功解除合同并追回损失-林智敏-华律网</em></p>
+<p><em>[104]入库案例：网络主播违约跳槽至其他平台，违约金如何认定？</em></p>
+<p><em>[105]Blockchain 101: What is Blockchain and How Does This Revolutionary Technology Work?</em></p>
+<p><em>[106]合伙经营有风险，调解梳理“糊涂账”</em></p>
+<p><em>[107]中国（银川）跨境电子商务综合试验区-公共服务平台</em></p>
+<p><em>[108]医生合伙创业，却因医保政策遭遇牢狱之灾</em></p>
+<p><em>[109]跨境电商店群模式税务风险简析与应对：基于15号文视角 - 跨境电商 - 福步外贸论坛(FOB Business Forum) |中国专业外贸论坛</em></p>
+<p><em>[110]区块链去中心化自治组织的法律性质 ——由Token持有者切入</em></p>
+<p><em>[111]宠物医院合伙人没找对的灾难（上）</em></p>
+<p><em>[112]跨境电商强监管时代！最低千分之二税负，你选对路了吗？-雨果网</em></p>
+<p><em>[113]专家学者谈：新《公司法》与DAO浪潮：法律人视角下的公司治理创新与融合之道_中华网</em></p>
+<p><em>[114]（2023年）某医疗管理公司诉某市人民医院合同纠纷案-适用情势变更规定及双方损失合理分担的认定 - 民事参考案例 - 律师门户网</em></p>
+<p><em>[115]2025年度刑事法律7月刊 | 跨境电商与新型商业模式涉税刑事风险防范 - 专业文章 - 沈阳 - 上海市海华永泰律师事务所</em></p>
+<p><em>[116]Unlocking Blockchain Potential with Legal Frameworks ∞ Guide</em></p>
+<p><em>[117]合伙散伙时，设备估值吵翻天？律师：这2种‘第三方评估’方式，大家都认！#法律咨询 #法律 #厦门 #厦门方与圆律所 #厦门律师</em></p>
+<p><em>[118]教育机构合作合同法律风险指南.docx - 人人文库</em></p>
+<p><em>[119]合伙人可通过转让财产占有权使用权方式出资_澎湃号·湃客_澎湃新闻-The Paper</em></p>
+<p><em>[120]成都市教育局 成都市市场监督管理局 成都市民政局关于印发《成都市学科类校外培训机构合规经营指南》的通知 - 其他文件 - 信息公开目录 - 成都市教育局信息公开目录</em></p>
+<p><em>[121]准格尔旗校外培训机构合规经营指引</em>准格尔旗人民政府</p>
+<p>https://www.zge.gov.cn/zwgk/zfxxgk/fdzdgknr1/zdlygk/jyzy/jyxx/202412/t20241202_3729585.html</p>
+<p>[122]5万鉴定费“烧”钱又烧心？25万和解金巧解采棉机退伙困局！</p>
+<p>https://mp.weixin.qq.com/s?new=1&signature=4yRN*fqlk-0sJE*M-xZNuVm5WqpCuwRA8QGELk-s6YwRjh0XEk3OUf1DqvDZLJm2lG-3lJepde6Xq521Vc4K*sKIl8N7RDoahyNDAk8ZBS1x52p4aqOXf3*aL92qBW36&src=11&timestamp=1761064793&ver=6310</p>
+<p>[123]教育机构合伙协议书法律风险防范.docx - 人人文库</p>
+<p>https://m.renrendoc.com/paper/501772185.html</p>
+<p>[124]跨境电商合伙纠纷案警示：800万日元不翼而飞，法院为何驳回返还请求？</p>
+<p>https://mp.weixin.qq.com/s?new=1&signature=pThqYf3CxFavQymHFFZ8G*gmAuqlYzd2X2jTvr4wtUg7SsTHAFNMtJtfMHbwj4diXdyPZURhwN9iBo-y-9TLFaclhTi4sFDOH*pTji6IepcoF9E5W8phhDKQfubVm-Lw&src=11&timestamp=1755016919&ver=6170</p>
+<p>[125]SoK: Attacks on DAOs</p>
+<p>https://arxiv.org/abs/2406.15071</p>
+<p>[126]湖南武冈一培训机构转让后“跑路”，退款找谁？法院判了_以案说法_普法频道</p>
+<p>https://pf.rednet.cn/content/646856/61/14579756.html</p>
+<p>[127]光明网法院公告</p>
+<p>http://courtgg.gmw.cn/detail.php?gg_info=g7xTFI2Wfi57BZq-xgCvp09qcUM2amgvQ2twdUUyWFh5ZEpxSWc9PQ==</p>
+<p>[128]Distributed Trust Through the Lens of Software Architecture</p>
+<p>https://arxiv.org/abs/2306.08056</p>
+<p>[129]广州市中级人民法院广州中院官微案例专栏</p>
+<p>http://www.gzcourt.gov.cn/yqfkdt/ck598/2025/08/26103022781.html</p>
+<p>[130]跨境电商合伙合同纠纷：未按约定开展合伙业务经营，法院判决全额退款【跨境电商案例008】</p>
+<p>https://zhuanlan.zhihu.com/p/1888675600631310317</p>
+<p>[131]From Technology to Society: An Overview of Blockchain-based DAO</p>
+<p>https://arxiv.org/abs/2011.14940</p>
+<p>[132]转移资产金蝉脱壳、虚假清算失联甩锅——“职业闭店”黑灰产业乱象调查 _光明网</p>
+<p>http://difang.gmw.cn/sd/2026-04/29/content_38739216.htm</p>
+<p>[133]投资跨境电商遭遇店铺被封，损失由谁来担？-中新网福建</p>
+<p>https://www.fj.chinanews.com.cn/news/2022/2022-12-21/515537.html</p>
+<p>[134]Blockchain: A Graph Primer</p>
+<p>https://arxiv.org/abs/1708.08749</p>
+<p>[135]付费培训遇纠纷，如何维权？-北京市海淀区人民法院</p>
+<p>https://bjhdfy.bjcourt.gov.cn/article/detail/2026/03/id/9249070.shtml</p>
+<p>[136]成功案例 | 个人合伙纠纷 高院指令再审</p>
+<p>https://mp.weixin.qq.com/s?__biz=MzkyNjQ5NzU0OQ==&idx=1&mid=2247484394&sn=ae98866449b4d139553c7756b377dec4</p>
+<p>[137]Demystifying the DAO Governance Process</p>
+<p>https://arxiv.org/abs/2403.11758</p>
+<p>[138]卓建专业|如何利用“执行审计+人格否认”深挖被执行公司转移的隐秘财产？ - 卓建律师事务所</p>
+<p>http://www.lawzj.cn/news_view.aspx?Fid=t2:5:2&Id=1476&TypeId=5</p>
+<p>[139]【实务指引】最高法：关于合伙合同纠纷的核心裁判观点（4）</p>
+<p>https://mp.weixin.qq.com/s?new=1&signature=AQ4TWNl7ZZFexyagV3-8OQQ*C89Dgv*l96r8WuijsWg8V*-fTEOFJV30yjQASuShkDdIwhBAFoYM*XGmerZUIGSQwHUFXW6WwyEQ71hpx5TcKj2H7wSd6lX4CSls5IUM&src=11&timestamp=1755448177&ver=6180</p>
+<p>[140]Accumulate: An identity-based blockchain protocol with cross-chain support, human-readable addresses, and key management capabilities</p>
+<p>https://arxiv.org/abs/2204.06878</p>
+<p>[141]公司环境侵权股东连带担责，“公司独立地位”为何不适用？ — 新京报</p>
+<p>https://www.bjnews.com.cn/detail/1700552102168715.html</p>
+<p>[142]最高法发布：合伙纠纷中法院以未经清算、无法确定亏损为由驳回原告要求其他合伙人承担亏损、返还财产的起诉，于法无据</p>
+<p>http://gaj.jinhua.gov.cn/col/col1229449588/art/2026/art_2773b3767cd54fc88ea452d9af446d48.html</p>
+<p>[143]Open Problems in DAOs</p>
+<p>https://arxiv.org/abs/2310.19201</p>
+<p>[144]滥用法人独立地位 股东承担连带责任 - 普法之窗 - 福建法治网</p>
+<p>https://www.hxfzzx.com/2025-12/17/content_2291376.htm</p>
+<p>[145]合伙企业出资效力_澎湃号·湃客_澎湃新闻-The Paper</p>
+<p>https://www.thepaper.cn/newsDetail_forward_31248890</p>
+<p>[146]横琴发布10个典型案例！</p>
+<p>https://www.hengqin.gov.cn/macao_zh_hans/hzqgl/dtyw/dtxx/content/post_3890912.html</p>
+<p>[147]星徽股份与泽宝技术原管理团队股权纠纷案开庭：昔日团队曝出逃税和刷单丑闻_澎湃号·媒体_澎湃新闻-The Paper</p>
+<p>https://www.thepaper.cn/newsDetail_forward_27729482#offline_html_corpas</p>
+<p>[148]罚了近 1 亿！税务部门是怎么发现的？</p>
+<p>https://mp.weixin.qq.com/s?new=1&signature=CZ8MU--UDvDLHJ5ayhsZh4FT2SQMX-v8-kfLrfSmoj7qq2m2TSq7DGyaVcf0UsGZn3M67yJ5-clMMsyHED6q4NQTNdAQDXrgV9y3oOmIb8qihbPNtum3pG2l0ZxMwXt8&src=11&timestamp=1756152216&ver=6196</p>
+<p>[149]跨境电商：店铺公司被稽查 #税务稽查 #税务 #税务律师 #君瀚律师 #太原律师</p>
+<p>https://www.douyin.com/video/7575063059845205282</p>
+<p>[150]Challenges in Blockchain as a Solution for IoT Ecosystems Threat and Access Control: A Survey</p>
+<p>https://arxiv.org/abs/2311.15290</p>
+<p>[151]又一跨境卖家逃税被抓！境外主体也沦陷—顶端新闻</p>
+<p>http://www.dingxinwen.com/news/145CD5ED44B84870</p>
+<p>[152]Survey on Quality Assurance of Smart Contracts</p>
+<p>https://arxiv.org/abs/2311.00270</p>
+<p>(AI生成)</p>
+
+    </div>
+</body>
+</html>

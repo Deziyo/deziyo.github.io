@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>现代战场隐蔽技术 — 深度分析报告 | The Economist</title>
+<style>
+  :root {
+    --bg-primary: #0a0e14;
+    --bg-card: #131820;
+    --bg-card-hover: #1a1f2e;
+    --border: #1e2a3a;
+    --text-primary: #e0e6f0;
+    --text-secondary: #8899b4;
+    --text-muted: #5a6a7e;
+    --accent-blue: #4a9eff;
+    --accent-cyan: #22d3ee;
+    --accent-gold: #f5a623;
+    --accent-green: #34d399;
+    --accent-purple: #a78bfa;
+    --accent-orange: #fb923c;
+    --accent-pink: #f472b6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+
+  .report-header {
+    text-align: center;
+    padding: 60px 0 40px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+    position: relative;
+  }
+  .report-header::after {
+    content: '';
+    position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%);
+    width: 120px; height: 3px;
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+    border-radius: 2px;
+  }
+  .badge {
+    display: inline-block; padding: 4px 14px; border-radius: 20px;
+    font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .badge-series { background: rgba(34, 211, 238, 0.15); color: var(--accent-cyan); border: 1px solid rgba(34, 211, 238, 0.3); }
+  .header-title { font-size: 2.2rem; font-weight: 800; margin: 12px 0 8px; letter-spacing: -0.5px; }
+  .header-subtitle { color: var(--text-secondary); font-size: 1.05rem; }
+  .header-meta { display: flex; justify-content: center; gap: 24px; margin-top: 16px; flex-wrap: wrap; }
+  .meta-item { color: var(--text-muted); font-size: 0.85rem; display: flex; align-items: center; gap: 6px; }
+  .meta-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-cyan); }
+
+  .section { margin-bottom: 48px; }
+  .section-title {
+    font-size: 1.5rem; font-weight: 700; margin-bottom: 24px; padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; font-size: 14px;
+  }
+
+  .card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px; margin-bottom: 20px;
+    transition: background 0.2s;
+  }
+  .card:hover { background: var(--bg-card-hover); }
+  .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; color: var(--accent-cyan); }
+  .card-subtitle { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 16px; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+  .data-table th {
+    text-align: left; padding: 10px 14px;
+    background: rgba(34, 211, 238, 0.06);
+    border-bottom: 2px solid var(--border);
+    color: var(--accent-cyan); font-weight: 600; font-size: 0.8rem;
+    letter-spacing: 0.5px; text-transform: uppercase;
+  }
+  .data-table td { padding: 10px 14px; border-bottom: 1px solid rgba(30, 42, 58, 0.5); }
+  .data-table tr:hover td { background: rgba(34, 211, 238, 0.03); }
+  .highlight { color: var(--accent-gold); font-weight: 700; }
+
+  .tag {
+    display: inline-block; padding: 3px 10px; border-radius: 12px;
+    font-size: 0.75rem; font-weight: 600; margin-right: 6px; margin-bottom: 4px;
+  }
+  .tag-cyan { background: rgba(34,211,238,0.15); color: var(--accent-cyan); }
+  .tag-purple { background: rgba(167,139,250,0.15); color: var(--accent-purple); }
+  .tag-gold { background: rgba(245,166,35,0.15); color: var(--accent-gold); }
+  .tag-green { background: rgba(52,211,153,0.15); color: var(--accent-green); }
+  .tag-orange { background: rgba(251,146,60,0.15); color: var(--accent-orange); }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 768px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+  .quote-box {
+    border-left: 4px solid var(--accent-purple);
+    background: rgba(167, 139, 250, 0.06);
+    padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 20px 0;
+    font-style: italic; color: var(--accent-purple);
+  }
+  .info-box {
+    border-left: 4px solid var(--accent-cyan);
+    background: rgba(34, 211, 238, 0.06);
+    padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 20px 0;
+  }
+
+  .stat-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px; text-align: center;
+  }
+  .stat-value { font-size: 2rem; font-weight: 800; }
+  .stat-label { font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px; }
+
+  .chart-container {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px; margin: 20px 0; overflow-x: auto;
+  }
+  .chart-title { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 12px; text-align: center; }
+
+  .footer-note {
+    text-align: center; padding: 40px 0 20px;
+    color: var(--text-muted); font-size: 0.8rem;
+    border-top: 1px solid var(--border); margin-top: 40px;
+  }
+
+  .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 768px) { .three-col { grid-template-columns: 1fr; } }
+  .layer-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px; text-align: center;
+  }
+  .layer-card.space { border-top: 3px solid var(--accent-purple); }
+  .layer-card.air { border-top: 3px solid var(--accent-cyan); }
+  .layer-card.ground { border-top: 3px solid var(--accent-orange); }
+  .layer-name { font-size: 1rem; font-weight: 700; margin: 8px 0 4px; }
+  .layer-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
+  .layer-icon { font-size: 28px; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="report-header">
+    <div class="badge badge-series">YouTube 深度分析 #14</div>
+    <h1 class="header-title">现代战场上为何更难隐蔽</h1>
+    <p class="header-subtitle">"Why it's so much harder to hide on the battlefield" — The Economist</p>
+    <div class="header-meta">
+      <span class="meta-item"><span class="meta-dot"></span>频道：The Economist</span>
+      <span class="meta-item"><span class="meta-dot" style="background:var(--accent-purple)"></span>专家：Adam Roberts, Shashank Joshi</span>
+      <span class="meta-item"><span class="meta-dot" style="background:var(--accent-green)"></span>俄乌战争实战验证</span>
+    </div>
+  </div>
+
+  <!-- Section 1: Core Data -->
+  <div class="section">
+    <h2 class="section-title">
+      <span class="section-icon" style="background:rgba(34,211,238,0.15);color:var(--accent-cyan)">&#9881;</span>
+      核心数据速览
+    </h2>
+    <div class="grid-3">
+      <div class="stat-card">
+        <div class="stat-value" style="color:var(--accent-orange)">60%</div>
+        <div class="stat-label">乌克兰FPV无人机因电子战损失率</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color:var(--accent-cyan)">70-80%</div>
+        <div class="stat-label">前线损失由无人机造成</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color:var(--accent-purple)">分钟级</div>
+        <div class="stat-label">发现→打击时间线</div>
+      </div>
+    </div>
+
+    <div class="quote-box">
+      "在当今的国防领域，隐藏已经不再可能。卫星、人工智能、开源情报和实时监控已经将现代冲突区域变成了所谓的'透明战场'。一切都可以被看见，无处不在，无时无刻。" — Ideon Science Park, 2025.7
+    </div>
+  </div>
+
+  <!-- Section 2: Multi-Layer Recon -->
+  <div class="section">
+    <h2 class="section-title">
+      <span class="section-icon" style="background:rgba(167,139,250,0.15);color:var(--accent-purple)">&#127758;</span>
+      多层侦察体系：天基·空基·地面
+    </h2>
+
+    <div class="chart-container">
+      <div class="chart-title">战场透明化 —— 全频谱覆盖示意图</div>
+      <svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+        <!-- Space layer -->
+        <rect x="60" y="20" width="560" height="60" rx="8" fill="rgba(167,139,250,0.08)" stroke="rgba(167,139,250,0.3)" stroke-width="1"/>
+        <text x="340" y="40" fill="#a78bfa" font-size="13" font-weight="700" text-anchor="middle">天基层 · 太空卫星</text>
+        <text x="340" y="58" fill="#8899b4" font-size="10" text-anchor="middle">SAR合成孔径雷达 + 商业光学星座 + 战场物联网</text>
+        <text x="340" y="72" fill="#5a6a7e" font-size="9" text-anchor="middle">全天候·穿透云层·近实时影像</text>
+
+        <!-- Air layer -->
+        <rect x="60" y="100" width="560" height="60" rx="8" fill="rgba(34,211,238,0.08)" stroke="rgba(34,211,238,0.3)" stroke-width="1"/>
+        <text x="340" y="120" fill="#22d3ee" font-size="13" font-weight="700" text-anchor="middle">空基层 · 无人机持续巡逻</text>
+        <text x="340" y="138" fill="#8899b4" font-size="10" text-anchor="middle">Orlan-10侦察 · FPV打击 · AI增强目标识别</text>
+        <text x="340" y="152" fill="#5a6a7e" font-size="9" text-anchor="middle">24小时持续监视 · 多层高度覆盖</text>
+
+        <!-- Ground layer -->
+        <rect x="60" y="180" width="560" height="60" rx="8" fill="rgba(251,146,60,0.08)" stroke="rgba(251,146,60,0.3)" stroke-width="1"/>
+        <text x="340" y="200" fill="#fb923c" font-size="13" font-weight="700" text-anchor="middle">地面层 · 雷达与信号情报</text>
+        <text x="340" y="218" fill="#8899b4" font-size="10" text-anchor="middle">SIGINT/ELINT · 三角定位 · 通信情报 · 被动侦测</text>
+        <text x="340" y="232" fill="#5a6a7e" font-size="9" text-anchor="middle">单个数字足迹就可能导致毁灭性打击</text>
+
+        <!-- Arrows connecting layers down -->
+        <line x1="120" y1="80" x2="120" y2="100" stroke="#4a9eff" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+        <line x1="560" y1="80" x2="560" y2="100" stroke="#4a9eff" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+        <line x1="200" y1="160" x2="200" y2="180" stroke="#4a9eff" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+        <line x1="480" y1="160" x2="480" y2="180" stroke="#4a9eff" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+
+        <!-- Result -->
+        <rect x="160" y="260" width="360" height="40" rx="6" fill="rgba(244,114,182,0.1)" stroke="rgba(244,114,182,0.3)" stroke-width="1"/>
+        <text x="340" y="285" fill="#f472b6" font-size="13" font-weight="700" text-anchor="middle">= 全频谱覆盖 · 传统隐蔽手段全面失效</text>
+      </svg>
+    </div>
+
+    <div class="three-col">
+      <div class="layer-card space">
+        <div class="layer-icon">🛰️</div>
+        <div class="layer-name" style="color:var(--accent-purple)">天基层</div>
+        <div class="layer-desc">
+          商业SAR卫星穿透云层烟雾夜间成像。乌克兰案例：芬兰ICEYE与德国Rheinmetall合作，2024年10月起向乌提供SAR侦察数据。低轨星座近乎连续覆盖。
+        </div>
+      </div>
+      <div class="layer-card air">
+        <div class="layer-icon">🛸</div>
+        <div class="layer-name" style="color:var(--accent-cyan)">空基层</div>
+        <div class="layer-desc">
+          高端军用无人机到商用改装FPV，覆盖所有高度层。AI增强——机器学习消化海量传感器数据流，检测和预测威胁速度超过人类反应。
+        </div>
+      </div>
+      <div class="layer-card ground">
+        <div class="layer-icon">📡</div>
+        <div class="layer-name" style="color:var(--accent-orange)">地面层</div>
+        <div class="layer-desc">
+          现代雷达多频谱工作。电子信号侦测——手机、GPS或无线电传输均可被三角定位。俄Krasukha-4、乌Nota/Bukovel-AD等系统部署前线。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Sensors -->
+  <div class="section">
+    <h2 class="section-title">
+      <span class="section-icon" style="background:rgba(244,114,182,0.15);color:var(--accent-pink)">&#9883;</span>
+      传感器技术详解：四种"眼睛"
+    </h2>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">热成像（红外）</div>
+        <table class="data-table">
+          <tr><td>原理</td><td>检测红外辐射——人体37°C在寒冷背景中形成明亮热轮廓</td></tr>
+          <tr><td>波段</td><td>NIR / SWIR / MWIR / LWIR 全波段覆盖</td></tr>
+          <tr><td>优势</td><td>不依赖光照，昼夜/雾天/烟雾中均有效；搭载无人机远距离发现微热源</td></tr>
+          <tr><td style="color:var(--accent-gold)">局限性</td><td>无法看穿厚土层/岩石/混凝土/玻璃；热逆温(黎明/黄昏)降低性能；等温物体不可探测</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">SAR合成孔径雷达</div>
+        <table class="data-table">
+          <tr><td>原理</td><td>发射微波信号接收地面反射，利用卫星移动合成大孔径天线</td></tr>
+          <tr><td>优势</td><td>全天候全天时工作；穿透云层/烟雾/伪装；检测地面微小变化</td></tr>
+          <tr><td>应用</td><td>ICEYE + Rheinmetall → 乌克兰作战规划数据支持</td></tr>
+          <tr><td style="color:var(--accent-gold)">关键</td><td>不受天气影响 = 无法靠天气躲避侦察</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">电子信号侦测 (SIGINT)</div>
+        <table class="data-table">
+          <tr><td>COMINT</td><td>截获和分析敌方通信内容</td></tr>
+          <tr><td>ELINT</td><td>收集雷达等非通信电磁辐射</td></tr>
+          <tr><td>三角定位</td><td>手机/GPS/无线电信号均可精确定位，精度达数米</td></tr>
+          <tr><td style="color:var(--accent-gold)">致命性</td><td>一个数字足迹就可能暴露整个行动</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">多光谱/高光谱成像</div>
+        <table class="data-table">
+          <tr><td>多光谱</td><td>结合可见光+NIR+SWIR等多波段，提高目标识别率</td></tr>
+          <tr><td>高光谱</td><td>细分数百个光谱波段</td></tr>
+          <tr><td>能力</td><td>可识别伪装材料与真实植被的光谱差异</td></tr>
+          <tr><td style="color:var(--accent-gold)">意义</td><td>传统伪装网在光谱指纹面前形同虚设</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: Ukraine Cases -->
+  <div class="section">
+    <h2 class="section-title">
+      <span class="section-icon" style="background:rgba(52,211,153,0.15);color:var(--accent-green)">&#9876;</span>
+      俄乌实战：透明战场的首次大规模验证
+    </h2>
+
+    <div class="chart-container">
+      <div class="chart-title">俄乌电子战与隐蔽对抗军备竞赛</div>
+      <svg viewBox="0 0 680 250" xmlns="http://www.w3.org/2000/svg">
+        <!-- Timeline -->
+        <line x1="60" y1="120" x2="640" y2="120" stroke="#1e2a3a" stroke-width="2"/>
+        <!-- Nodes -->
+        <circle cx="80" cy="120" r="6" fill="#22d3ee"/><text x="80" y="105" fill="#22d3ee" font-size="9" text-anchor="middle">2022</text>
+        <text x="80" y="140" fill="#8899b4" font-size="8" text-anchor="middle">FPV开始<br/>大规模使用</text>
+
+        <circle cx="200" cy="120" r="6" fill="#f5a623"/><text x="200" y="105" fill="#f5a623" font-size="9" text-anchor="middle">2023</text>
+        <text x="200" y="140" fill="#8899b4" font-size="8" text-anchor="middle">电子战系统<br/>产量+80%</text>
+
+        <circle cx="350" cy="120" r="8" fill="#ff5e5b"/><text x="350" y="100" fill="#ff5e5b" font-size="9" text-anchor="middle">2024</text>
+        <text x="350" y="140" fill="#8899b4" font-size="8" text-anchor="middle">光纤制导无人机<br/>使电子战失效</text>
+        <text x="350" y="154" fill="#5a6a7e" font-size="7" text-anchor="middle">↑ SAR卫星合作启动</text>
+
+        <circle cx="520" cy="120" r="8" fill="#a78bfa"/><text x="520" y="100" fill="#a78bfa" font-size="9" text-anchor="middle">2025</text>
+        <text x="520" y="140" fill="#8899b4" font-size="8" text-anchor="middle">ML集成<br/>战略转折点</text>
+        <text x="520" y="154" fill="#5a6a7e" font-size="7" text-anchor="middle">↑俄隐身斗篷三代</text>
+
+        <circle cx="640" cy="120" r="7" fill="#4a9eff"/><text x="640" y="100" fill="#4a9eff" font-size="9" text-anchor="middle">2026</text>
+        <text x="640" y="140" fill="#8899b4" font-size="8" text-anchor="middle">美MC热隐身<br/>斗篷部署</text>
+
+        <!-- Bottom comparison -->
+        <rect x="60" y="180" width="270" height="55" rx="6" fill="rgba(34,211,238,0.06)" stroke="rgba(34,211,238,0.2)" stroke-width="1"/>
+        <text x="195" y="198" fill="#22d3ee" font-size="10" font-weight="700" text-anchor="middle">乌军应对策略</text>
+        <text x="195" y="214" fill="#8899b4" font-size="8" text-anchor="middle">多光谱伪装网 · 反电子战无人机 · 商用材料DIY</text>
+        <text x="195" y="228" fill="#5a6a7e" font-size="7" text-anchor="middle">国产化率高 · 适应速度快</text>
+
+        <rect x="350" y="180" width="270" height="55" rx="6" fill="rgba(251,146,60,0.06)" stroke="rgba(251,146,60,0.2)" stroke-width="1"/>
+        <text x="485" y="198" fill="#fb923c" font-size="10" font-weight="700" text-anchor="middle">俄军应对策略</text>
+        <text x="485" y="214" fill="#8899b4" font-size="8" text-anchor="middle">隐身斗篷三代迭代 · Krasukha-4干扰 · 土豆袋战术~40%</text>
+        <text x="485" y="228" fill="#5a6a7e" font-size="7" text-anchor="middle">苏联遗产+缓慢升级 · 官僚化</text>
+      </svg>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">四个决定性发现（IFRI 2026）</div>
+        <ul style="color:var(--text-secondary);font-size:0.9rem;padding-left:18px;line-height:2.2;">
+          <li>无人机从简易侦察工具演进为<strong style="color:var(--accent-cyan)">部分AI协调武器系统</strong></li>
+          <li>2024年光纤制导无人机出现使<strong style="color:var(--accent-gold)">传统电子战失效</strong></li>
+          <li>2025年机器学习集成成为<strong style="color:var(--accent-purple)">战略转折点</strong></li>
+          <li><strong style="color:var(--accent-orange)">"传感器-射手"时间线压缩到分钟级</strong>——从发现到打击只需数分钟，而非过去数小时</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">FT描述的"杀戮区"效应</div>
+        <ul style="color:var(--text-secondary);font-size:0.9rem;padding-left:18px;line-height:2.2;">
+          <li>持续的空中监视让双方都<strong style="color:var(--accent-pink)">难以隐蔽调动</strong></li>
+          <li>任何暴露都会在数分钟内引来精确打击</li>
+          <li>60%的FPV无人机因电子战而损失（NYT估计）</li>
+          <li>大规模进攻面临<strong style="color:var(--accent-orange)">前所未有的风险</strong>（RAND 2025）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: Countermeasures -->
+  <div class="section">
+    <h2 class="section-title">
+      <span class="section-icon" style="background:rgba(74,158,255,0.15);color:var(--accent-blue)">&#128737;</span>
+      新兴反制技术：重新夺回隐蔽能力
+    </h2>
+
+    <div class="chart-container">
+      <div class="chart-title">反制技术层级 —— 从战场到实验室</div>
+      <svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg">
+        <!-- Layers bottom to top -->
+        <rect x="30" y="220" width="620" height="45" rx="6" fill="rgba(34,211,238,0.08)" stroke="rgba(34,211,238,0.25)" stroke-width="1"/>
+        <text x="340" y="238" fill="#22d3ee" font-size="11" font-weight="700" text-anchor="middle">&#9312; 多光谱伪装技术</text>
+        <text x="340" y="255" fill="#8899b4" font-size="9" text-anchor="middle">Saab Barracuda · MSS SpectraShield · 同时对抗可见光/红外/雷达/紫外</text>
+
+        <rect x="30" y="160" width="620" height="45" rx="6" fill="rgba(167,139,250,0.08)" stroke="rgba(167,139,250,0.25)" stroke-width="1"/>
+        <text x="340" y="178" fill="#a78bfa" font-size="11" font-weight="700" text-anchor="middle">&#9313; 热隐身斗篷与服装</text>
+        <text x="340" y="195" fill="#8899b4" font-size="9" text-anchor="middle">美MC MCO计划(2027前13,000件) · 俄三代纳米纤维斗篷 · STG 570g作战服</text>
+
+        <rect x="30" y="100" width="620" height="45" rx="6" fill="rgba(251,146,60,0.08)" stroke="rgba(251,146,60,0.25)" stroke-width="1"/>
+        <text x="340" y="118" fill="#fb923c" font-size="11" font-weight="700" text-anchor="middle">&#9314; 电子战反制 + 信号特征管理</text>
+        <text x="340" y="135" fill="#8899b4" font-size="9" text-anchor="middle">Bukovel-AD · 惯性导航+替代协议 · M1 Abrams热分散排气 · T-90 Nakidka · 静默模式</text>
+
+        <rect x="30" y="40" width="620" height="45" rx="6" fill="rgba(244,114,182,0.08)" stroke="rgba(244,114,182,0.25)" stroke-width="1"/>
+        <text x="340" y="58" fill="#f472b6" font-size="11" font-weight="700" text-anchor="middle">&#9315; 材料科学前沿（实验室→战场）</text>
+        <text x="340" y="75" fill="#8899b4" font-size="9" text-anchor="middle">Nature纳米结构工程 · NATO柔性电致变色 · AI自适应材料 · 量子传感</text>
+
+        <!-- Arrows up -->
+        <line x1="340" y1="85" x2="340" y2="100" stroke="#4a9eff" stroke-width="1" marker-end="url(#arrow)"/>
+        <line x1="340" y1="145" x2="340" y2="160" stroke="#4a9eff" stroke-width="1"/>
+        <line x1="340" y1="205" x2="340" y2="220" stroke="#4a9eff" stroke-width="1"/>
+      </svg>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">美海军陆战队 MCO 计划</div>
+        <table class="data-table">
+          <tr><td>重量</td><td>≤3.5磅 · 15秒内穿脱</td></tr>
+          <tr><td>白天视觉探测</td><td>600→50米</td></tr>
+          <tr><td>空中视觉(无人机)</td><td>1000→10米</td></tr>
+          <tr><td>空中MWIR探测</td><td>5000→2000米</td></tr>
+          <tr><td>部署计划</td><td>2027前13,000件 · 2030累计61,000件</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">低成本民间创新（乌克兰）</div>
+        <table class="data-table">
+          <tr><td>土豆袋战术</td><td>5kg土豆袋 · 3米内击毁FPV · ~40%成功率</td></tr>
+          <tr><td>反光陷阱</td><td>悬挂废弃CD光盘 · 干扰光学识别</td></tr>
+          <tr><td>假热源欺骗</td><td>点燃战壕蜡烛 · 诱爆敌方无人机</td></tr>
+          <tr><td>声波诱骗</td><td>播放高频噪音 · 吸引无人机偏离航线</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6: Future Warfare -->
+  <div class="section">
+    <h2 class="section-title">
+      <span class="section-icon" style="background:rgba(245,166,35,0.15);color:var(--accent-gold)">&#9889;</span>
+      对未来战争的结构性影响
+    </h2>
+
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-title" style="color:var(--accent-orange)">战略层面</div>
+        <ul style="color:var(--text-secondary);font-size:0.85rem;padding-left:16px;line-height:2;">
+          <li><strong>进攻困境加剧</strong>——持续监视+远程火力使大规模进攻面临空前风险</li>
+          <li><strong>防御优势</strong>——透明度增强区域拒止能力</li>
+          <li><strong>战争持久化</strong>——长周期冲突要求可替换、成本效益高的能力</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--accent-purple)">战术层面</div>
+        <ul style="color:var(--text-secondary);font-size:0.85rem;padding-left:16px;line-height:2;">
+          <li><strong>"传感器-射手"分钟级</strong>——发现到打击从数小时压缩到数分钟</li>
+          <li><strong>管理认知负载</strong>——比对手更快过滤和行动</li>
+          <li><strong>分散化决策</strong>——将处理能力下沉到战术边缘</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:var(--accent-cyan)">技术趋势</div>
+        <ul style="color:var(--text-secondary);font-size:0.85rem;padding-left:16px;line-height:2;">
+          <li><strong>AI压缩决策周期</strong>——速度超过人类反应</li>
+          <li><strong>光纤制导无人机</strong>——使电子战失效</li>
+          <li><strong>量子传感</strong>——将彻底改变透明度的感知方式</li>
+          <li><strong>软件定义战争</strong>——代码成为核心战斗力</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="quote-box" style="margin-top:20px">
+      "那些能够掌握可见与不可见、信息与虚假信息之间微妙平衡的人，将主宰未来的冲突。" — Army Recognition
+    </div>
+  </div>
+
+  <!-- Section 7: Key Insights -->
+  <div class="section">
+    <h2 class="section-title">
+      <span class="section-icon" style="background:rgba(34,211,238,0.15);color:var(--accent-cyan)">&#10004;</span>
+      五大核心洞察
+    </h2>
+    <div class="card">
+      <div class="card-title">&#9312; 战场透明度达历史最高水平</div>
+      <p style="color:var(--text-secondary);font-size:0.9rem;">
+        卫星+无人机+雷达+SIGINT+OSINT构成多层级全覆盖侦察体系，传统迷彩、战壕、无线电静默全面失效。隐蔽已从"看不见"升级为"在电磁全频谱上不可见"。
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-title">&#9313; 俄乌是全球首个大规模验证"透明战场"的冲突</div>
+      <p style="color:var(--text-secondary);font-size:0.9rem;">
+        70-80%前线损失由无人机造成，60%FPV被电子战击落，发现→打击压缩到分钟级。光纤制导无人机出现后电子战的失效迫使防御手段从电磁转向物理拦截。
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-title">&#9314; 反制技术军备竞赛已全面展开</div>
+      <p style="color:var(--text-secondary);font-size:0.9rem;">
+        热隐身斗篷（美俄均已部署实战）、多光谱伪装网、电子战系统、信号特征管理、AI驱动材料——各方同时推进高端研发与低成本DIY创新，形成"实验室→战场"的双轨竞争。
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-title">&#9315; 本土创新能力决定胜负</div>
+      <p style="color:var(--text-secondary);font-size:0.9rem;">
+        乌克兰证明战术熟练度+健全作战规划+国产化能力可弥补技术劣势。战场结果可能由国内无人机制造能力决定，而非进口高端系统。人的因素与军事素养不可被技术完全替代（RAND 2025）。
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-title">&#9316; 核心转变：从"看见战场"到"管理认知负载"</div>
+      <p style="color:var(--text-secondary);font-size:0.9rem;">
+        决定性因素不再是单纯的战场可见性，而是比对手更快地过滤信息、优先排序和采取行动的能力（IFRI 2026）。AI压缩的决策周期使"感知→行动"循环从人类速度演进到机器速度。
+      </p>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    YouTube 深度分析系列 #14 | The Economist | 研究日期 2026.06.04 | 报告生成：Nova &amp; WorkBuddy
+  </div>
+</div>
+</body>
+</html>

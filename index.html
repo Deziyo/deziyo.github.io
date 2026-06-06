@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>面包渣 - 世界浩大，如何是好</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">面包渣</a>
+      <div class="nav-links">
+        <a href="index.html" class="active">首页</a>
+        <a href="about.html">关于</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container" style="padding:0;">
+      <h1>世界浩大，如何是好</h1>
+      <p>无聊无法充盈生活，或许漫游也是一种选择。</p>
+    </div>
+  </section>
+
+  <div class="search-wrap">
+    <input type="text" id="search" placeholder="搜索你感兴趣的内容..." autocomplete="off">
+  </div>
+
+  <div class="pills">
+    <span class="pill active" data-cat="all">全部</span>
+    <span class="pill" data-cat="weekly">每周必看</span>
+    <span class="pill" data-cat="tech">科技与制造</span>
+    <span class="pill" data-cat="law">日常法</span>
+    <span class="pill" data-cat="ponder">闲聊与深思</span>
+  </div>
+
+  <div class="featured-banner">
+    <div class="bar"></div>
+    <div>
+      <div class="label">最新发布</div>
+      <div class="title"><a href="weekly-1.html">每周必看 #1 &rarr;</a></div>
+    </div>
+  </div>
+
+  <div class="report-grid">
+
+    <div class="card" data-tags="weekly" data-title="每周必看 #1" data-summary="11 篇深度报告的合辑。从 AI 到国际局势，从金融市场到军事技术。">
+      <div class="tags"><span class="tag featured">每周必看</span></div>
+      <h3><a href="weekly-1.html">每周必看 #1</a></h3>
+      <p class="summary">11 篇深度报告的合辑。从 AI 到国际局势，从金融市场到军事技术。</p>
+      <p class="meta">2026年6月 · 11 篇报告</p>
+    </div>
+
+    <div class="card" data-tags="tech" data-title="科技与制造" data-summary="AI · 中国制造 · 国际尖端 · 时代风口">
+      <div class="tags"><span class="tag" style="background:#1E293B;color:var(--purple-200);">科技与制造</span></div>
+      <h3><a href="tech-manufacturing.html">科技与制造</a></h3>
+      <p class="summary">AI · 中国制造 · 国际尖端 · 时代风口</p>
+      <p class="meta">4 个子分类</p>
+    </div>
+
+    <div class="card" data-tags="law" data-title="日常法" data-summary="生活处处有法，16 个实用方向。">
+      <div class="tags"><span class="tag" style="background:#1E293B;color:var(--purple-200);">日常法</span></div>
+      <h3><a href="daily-law.html">日常法</a></h3>
+      <p class="summary">生活处处有法，16 个实用方向。</p>
+      <p class="meta">副业 · 合同 · 房产 · 税务 ...</p>
+    </div>
+
+    <div class="card" data-tags="ponder" data-title="闲聊与深思" data-summary="一些不太正经的思考和不太成熟的看法。">
+      <div class="tags"><span class="tag" style="background:#1E293B;color:var(--purple-200);">闲聊与深思</span></div>
+      <h3><a href="ponder.html">闲聊与深思</a></h3>
+      <p class="summary">一些不太正经的思考和不太成熟的看法。</p>
+      <p class="meta">长篇漫游 · 短篇速览 · 超短感悟</p>
+    </div>
+
+  </div>
+
+  <div id="no-results" class="no-results">没有匹配的内容，试试其他关键词</div>
+
+  <footer class="footer">
+    <div class="container"><p>面包渣 · 走一路，捡一点</p></div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
