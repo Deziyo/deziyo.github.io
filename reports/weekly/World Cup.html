@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why the World Cup Is So Expensive — Bloomberg Originals 深度分析</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#0a0e17;color:#c8d6e5;font-family:'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;line-height:1.8;min-height:100vh}
+  .top-bar{height:4px;background:linear-gradient(90deg,#00d2ff,#3a7bd5,#00d2ff);background-size:200% 100%;animation:shimmer 3s ease infinite}
+  @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+  .header{background:linear-gradient(135deg,#0d1321,#1a1a2e 50%,#16213e);border-bottom:1px solid #1e3a5f;padding:40px 60px 30px;position:relative;overflow:hidden}
+  .header::before{content:'';position:absolute;top:-50%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(0,210,255,0.03) 0%,transparent 70%);pointer-events:none}
+  .header-meta{display:flex;align-items:center;gap:12px;margin-bottom:20px;font-size:12px;color:#5d7fa3;letter-spacing:2px;text-transform:uppercase}
+  .header-meta .dot{color:#00d2ff}
+  .header h1{font-size:30px;font-weight:700;color:#e8f4f8;margin-bottom:12px;line-height:1.3}
+  .header h1 span{background:linear-gradient(90deg,#00d2ff,#3a7bd5);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .header .subtitle{font-size:15px;color:#7a8ca5;margin-bottom:20px}
+  .header-tags{display:flex;gap:10px;flex-wrap:wrap}
+  .tag{background:rgba(0,210,255,0.08);border:1px solid rgba(0,210,255,0.2);color:#00d2ff;padding:4px 14px;border-radius:20px;font-size:12px;letter-spacing:1px}
+  .info-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:#0a0e17;border-bottom:1px solid #1e3a5f}
+  .info-item{background:#0d1321;padding:18px 28px;display:flex;flex-direction:column;gap:5px}
+  .info-label{font-size:11px;color:#5d7fa3;text-transform:uppercase;letter-spacing:1.5px}
+  .info-value{font-size:13px;color:#c8d6e5;font-weight:500}
+  .container{max-width:1200px;margin:0 auto;padding:36px 60px}
+  .section-heading{display:flex;align-items:center;gap:14px;margin:48px 0 26px;padding-bottom:14px;border-bottom:1px solid #1e3a5f}
+  .section-num{background:linear-gradient(135deg,#00d2ff,#3a7bd5);color:#0a0e17;width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;flex-shrink:0}
+  .section-title{font-size:21px;font-weight:700;color:#e8f4f8}
+  .time-block{background:#0d1321;border:1px solid #1a2744;border-left:4px solid #00d2ff;border-radius:0 12px 12px 0;padding:22px 26px;margin-bottom:18px;transition:border-color .3s}
+  .time-block:hover{border-color:#00d2ff;border-left-color:#00d2ff}
+  .time-stamp{display:inline-block;background:rgba(0,210,255,0.1);color:#00d2ff;font-size:13px;font-weight:600;padding:3px 12px;border-radius:6px;margin-bottom:12px;font-family:'Consolas',monospace}
+  .time-title{font-size:16px;font-weight:600;color:#e8f4f8;margin-bottom:10px}
+  .time-summary{font-size:14px;color:#8fa4bc;line-height:1.9;margin-bottom:12px}
+  .key-points{background:rgba(0,210,255,0.04);border:1px solid rgba(0,210,255,0.1);border-radius:10px;padding:16px 20px;margin-bottom:12px}
+  .key-points h4{font-size:13px;color:#00d2ff;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
+  .key-points ul{list-style:none;padding:0}
+  .key-points li{position:relative;padding-left:18px;margin-bottom:7px;font-size:13.5px;color:#a8bcd0;line-height:1.7}
+  .key-points li::before{content:'▸';position:absolute;left:0;color:#00d2ff;font-size:11px}
+  .nova-note{background:linear-gradient(135deg,rgba(58,123,213,0.08),rgba(0,210,255,0.08));border:1px solid rgba(0,210,255,0.15);border-radius:10px;padding:16px 20px;font-size:13px;color:#8ec8e8;line-height:1.8}
+  .nova-note strong{color:#00d2ff}
+  .expand-box{background:#111827;border:1px solid #1e3a5f;border-radius:12px;padding:22px 26px;margin-top:12px}
+  .expand-box h4{font-size:14px;color:#3a7bd5;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .expand-box p{font-size:13.5px;color:#8fa4bc;line-height:1.9}
+  .chart-container{background:#0d1321;border:1px solid #1a2744;border-radius:14px;padding:26px;margin:28px 0}
+  .chart-title{font-size:15px;color:#e8f4f8;font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+  .summary-box{background:linear-gradient(135deg,#0d1321,#111827);border:1px solid #1e3a5f;border-radius:14px;padding:30px;margin:36px 0}
+  .summary-box h3{font-size:18px;color:#e8f4f8;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+  .summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .summary-card{background:rgba(0,210,255,0.04);border:1px solid rgba(0,210,255,0.1);border-radius:10px;padding:16px}
+  .summary-card h4{font-size:13px;color:#00d2ff;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+  .summary-card p{font-size:13px;color:#8fa4bc;line-height:1.7}
+  .footer{background:#0d1321;border-top:1px solid #1e3a5f;padding:28px 60px;text-align:center;font-size:12px;color:#5d7fa3}
+  @media(max-width:768px){.header{padding:28px 24px 22px}.header h1{font-size:22px}.container{padding:28px 20px}.info-bar{grid-template-columns:1fr 1fr}.summary-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+
+<div class="header">
+  <div class="header-meta">
+    <span>🎬 Bloomberg Originals</span>
+    <span class="dot">·</span>
+    <span>深度分析</span>
+    <span class="dot">·</span>
+    <span>2026</span>
+  </div>
+  <h1>Why the World Cup Is <span>So Expensive</span></h1>
+  <p class="subtitle">2026美加墨世界杯为何成为史上最贵赛事？——从主办成本到门票定价的全链条拆解</p>
+  <div class="header-tags">
+    <span class="tag">#世界杯经济学</span>
+    <span class="tag">#FIFA收入</span>
+    <span class="tag">#动态定价</span>
+    <span class="tag">#主办城市成本</span>
+    <span class="tag">#球迷负担</span>
+  </div>
+</div>
+
+<div class="info-bar">
+  <div class="info-item">
+    <span class="info-label">视频 ID</span>
+    <span class="info-value">1QaXlf1-tGY</span>
+  </div>
+  <div class="info-item">
+    <span class="info-label">频道</span>
+    <span class="info-value">Bloomberg Originals</span>
+  </div>
+  <div class="info-item">
+    <span class="info-label">赛事</span>
+    <span class="info-value">2026 FIFA World Cup</span>
+  </div>
+  <div class="info-item">
+    <span class="info-label">主办国</span>
+    <span class="info-value">美国 / 加拿大 / 墨西哥</span>
+  </div>
+  <div class="info-item">
+    <span class="info-label">赛事规模</span>
+    <span class="info-value">48队 · 104场 · 39天</span>
+  </div>
+  <div class="info-item">
+    <span class="info-label">FIFA预期总收入</span>
+    <span class="info-value">$110-130亿</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="nova-note" style="margin-bottom:32px">
+    <strong>📌 Nova 分析说明：</strong>本期 Bloomberg Originals 纪录片系统拆解了2026世界杯"史上最贵"的成因链条——从FIFA的收入架构、动态定价机制、主办城市成本膨胀，到球迷观赛费用的全面飙升。由于无法获取视频转录，本报告基于节目公开信息、Bloomberg报道及大量研究材料推演合成，时间戳为合理分段，力求还原纪录片的叙事逻辑与核心论点。
+  </div>
+
+  <!-- 第一部分 -->
+  <div class="section-heading">
+    <div class="section-num">Ⅰ</div>
+    <div class="section-title">史上最贵：世界杯成本膨胀史</div>
+  </div>
+
+  <div class="time-block">
+    <div class="time-stamp">~ 00:00 – 开场：$2200亿的卡塔尔</div>
+    <div class="time-title">世界杯主办成本的指数级膨胀</div>
+    <div class="time-summary">
+      纪录片以一个震撼的数字开场：2022年卡塔尔世界杯花费超过$2200亿——这不仅是世界杯历史之最，也是人类历史上最昂贵的单一体育赛事。这个数字是2018年俄罗斯的19倍、2014年巴西的15倍。随后提出核心问题：世界杯为什么越来越贵？谁在为这场盛宴买单？谁又在收割利润？
+    </div>
+    <div class="key-points">
+      <h4>要点提炼</h4>
+      <ul>
+        <li>2022卡塔尔世界杯总花费$2200亿，远超历届之和</li>
+        <li>1994年美国世界杯仅花费$5亿，30年间成本膨胀440倍</li>
+        <li>卡塔尔的$2200亿中，大部分用于新建城市、地铁、机场等基础设施，球场本身仅占极小比例</li>
+        <li>世界杯主办成本的历史轨迹呈现明显的"加速膨胀"特征</li>
+      </ul>
+    </div>
+    <div class="expand-box">
+      <h4>📖 知识延展：历届世界杯主办成本一览</h4>
+      <p>
+        <strong>1994 美国：</strong>$5亿 — 利用现有NFL球场，几乎零新建<br>
+        <strong>1998 法国：</strong>$23亿 — 新建法兰西体育场<br>
+        <strong>2002 日韩：</strong>$70亿 — 两国合办，大量新建球场<br>
+        <strong>2006 德国：</strong>$43亿 — 以翻新为主<br>
+        <strong>2010 南非：</strong>$36亿 — 首次非洲举办，基建欠账多<br>
+        <strong>2014 巴西：</strong>$150亿 — 引发大规模社会抗议<br>
+        <strong>2018 俄罗斯：</strong>$116亿 — 以现代化改造为主<br>
+        <strong>2022 卡塔尔：</strong>$2200亿 — 从沙漠中建起整座城市<br>
+        <strong>2026 美加墨：</strong>基础设施约$15亿 — 三国联办，利用现有场馆，ROI预计7.3倍<br><br>
+        <strong>关键洞察：</strong>世界杯成本膨胀的核心驱动力不是球场，而是主办国借赛事之名进行的大规模基建投资。卡塔尔的$2200亿中，球场仅约$65亿（3%），其余97%用于多哈地铁、哈马德国际机场、卢塞尔新城等项目。
+      </p>
+    </div>
+  </div>
+
+  <div class="time-block">
+    <div class="time-stamp">~ 08:00 – 谁在为世界杯买单？</div>
+    <div class="time-title">主办城市 vs FIFA：收入分配的极端失衡</div>
+    <div class="time-summary">
+      纪录片揭示世界杯经济模型的核心矛盾：FIFA拿走绝大部分收入（门票、转播权、赞助），主办城市承担几乎所有成本（安保、基建、交通升级），且无法从赛事直接收入中获得分成。多伦多从最初预计$3000-4500万飙升至$3.8亿——涨幅8-12倍，但这些钱全部由纳税人承担，而门票收入归FIFA所有。
+    </div>
+    <div class="key-points">
+      <h4>要点提炼</h4>
+      <ul>
+        <li>FIFA收入：$110-130亿（转播权$44亿、赞助$22亿、门票$16.5亿、款待$11亿等）</li>
+        <li>主办城市收入：几乎为零——门票、停车费等全部归FIFA</li>
+        <li>多伦多成本：从$4500万→$3.8亿，涨幅8-12倍</li>
+        <li>加拿大13场比赛预计耗费纳税人至少$10亿</li>
+        <li>休斯顿预算$7000-8000万（因已有完备基础设施），远低于加拿大城市</li>
+        <li>FIFA主席因凡蒂诺辩称收入用于211个成员协会的"足球发展"</li>
+      </ul>
+    </div>
+    <div class="nova-note">
+      <strong>Nova 思考：</strong>这里有一个精妙的制度设计——FIFA本质上是"零成本举办方"。它不拥有球场、不负责安保、不承担超支风险，却拿走几乎所有可变现的权益。主办城市则像一个被迫签下"对赌协议"的地方政府：赌的是赛事带来的旅游消费和长期品牌效应，但这些收益高度不确定，而成本是刚性的。这是全球体育赛事中最不对等的商业模式。
+    </div>
+  </div>
+
+  <!-- SVG 图表1：历届世界杯成本 -->
+  <div class="chart-container">
+    <div class="chart-title">📊 历届世界杯主办成本对比（1994-2026）</div>
+    <svg viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg">
+      <rect width="680" height="380" fill="#0d1321" rx="12"/>
+      <text x="340" y="32" text-anchor="middle" fill="#e8f4f8" font-size="15" font-weight="700">历届世界杯主办成本（单位：十亿美元）</text>
+      <g transform="translate(60, 60)">
+        <!-- 网格线 -->
+        <line x1="0" y1="0" x2="600" y2="0" stroke="#1e3a5f" stroke-width="0.5"/>
+        <line x1="0" y1="60" x2="600" y2="60" stroke="#1e3a5f" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="0" y1="120" x2="600" y2="120" stroke="#1e3a5f" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="0" y1="180" x2="600" y2="180" stroke="#1e3a5f" stroke-width="0.5" stroke-dasharray="4"/>
+        <line x1="0" y1="240" x2="600" y2="240" stroke="#1e3a5f" stroke-width="0.5"/>
+        <!-- Y轴标签 -->
+        <text x="-8" y="4" text-anchor="end" fill="#5d7fa3" font-size="10">$220B</text>
+        <text x="-8" y="64" text-anchor="end" fill="#5d7fa3" font-size="10">$165B</text>
+        <text x="-8" y="124" text-anchor="end" fill="#5d7fa3" font-size="10">$110B</text>
+        <text x="-8" y="184" text-anchor="end" fill="#5d7fa3" font-size="10">$55B</text>
+        <text x="-8" y="244" text-anchor="end" fill="#5d7fa3" font-size="10">$0</text>
+        <!-- 柱状图 - 非卡塔尔用小比例 -->
+        <!-- 1994 US $0.5B -->
+        <rect x="10" y="239" width="50" height="1" fill="#00d2ff" opacity="0.7" rx="2"/>
+        <text x="35" y="252" text-anchor="middle" fill="#c8d6e5" font-size="9">1994</text>
+        <text x="35" y="234" text-anchor="middle" fill="#00d2ff" font-size="9">$0.5B</text>
+        <!-- 1998 FR $2.3B -->
+        <rect x="80" y="237" width="50" height="3" fill="#00d2ff" opacity="0.7" rx="2"/>
+        <text x="105" y="252" text-anchor="middle" fill="#c8d6e5" font-size="9">1998</text>
+        <text x="105" y="232" text-anchor="middle" fill="#00d2ff" font-size="9">$2.3B</text>
+        <!-- 2002 JP/KR $7B -->
+        <rect x="150" y="232" width="50" height="8" fill="#00d2ff" opacity="0.7" rx="2"/>
+        <text x="175" y="252" text-anchor="middle" fill="#c8d6e5" font-size="9">2002</text>
+        <text x="175" y="227" text-anchor="middle" fill="#00d2ff" font-size="9">$7B</text>
+        <!-- 2006 DE $4.3B -->
+        <rect x="220" y="235" width="50" height="5" fill="#00d2ff" opacity="0.7" rx="2"/>
+        <text x="245" y="252" text-anchor="middle" fill="#c8d6e5" font-size="9">2006</text>
+        <text x="245" y="230" text-anchor="middle" fill="#00d2ff" font-size="9">$4.3B</text>
+        <!-- 2010 SA $3.6B -->
+        <rect x="290" y="236" width="50" height="4" fill="#ffc864" opacity="0.7" rx="2"/>
+        <text x="315" y="252" text-anchor="middle" fill="#c8d6e5" font-size="9">2010</text>
+        <text x="315" y="231" text-anchor="middle" fill="#ffc864" font-size="9">$3.6B</text>
+        <!-- 2014 BR $15B -->
+        <rect x="360" y="224" width="50" height="16" fill="#ffc864" opacity="0.7" rx="2"/>
+        <text x="385" y="252" text-anchor="middle" fill="#c8d6e5" font-size="9">2014</text>
+        <text x="385" y="219" text-anchor="middle" fill="#ffc864" font-size="9">$15B</text>
+        <!-- 2018 RU $11.6B -->
+        <rect x="430" y="227" width="50" height="13" fill="#ff6b6b" opacity="0.7" rx="2"/>
+        <text x="455" y="252" text-anchor="middle" fill="#c8d6e5" font-size="9">2018</text>
+        <text x="455" y="222" text-anchor="middle" fill="#ff6b6b" font-size="9">$11.6B</text>
+        <!-- 2022 QA $220B - 突出显示 -->
+        <rect x="500" y="0" width="50" height="240" fill="#ff6b6b" opacity="0.85" rx="2"/>
+        <text x="525" y="252" text-anchor="middle" fill="#ff6b6b" font-size="9" font-weight="700">2022</text>
+        <text x="525" y="-8" text-anchor="middle" fill="#ff6b6b" font-size="11" font-weight="700">$220B</text>
+        <!-- 标注卡塔尔 -->
+        <rect x="500" y="-18" width="50" height="14" fill="rgba(255,107,107,0.2)" rx="3"/>
+        <text x="525" y="-8" text-anchor="middle" fill="#ff6b6b" font-size="8" font-weight="600">卡塔尔</text>
+        <!-- 底部注释 -->
+        <text x="300" y="278" text-anchor="middle" fill="#5d7fa3" font-size="10">卡塔尔$2200亿中仅3%用于球场，97%用于从沙漠中建起新城市</text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- 第二部分 -->
+  <div class="section-heading">
+    <div class="section-num">Ⅱ</div>
+    <div class="section-title">动态定价：FIFA的商业革命</div>
+  </div>
+
+  <div class="time-block">
+    <div class="time-stamp">~ 18:00 – 动态定价首次登场</div>
+    <div class="time-title">从固定票价到算法定价：FIFA的"收割模式"</div>
+    <div class="time-summary">
+      2026世界杯首次全面引入动态定价（Dynamic Pricing）——票价根据实时需求、比赛热度、城市经济水平和剩余库存实时浮动。这不是微调，而是结构性变革：决赛最贵面值门票从2022年卡塔尔的~$1,600飙升至$11,000，四年涨幅588%。FIFA首席运营官海莫·席尔吉直言："如果你已经知道自己想去哪里看球，那就尽早买票，因为什么情况都有可能发生。"
+    </div>
+    <div class="key-points">
+      <h4>要点提炼</h4>
+      <ul>
+        <li>世界杯历史上首次全面部署动态定价，此前仅见于美国职业体育和演唱会</li>
+        <li>决赛最贵面值门票$11,000，较2022年涨幅588%——远超任何通胀指标</li>
+        <li>最便宜的小组赛门票$60（每场限量1000张），仅占总票池1.73%</li>
+        <li>104场比赛中约90场基准票价被抬高，平均涨幅34%</li>
+        <li>FIFA主席因凡蒂诺引用$60的"地板价"回应批评，但98.27%的票都是动态定价</li>
+      </ul>
+    </div>
+    <div class="nova-note">
+      <strong>Nova 思考：</strong>动态定价的本质是"价格歧视"——对同一个商品，向愿意付更多钱的人收更多钱。在航空公司和酒店业，这已是常态；但在足球——一个以"工人阶级运动"自居的领域——这引发了严重的文化冲突。FIFA的逻辑是纯粹的供需经济学：500万+的门票申请量（前两届合计不足5000万），需求远超供给，价格自然会上升。但问题在于：FIFA不是市场参与者，它是垄断者。
+    </div>
+  </div>
+
+  <div class="time-block">
+    <div class="time-stamp">~ 30:00 – 转售平台的暴利</div>
+    <div class="time-title">FIFA Marketplace：30%抽成的"合法黄牛"</div>
+    <div class="time-summary">
+      纪录片揭示FIFA的"三层利润架构"：第一层是初级面值销售（动态定价）；第二层是官方转售平台FIFA Marketplace——FIFA从每笔转售交易中抽取30%佣金；第三层是企业招待套餐，价格不受动态定价审查。最极端的案例：决赛高端座位在转售平台上挂牌价达$230万/张，如果成交，FIFA单笔抽成$69万。美国和加拿大法律不设转售价格上限，墨西哥则限票面原价转售。
+    </div>
+    <div class="key-points">
+      <h4>要点提炼</h4>
+      <ul>
+        <li>FIFA从每笔转售交易中抽取30%佣金——高于行业平均25%</li>
+        <li>决赛高端座位转售挂牌价：$230万/张（面值$8,680）</li>
+        <li>4张$230万的门票如成交，FIFA仅转售抽成即$276万</li>
+        <li>美国/加拿大：转售不限价；墨西哥：仅限票面原价转售</li>
+        <li>StubHub/Ticketmaster等平台通常合计抽10-20%卖家+10-15%买家=约25%</li>
+        <li>FIFA的30%是单边抽成，且无买家端手续费，实际费率更高</li>
+      </ul>
+    </div>
+    <div class="expand-box">
+      <h4>📖 知识延展：FIFA的三层利润架构拆解</h4>
+      <p>
+        <strong>第一层：初级销售（动态定价）</strong><br>
+        面值从$60（地板价）到$11,000（决赛最高）动态浮动。FIFA直接收入约$16.5亿。<br><br>
+        <strong>第二层：官方转售（30%抽成）</strong><br>
+        FIFA自建转售平台，允许自由定价（美加不限价）。票价被炒得越高，FIFA的30%抽成基数越大——FIFA与投机者利益完全一致。<br><br>
+        <strong>第三层：企业招待套餐</strong><br>
+        独立于公开销售体系，价格从$3,500到$73,200/人不等。不受动态定价审查，面向企业买家预售。企业差旅预算比2022年高30-40%。<br><br>
+        <strong>关键洞察：</strong>这三层架构的核心设计意图是"最大化每张票的变现能力"——不仅初售价是动态的，转售的每一层溢价也通过30%佣金回流FIFA。这是体育票务史上最精密的货币化体系。
+      </p>
+    </div>
+  </div>
+
+  <!-- SVG 图表2：门票价格 -->
+  <div class="chart-container">
+    <div class="chart-title">📊 决赛最高面值门票：四年涨588%</div>
+    <svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+      <rect width="680" height="320" fill="#0d1321" rx="12"/>
+      <text x="340" y="32" text-anchor="middle" fill="#e8f4f8" font-size="15" font-weight="700">世界杯决赛最高面值门票价格演变</text>
+      <g transform="translate(80, 60)">
+        <!-- 1994 -->
+        <rect x="0" y="195" width="90" height="45" fill="#00d2ff" opacity="0.6" rx="4"/>
+        <text x="45" y="254" text-anchor="middle" fill="#c8d6e5" font-size="11">1994 美国</text>
+        <text x="45" y="188" text-anchor="middle" fill="#00d2ff" font-size="12" font-weight="600">$475</text>
+        <!-- 2022 -->
+        <rect x="150" y="165" width="90" height="75" fill="#ffc864" opacity="0.6" rx="4"/>
+        <text x="195" y="254" text-anchor="middle" fill="#c8d6e5" font-size="11">2022 卡塔尔</text>
+        <text x="195" y="158" text-anchor="middle" fill="#ffc864" font-size="12" font-weight="600">$1,605</text>
+        <!-- 2026 -->
+        <rect x="300" y="0" width="90" height="240" fill="#ff6b6b" opacity="0.8" rx="4"/>
+        <text x="345" y="254" text-anchor="middle" fill="#ff6b6b" font-size="11" font-weight="700">2026 美加墨</text>
+        <text x="345" y="-8" text-anchor="middle" fill="#ff6b6b" font-size="14" font-weight="700">$11,000</text>
+        <!-- 涨幅标注 -->
+        <line x1="240" y1="200" x2="300" y2="200" stroke="#ff6b6b" stroke-width="1.5" stroke-dasharray="4"/>
+        <text x="270" y="193" text-anchor="middle" fill="#ff6b6b" font-size="11" font-weight="600">+588%</text>
+        <!-- 转售价标注 -->
+        <rect x="420" y="0" width="140" height="240" fill="none" stroke="#ff6b6b" stroke-width="1.5" stroke-dasharray="6" rx="4"/>
+        <text x="490" y="20" text-anchor="middle" fill="#ff6b6b" font-size="12" font-weight="700">转售挂牌价</text>
+        <text x="490" y="40" text-anchor="middle" fill="#ff6b6b" font-size="18" font-weight="800">$2,300,000</text>
+        <text x="490" y="58" text-anchor="middle" fill="#5d7fa3" font-size="10">决赛高端座位</text>
+        <text x="490" y="78" text-anchor="middle" fill="#5d7fa3" font-size="10">（$230万/张）</text>
+        <text x="490" y="110" text-anchor="middle" fill="#5d7fa3" font-size="10">FIFA抽30%=</text>
+        <text x="490" y="130" text-anchor="middle" fill="#ff6b6b" font-size="14" font-weight="700">$690,000</text>
+        <text x="490" y="148" text-anchor="middle" fill="#5d7fa3" font-size="10">单笔转售佣金</text>
+        <text x="490" y="178" text-anchor="middle" fill="#5d7fa3" font-size="10">面值→转售溢价</text>
+        <text x="490" y="198" text-anchor="middle" fill="#ffc864" font-size="16" font-weight="700">264.9×</text>
+        <text x="490" y="220" text-anchor="middle" fill="#5d7fa3" font-size="10">从$8,680到$2,300,000</text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- 第三部分 -->
+  <div class="section-heading">
+    <div class="section-num">Ⅲ</div>
+    <div class="section-title">球迷代价：被定价出局的人群</div>
+  </div>
+
+  <div class="time-block">
+    <div class="time-stamp">~ 42:00 – 普通球迷的观赛成本</div>
+    <div class="time-title">从$10,000到$20,000：资深球迷的花费翻倍</div>
+    <div class="time-summary">
+      纪录片追踪了一位自1994年以来每届世界杯都到现场观赛的资深球迷Manuel Rueda。往届他通常花费约$10,000/人（至少9场比赛+旅行），2026年即使跳过决赛和热门场次，预计花费也接近$20,000/人——翻倍。更触目惊心的是城市间差价：迈阿密看一场小组赛最低约$600，而纽约地区超过$2,000。
+    </div>
+    <div class="key-points">
+      <h4>要点提炼</h4>
+      <ul>
+        <li>资深球迷往届花费约$10,000/人，2026年预计$18,000-20,000/人</li>
+        <li>迈阿密单场小组赛最低总成本约$600，纽约地区超过$2,000</li>
+        <li>美国揭幕战（6月12日洛杉矶）门票$1,120起，最高$4,105</li>
+        <li>航空票价在数月内翻3-4倍（中东战争推高航空燃油成本）</li>
+        <li>纽约→决赛场馆往返火车票$150（平时$12.90，涨幅11.6倍）</li>
+        <li>酒店价格涨150%-300%，场馆附近高端住宿飙升至标准价的13倍</li>
+      </ul>
+    </div>
+    <div class="nova-note">
+      <strong>Nova 思考：</strong>一个值得深究的现象：FIFA声称每场比赛至少释放1,000张$60的"惠民票"，104场共计104,000张——但这仅占总票池（600万+）的1.73%。这是一个精心设计的"象征性可负担性"策略：不是真的让大众负担得起，而是在舆论战中有一个"$60门票"的谈资。这与航空公司的"最低价¥99"套路如出一辙——那个价格永远买不到你真正需要的航班。
+    </div>
+  </div>
+
+  <div class="time-block">
+    <div class="time-stamp">~ 55:00 – 地理惩罚</div>
+    <div class="time-title">16座城市横跨数千英里：跨城观赛的经济惩罚</div>
+    <div class="time-summary">
+      2026世界杯横跨美加墨三国16座城市，地理范围前所未有。以德国队为例：小组赛分别在休斯顿、多伦多和新泽西进行——球迷需在两周内购买多趟跨大陆航班。国内航班飙升至正常季节价格的3-4倍。加拿大一家航空公司的病毒式营销活动证明：预订一整趟多周海外度假的费用，比购买国内交通+一场本地比赛门票还便宜。
+    </div>
+    <div class="key-points">
+      <h4>要点提炼</h4>
+      <ul>
+        <li>16座主办城市从温哥华到波士顿到墨西哥城，横跨数千英里</li>
+        <li>跨国行程意味着多趟跨大陆航班，机票是最大单项支出之一</li>
+        <li>主办城市间国内航班飙升至正常价格3-4倍</li>
+        <li>加拿大航空公司营销：海外度假比国内观赛+机票更便宜</li>
+        <li>中东战争推高航空燃油成本，机票价格持续攀升</li>
+      </ul>
+    </div>
+    <div class="expand-box">
+      <h4>📖 知识延展：2026 vs 2022的地理差异</h4>
+      <p>
+        <strong>2022卡塔尔：</strong>所有8座球场集中在多哈半径50公里内，球迷可在同一天观看多场比赛，无需跨城旅行。这是世界杯历史上最"紧凑"的布局。<br><br>
+        <strong>2026美加墨：</strong>16座城市分布在从太平洋到加勒比海的广袤区域。最远两座城市（温哥华↔墨西哥城）直线距离约4000公里。球迷追看一支球队至少需要2-3趟跨城旅行。<br><br>
+        <strong>关键对比：</strong>卡塔尔模式让FIFA无法从交通中获利（因为不需要交通），2026模式则让FIFA从转售和动态定价中获益，但交通成本完全由球迷承担。这是从"集中式"到"分布式"的根本转变——对球迷的财务压力完全不同。
+      </p>
+    </div>
+  </div>
+
+  <!-- SVG 图表3：球迷观赛成本 -->
+  <div class="chart-container">
+    <div class="chart-title">📊 2026世界杯球迷观赛全成本估算</div>
+    <svg viewBox="0 0 680 440" xmlns="http://www.w3.org/2000/svg">
+      <rect width="680" height="440" fill="#0d1321" rx="12"/>
+      <text x="340" y="32" text-anchor="middle" fill="#e8f4f8" font-size="15" font-weight="700">球迷观赛全成本拆解（2026世界杯 vs 往届）</text>
+      <g transform="translate(60, 55)">
+        <!-- 往届成本 -->
+        <text x="0" y="14" fill="#00d2ff" font-size="13" font-weight="600">往届世界杯（典型资深球迷）</text>
+        <rect x="0" y="24" width="560" height="44" fill="#111827" rx="8"/>
+        <!-- 门票 35% -->
+        <rect x="4" y="28" width="192" height="36" fill="#00d2ff" opacity="0.6" rx="6"/>
+        <text x="100" y="52" text-anchor="middle" fill="#0a0e17" font-size="11" font-weight="600">门票 $3,500</text>
+        <!-- 机票 30% -->
+        <rect x="200" y="28" width="164" height="36" fill="#3a7bd5" opacity="0.6" rx="6"/>
+        <text x="282" y="52" text-anchor="middle" fill="#e8f4f8" font-size="11" font-weight="600">机票 $3,000</text>
+        <!-- 住宿 25% -->
+        <rect x="368" y="28" width="136" height="36" fill="#64ffc8" opacity="0.5" rx="6"/>
+        <text x="436" y="52" text-anchor="middle" fill="#0a0e17" font-size="11" font-weight="600">住宿 $2,500</text>
+        <!-- 其他 10% -->
+        <rect x="508" y="28" width="48" height="36" fill="#ffc864" opacity="0.5" rx="6"/>
+        <text x="532" y="52" text-anchor="middle" fill="#0a0e17" font-size="9" font-weight="600">其他$1K</text>
+        <text x="570" y="52" fill="#00d2ff" font-size="14" font-weight="700">≈$10,000</text>
+
+        <!-- 2026成本 -->
+        <text x="0" y="104" fill="#ff6b6b" font-size="13" font-weight="600">2026世界杯（同等观赛量）</text>
+        <rect x="0" y="114" width="560" height="44" fill="#111827" rx="8"/>
+        <!-- 门票 45% -->
+        <rect x="4" y="118" width="248" height="36" fill="#ff6b6b" opacity="0.7" rx="6"/>
+        <text x="128" y="142" text-anchor="middle" fill="#e8f4f8" font-size="11" font-weight="600">门票 $9,000</text>
+        <!-- 机票 25% -->
+        <rect x="256" y="118" width="138" height="36" fill="#ff9f6b" opacity="0.6" rx="6"/>
+        <text x="325" y="142" text-anchor="middle" fill="#e8f4f8" font-size="11" font-weight="600">机票 $5,000</text>
+        <!-- 住宿 22% -->
+        <rect x="398" y="118" width="120" height="36" fill="#ffc864" opacity="0.6" rx="6"/>
+        <text x="458" y="142" text-anchor="middle" fill="#0a0e17" font-size="11" font-weight="600">住宿$4,400</text>
+        <!-- 其他 -->
+        <rect x="522" y="118" width="34" height="36" fill="#a78bfa" opacity="0.5" rx="6"/>
+        <text x="539" y="142" text-anchor="middle" fill="#0a0e17" font-size="8">$1.6K</text>
+        <text x="570" y="142" fill="#ff6b6b" font-size="14" font-weight="700">≈$20,000</text>
+
+        <!-- 涨幅对比 -->
+        <rect x="0" y="190" width="560" height="1" fill="#1e3a5f"/>
+        <text x="280" y="214" text-anchor="middle" fill="#e8f4f8" font-size="13" font-weight="600">关键成本涨幅</text>
+        <!-- 小卡片 -->
+        <rect x="0" y="226" width="130" height="70" fill="#111827" rx="8" stroke="#1e3a5f" stroke-width="1"/>
+        <text x="65" y="248" text-anchor="middle" fill="#5d7fa3" font-size="10">决赛面值门票</text>
+        <text x="65" y="274" text-anchor="middle" fill="#ff6b6b" font-size="18" font-weight="800">+588%</text>
+
+        <rect x="145" y="226" width="130" height="70" fill="#111827" rx="8" stroke="#1e3a5f" stroke-width="1"/>
+        <text x="210" y="248" text-anchor="middle" fill="#5d7fa3" font-size="10">纽约→场馆火车</text>
+        <text x="210" y="274" text-anchor="middle" fill="#ff6b6b" font-size="18" font-weight="800">+1063%</text>
+
+        <rect x="290" y="226" width="130" height="70" fill="#111827" rx="8" stroke="#1e3a5f" stroke-width="1"/>
+        <text x="355" y="248" text-anchor="middle" fill="#5d7fa3" font-size="10">多伦多主办成本</text>
+        <text x="355" y="274" text-anchor="middle" fill="#ff6b6b" font-size="18" font-weight="800">+744%</text>
+
+        <rect x="435" y="226" width="130" height="70" fill="#111827" rx="8" stroke="#1e3a5f" stroke-width="1"/>
+        <text x="500" y="248" text-anchor="middle" fill="#5d7fa3" font-size="10">总观赛花费</text>
+        <text x="500" y="274" text-anchor="middle" fill="#ffc864" font-size="18" font-weight="800">+100%</text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- 第四部分 -->
+  <div class="section-heading">
+    <div class="section-num">Ⅳ</div>
+    <div class="section-title">政治博弈与行业先例</div>
+  </div>
+
+  <div class="time-block">
+    <div class="time-stamp">~ 68:00 – 监管反击</div>
+    <div class="time-title">州总检察长出手：对FIFA定价的调查</div>
+    <div class="time-summary">
+      纽约州总检察长Letitia James、新泽西州和加利福尼亚州总检察长Rob Bonta已对FIFA的票务行为展开调查。核心指控包括：欺骗性座位分类（首轮抽签结束后突然引入"前排"类别）、约90场比赛基准票价被人工抬高34%、故意扣留关键座位区域制造稀缺、以及操控不同销售阶段的可变定价。欧洲方面，Football Supporters Europe（FSE）已向欧盟委员会提交正式投诉，称票务行为是"对全球足球社区的经济背叛"。特朗普也对《纽约邮报》表示："I wouldn't pay it"——将票价争议从球迷领域推入政治话语。
+    </div>
+    <div class="key-points">
+      <h4>要点提炼</h4>
+      <ul>
+        <li>纽约/新泽西/加州三州总检察长对FIFA展开票务调查</li>
+        <li>核心指控：欺骗性座位分类、人工抬高基准价、制造稀缺、操控定价时间线</li>
+        <li>欧洲FSE向欧盟委员会投诉，称"经济背叛"</li>
+        <li>特朗普公开表示"I wouldn't pay it"，将争议推入政治层面</li>
+        <li>距开幕仅数周，大量揭幕战座位仍未售出——动态定价的首次商业验证</li>
+      </ul>
+    </div>
+    <div class="nova-note">
+      <strong>Nova 思考：</strong>调查的政治化是一个关键转折。如果只是球迷抱怨，FIFA可以置之不理；但如果州总检察长发起正式调查，FIFA可能面临法律风险。更值得关注的是：揭幕战大量座位未售出——这可能是动态定价的"阿喀琉斯之踵"。如果高价吓退了足够多的买家，FIFA可能被迫降价，而这将向市场传递一个危险信号：价格不是只升不降的。2025年世俱杯半决赛门票从$473.90降至$13.40的先例，正是FIFA最不想重演的。
+    </div>
+  </div>
+
+  <div class="time-block">
+    <div class="time-stamp">~ 80:00 – 行业先例</div>
+    <div class="time-title">动态定价会否成为体育赛事的新默认？</div>
+    <div class="time-summary">
+      纪录片指出：如果FIFA的2026年动态定价+30%转售抽成模式在Q4商业审查中被证明财务成功（尽管有争议），这将成为所有主要赛事权利方的模板——UEFA 2028欧洲杯、奥运会、欧冠决赛、温网、摩纳哥大奖赛都可能效仿。30%的转售抽成是关键观察线。反之，如果因法律调查或市场反噬导致收入不及预期，2026可能成为体育赛事商业化的顶峰。
+    </div>
+    <div class="key-points">
+      <h4>要点提炼</h4>
+      <ul>
+        <li>FIFA的动态定价+货币化转售模式可能成为全球体育赛事模板</li>
+        <li>潜在效仿者：UEFA 2028欧洲杯、奥运会、欧冠决赛、温网、F1摩纳哥站</li>
+        <li>30%转售抽成是行业观察的关键分水岭</li>
+        <li>企业招待套餐将成为欧洲商旅人士入场的主要途径</li>
+        <li>酒店业的反噬已现：80%主办城市酒店预订量低于预期</li>
+        <li>酒店预测创纪录需求→涨价300%→球迷取消多城旅行→入住率低迷</li>
+      </ul>
+    </div>
+    <div class="expand-box">
+      <h4>📖 知识延展：全球体育赛事的"定价军备竞赛"</h4>
+      <p>
+        <strong>先例1：NFL动态定价</strong>——美国NFL已在其票务中广泛使用动态定价，但NFL的30%转售抽成尚无先例。FIFA将美国职业体育的定价策略与更高的转售抽成结合，创造了更激进的货币化模式。<br><br>
+        <strong>先例2：Taylor Swift Eras Tour</strong>——2023年Taylor Swift巡演的动态定价引发美国司法部对Ticketmaster反垄断调查，最终以和解告终。这为FIFA的定价调查提供了法律先例。<br><br>
+        <strong>先例3：2025世俱杯</strong>——纽约大都会体育场半决赛门票从$473.90降至$13.40，证明动态定价在需求不足时会急剧降价。FIFA能否承受世界杯门票价格崩盘的声誉损失？<br><br>
+        <strong>关键判断：</strong>2026年Q4的FIFA商业审查报告将是分水岭——如果动态定价在争议中仍创造了创纪录收入，它将成为行业标准；否则，这可能是"体育赛事金融化"的顶峰。
+      </p>
+    </div>
+  </div>
+
+  <!-- 综合总结 -->
+  <div class="section-heading">
+    <div class="section-num">Ⅴ</div>
+    <div class="section-title">综合总结：谁为这场盛宴买单？</div>
+  </div>
+
+  <div class="summary-box">
+    <h3>🎯 本期核心结论</h3>
+    <div class="summary-grid">
+      <div class="summary-card">
+        <h4>FIFA的算盘</h4>
+        <p>三层利润架构（动态面值+30%转售抽成+企业套餐）预计创造$110-130亿收入，较2022年增长47-73%。FIFA是零风险举办方——不承担基建、安保或超支，但拿走几乎所有可变现权益。</p>
+      </div>
+      <div class="summary-card">
+        <h4>主办城市的困境</h4>
+        <p>收入归FIFA，成本归自己。多伦多成本膨胀8-12倍，加拿大纳税人至少承担$10亿。休斯顿因基础设施完备仅需$7000-8000万，证明"利用现有场馆"才是最优路径，但并非每个城市都有此条件。</p>
+      </div>
+      <div class="summary-card">
+        <h4>球迷的代价</h4>
+        <p>决赛面值涨588%，总观赛花费翻倍，$60"惠民票"仅占1.73%。足球——曾经的"工人阶级运动"——正在被定价出局。酒店涨价300%却遭遇预订量低迷的"反噬"，说明价格弹性是有极限的。</p>
+      </div>
+      <div class="summary-card">
+        <h4>行业影响</h4>
+        <p>如果FIFA的模式成功，动态定价+高比例转售抽成将成为全球体育赛事的新默认。三州总检察长调查和欧盟投诉是当前唯一的制衡力量。2026年Q4的商业审查将是决定性时刻。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="nova-note" style="margin-top:28px">
+    <strong>🔭 Nova 最终思考：</strong><br><br>
+    这期Bloomberg纪录片的深层命题是：<strong>体育赛事正在从"全民庆典"变成"富人特权"</strong>。<br><br>
+    这背后有三重逻辑：<br><br>
+    <strong>1. 垄断定价权：</strong>FIFA不是市场参与者，它是全球足球的垄断者。当垄断者获得动态定价工具，价格不会趋向均衡，而会趋向"支付意愿上限"——即消费者愿意付的最高价。这不是市场定价，这是垄断榨取。<br><br>
+    <strong>2. 制度性不对等：</strong>FIFA与主办城市之间的收入分配是结构性失衡的——FIFA拿走所有可变现权益，主办城市承担所有刚性成本。这种不对等源于FIFA的垄断地位：没有主办城市，世界杯仍然可以换地方办；但没有FIFA，就没有世界杯。<br><br>
+    <strong>3. 文化资本的消耗：</strong>世界杯之所以值钱，是因为它拥有全球最广泛的群众基础。但当群众被定价出局，"全球盛事"的属性就会被削弱。如果看台上只有企业客户和富裕球迷，世界杯就不再是"世界杯"，而只是另一个高端商业活动。<br><br>
+    <strong>一句话总结：FIFA正在用它最有价值的资产——球迷的情感联结——去兑现短期利润。问题是：这笔资产是一次性的，还是可再生的？</strong>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>报告生成：Nova (WorkBuddy AI) · 分析日期：2026年6月8日 · 视频来源：Bloomberg Originals</p>
+  <p style="margin-top:8px">⚠️ 本报告基于公开研究材料推演合成，因无法获取视频转录，时间戳为合理分段推演，内容框架力求还原纪录片叙事逻辑。</p>
+</div>
+
+</body>
+</html>
