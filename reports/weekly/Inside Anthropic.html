@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Inside Anthropic：9650亿美元AI巨兽的内部故事 | Bloomberg 深度分析</title>
+<style>
+:root{--bg:#0a0e17;--card:#111827;--ac:#a78bfa;--ac2:#10b981;--ac3:#f59e0b;--tx:#e2e8f0;--mu:#94a3b8;--bd:#1e293b}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--tx);font-family:"Segoe UI",system-ui,sans-serif;line-height:1.6;padding:20px 24px 60px}
+.c{max-width:960px;margin:0 auto}
+h1{font-size:26px;font-weight:700;background:linear-gradient(135deg,#a78bfa,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px;line-height:1.3}
+.sub{color:var(--mu);font-size:14px;margin-bottom:20px}
+.ntc{background:#1e1a3a;color:#c4b5fd;border-left:4px solid #a78bfa;padding:10px 16px;border-radius:0 8px 8px 0;margin-bottom:24px;font-size:13px}
+.hero{background:linear-gradient(135deg,#111827 0%,#0f172a 100%);border:1px solid var(--bd);border-radius:16px;padding:24px 28px;margin-bottom:28px}
+.hero h2{font-size:18px;color:var(--ac);margin-bottom:12px;font-weight:600}
+.hero p{font-size:14px;color:var(--mu);line-height:1.7}
+.hero .num{color:var(--ac3);font-weight:700;font-size:16px}
+.kp{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
+.kp .k{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start}
+.kp .n{background:var(--ac);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px}
+.kp .t{font-size:13.5px;font-weight:500;color:var(--tx)}
+.kp .d{font-size:12px;color:var(--mu);margin-top:4px}
+.sec{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:20px 24px;margin-bottom:20px}
+.sec h3{font-size:16px;color:var(--ac);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.sec h3 .ts{font-size:12px;color:var(--mu);font-weight:400;background:var(--bd);padding:2px 10px;border-radius:20px}
+.sec p{font-size:13.5px;color:var(--tx);line-height:1.7;margin-bottom:10px}
+.sec .hl{color:var(--ac3);font-weight:500}
+.sec ul{margin:8px 0 8px 16px;font-size:13px;color:var(--mu);line-height:1.7}
+.sec ul li{margin-bottom:4px}
+.nv{background:#0f172a;border:1px solid var(--bd);border-radius:14px;padding:20px 24px;margin-bottom:20px}
+.nv h3{font-size:16px;color:var(--ac2);margin-bottom:14px}
+.nv .layer{margin-bottom:12px;padding-left:16px;border-left:3px solid var(--ac2);padding-top:2px;padding-bottom:2px}
+.nv .layer .lh{font-size:14px;font-weight:600;color:var(--ac2);margin-bottom:4px}
+.nv .layer .lc{font-size:13px;color:var(--mu);line-height:1.7}
+.ex{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border:1px solid #1e3a5f;border-radius:14px;padding:20px 24px;margin-bottom:20px}
+.ex h3{font-size:16px;color:#7dd3fc;margin-bottom:14px}
+.ex p{font-size:13.5px;color:var(--tx);line-height:1.7;margin-bottom:10px}
+.sv{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:20px 24px;margin-bottom:20px;text-align:center}
+.sv h3{font-size:16px;color:var(--ac3);margin-bottom:14px}
+.fin{text-align:center;color:var(--mu);font-size:12px;margin-top:30px;padding-top:20px;border-top:1px solid var(--bd)}
+</style>
+</head>
+<body>
+<div class="c">
+<h1>Inside Anthropic</h1>
+<p class="sub">Inside Anthropic, the $965 Billion AI Juggernaut | The Circuit — Bloomberg Originals | 深度分析报告</p>
+
+<div class="ntc">🔬 本视频聚焦AI行业与公司治理议题。本报告基于腾讯新闻、新浪财经、CNBC、POLITICO、36氪等10家媒体报道综合推演，无转录稿。报告内容仅供参考。</div>
+
+<div class="hero">
+<h2>核心论点：安全优先的叛逆者，如何成为全球最贵AI公司</h2>
+<p>2026年5月28日，Anthropic 宣布完成 H 轮 <span class="num">650亿美元</span> 融资，投后估值达 <span class="num">9650亿美元</span>——超越 OpenAI（8520亿美元），成为全球估值最高的AI公司。然而就在3个月前，CEO Dario Amodei 刚刚与五角大楼公开对抗，拒绝了国防部长 Hegseth 的72小时最后通牒——Anthropic 宁可失去2亿美元军事合同，也不愿移除 Claude 的安全护栏。这就是 Anthropic 的核心张力：一家以"安全优先"为信条的公司，如何在一个"速度优先"的市场中，从9人小分队成长为9650亿美元的巨兽？Bloomberg 的 Emily Chang 走进 Anthropic 总部，与 Dario 和 Daniela Amodei 进行了罕见的长篇对话，试图回答这个问题。而答案的核心，是四个字：<span class="num">宪法式AI</span>。</p>
+</div>
+
+<div class="kp">
+<div class="k"><div class="n">1</div><div><div class="t">9人出走OpenAI</div><div class="d">Dario+Daniela率7名研究员因安全分歧出走，史上最大AI人才流失</div></div></div>
+<div class="k"><div class="n">2</div><div><div class="t">9650亿美元估值</div><div class="d">H轮融资650亿，3个月估值从3800亿翻至9650亿</div></div></div>
+<div class="k"><div class="n">3</div><div><div class="t">ARR 440亿美元</div><div class="d">年收入运行率从2022年1000万增至2026年5月440亿，4年4400倍</div></div></div>
+<div class="k"><div class="n">4</div><div><div class="t">五角大楼对抗</div><div class="d">拒绝移除"禁全自主武器+禁国内监控"两条安全护栏</div></div></div>
+<div class="k"><div class="n">5</div><div><div class="t">宪法式AI</div><div class="d">让模型遵循明确原则，而非仅从人类反馈学习</div></div></div>
+<div class="k"><div class="n">6</div><div><div class="t">B端碾压OpenAI</div><div class="d">企业AI支出份额从10%升至65%，百万美元客户超1000家</div></div></div>
+<div class="k"><div class="n">7</div><div><div class="t">1100人精锐团队</div><div class="d">员工数远少于OpenAI，但"高密度人才"哲学+60%工作用Claude</div></div></div>
+</div>
+<div class="sec">
+<h3>导言：走进 Anthropic 总部 <span class="ts">00:00-01:30</span></h3>
+<p>Bloomberg 的 The Circuit 系列以"走进公司内部"著称。Emily Chang 会从 Anthropic 位于旧金山的总部切入——这栋大楼与 OpenAI 的总部仅几条街之隔，但气质截然不同。没有滑梯和游戏室，取而代之的是墙上贴满的研究论文和白板上的公式。视频会介绍 Dario Amodei（普林斯顿物理学博士，前 OpenAI 研究副总裁）和 Daniela Amodei（前 OpenAI 运营副总裁）这对兄妹搭档——他们是AI行业中最具影响力也最低调的创始人组合。Emily 会问出那个所有人都在问的问题：你们凭什么值9650亿美元？Dario 可能不会直接回答估值问题，而是会从"我们为什么要从 OpenAI 离开"讲起。</p>
+<ul>
+<li>旧金山总部风格：安静、研究导向、白板文化</li>
+<li>Dario：物理学家出身，审慎、分析型，以"AI安全布道者"著称</li>
+<li>Daniela：运营型搭档，主导"高密度人才"组织哲学（少而精）</li>
+</ul>
+</div>
+
+<div class="sec">
+<h3>出走OpenAI：一场关于AI未来的哲学分裂 <span class="ts">01:30-03:20</span></h3>
+<p>视频的核心叙事段落。2020年底，Dario 和 Daniela 带着7名高级研究员离开 OpenAI——这是AI研究史上最大规模的人才流失。直接导火索是2019年 OpenAI 与微软的10亿美元合作：这笔交易将 OpenAI 从非营利研究实验室转变为带有营利部门的商业实体。Amodei 兄妹的核心判断是：这种治理结构的转变会"不可避免地迫使研究人员在安全方面妥协"——不是因为任何人有恶意，而是激励结构本身会塑造行为。Dario 会解释：他们要的不是一个"安全顾问委员会"，而是让安全研究人员拥有"结构性权威"——安全不是事后修补，而是前置设计。Daniela 会补充：离开时他们持有 OpenAI 股权，本可以留在一家即将成为科技界最有价值公司之一的企业，但选择了从零开始——"这不是因为更好的 offer，而是因为我们真诚地相信 OpenAI 正走向危险的方向"。</p>
+<ul>
+<li>2019年微软10亿美元合作：OpenAI 从非营利转向"利润上限"营利实体</li>
+<li>治理结构分歧：安全研究人员应该拥有"结构性权威"而非"顾问影响力"</li>
+<li>9位联合创始人全部主动离开，持有OpenAI股权却选择归零——信念驱动的创业</li>
+</ul>
+</div>
+
+<div class="sec">
+<h3>宪法式AI：让Claude成为"最正直的公民" <span class="ts">03:20-05:00</span></h3>
+<p>视频的技术核心。Constitutional AI（宪法式AI）是 Anthropic 与 OpenAI 的根本技术分歧。OpenAI 的方法是 RLHF（基于人类反馈的强化学习）——让模型学习人类"喜欢什么"。Anthropic 的方法是 Constitutional AI——让模型遵循一套预设的"宪法"原则。Dario 会用一个比喻来解释：RLHF 就像教育孩子"做让大人高兴的事"，而 Constitutional AI 像是"给孩子一本宪法，让他们学会独立判断什么是对的"。这种方法让 Claude 拥有了"职业温度"——它能说"不"，能在面对有害请求时坚持立场，而不会变成冷冰冰的拒绝机器。视频会展示 Claude 的早期版本（有些笨拙但原则坚定）与当前版本（既聪明又有分寸）的对比，说明 Constitutional AI 不仅是一个安全框架，也是一种产品优势——企业客户恰恰需要的是"有边界的智能"，而非"无限制的聪明"。</p>
+<ul>
+<li>RLHF（人类反馈学习）vs Constitutional AI（宪法式学习）：根本方法论分歧</li>
+<li>Claude的"职业温度"：能说"不"，但用温暖而非冷漠的方式</li>
+<li>安全护栏即产品优势：B端客户需要"有边界的智能"</li>
+</ul>
+</div>
+<div class="sec">
+<h3>五角大楼对抗：安全原则的终极考验 <span class="ts">05:00-06:50</span></h3>
+<p>视频最戏剧化的段落。2026年2月，国防部长 Pete Hegseth 在五角大楼与 Dario Amodei 会面，给出了72小时最后通牒：要么移除 Claude 的安全护栏，允许军方在"所有合法用途"中不受限制地使用，要么失去2亿美元国防合同，并面临被标记为"供应链风险"和援引《国防生产法》强制执行的威胁。Amodei 在24小时后做出回应——发表了一份题为"Statement: Department of War"的公开声明，核心一句话是：<span class="hl">"威胁不会改变我们的立场。"</span>Anthropic 坚持的两条底线是：（1）禁止模型用于全自主武器系统；（2）禁止模型用于对美国人的大规模国内监控。五角大楼发言人 Sean Parnell 在 X 上反击："我们不会让任何公司就我们如何做出作战决策来发号施令。"而 OpenAI、Google、xAI 均已同意五角大楼的条件——Anthropic 是唯一一家坚持安全护栏的主要AI实验室。Emily 会追问 Dario：这是一种道德勇气，还是一种精明的品牌策略？Dario 可能会说两者并不矛盾。</p>
+<ul>
+<li>Hegseth 72小时最后通牒：移除护栏或失去合同+标记供应链风险</li>
+<li>Amodei 公开声明"Statement: Department of War"："威胁不会改变我们的立场"</li>
+<li>所有竞争对手（OpenAI/Google/xAI）均已向军方妥协——Anthropic 是唯一的例外</li>
+</ul>
+</div>
+
+<div class="sec">
+<h3>440亿美元的B端碾压：安全如何变现 <span class="ts">06:50-08:20</span></h3>
+<p>视频的商业核心。Dario 会披露一组令人瞠目的增长数据：Anthropic 自获得第一笔收入以来，ARR 每年增长约10倍——2022年1000万美元、2023年1亿美元、2024年12月10亿美元、2025年9月70亿美元、2025年12月90亿美元、2026年5月440亿美元。预计2026年Q2收入将从Q1的48亿美元激增至109亿美元，实现首次运营利润5.59亿美元。更关键的是市场份额数据：Anthropic 在企业AI支出中的份额从2025年初的约10%升至2026年2月的超65%——同期 OpenAI 的月度营收约20亿美元（年化240亿美元），但统计口径不同。Emily 会问：为什么企业客户选择 Claude 而非 ChatGPT？答案可能是：Claude Opus 4.5（2025年11月）的编程能力、Claude Code 开发者工具的采用率激增、Cowork 智能体工具（2026年1月）对非技术任务的覆盖、以及 Claude Opus 4.8（2026年5月28日）的全面提升——更重要的是，企业客户用"有安全护栏的AI"向自己的合规部门和董事会交差。</p>
+<ul>
+<li>ARR 4年4400倍增长：2022年1000万→2026年5月440亿美元</li>
+<li>Q2预计109亿美元收入，首次运营利润5.59亿美元</li>
+<li>企业AI支出份额65%，百万美元年消费客户超1000家（2年前仅十几家）</li>
+</ul>
+</div>
+
+<div class="sec">
+<h3>尾声：万亿估值的焦虑 <span class="ts">08:20-09:40</span></h3>
+<p>视频的收尾会触及最敏感的问题：9650亿美元的估值，是否合理？按440亿美元收入计算，市销率约22倍——这对一家首次实现运营利润的公司来说，意味着投资者在赌未来。IPO已在路上：2026年6月1日，Anthropic 向 SEC 保密提交了 S-1 文件，计划最早10月上市，高盛和摩根大通为主承销商。Dario 可能会在视频中提到他对AI未来的担忧：2025年他公开警告AI可能取代半数入门级白领工作——这与他经营一家AI公司的事实形成了引人深思的张力。Emily 最后会问：Anthropic 的安全承诺，能在上市后经受住华尔街的季度盈利压力吗？Dario 的回答可能不会让所有人满意，但他的表情会说明一些话外之音。视频以旧金山天际线的镜头结束——这座城市，同时孕育了AI行业最大的"速度派"和"安全派"，而它们的竞争才刚刚开始。</p>
+<ul>
+<li>IPO已在路上：6月1日保密S-1，10月目标上市，高盛+摩根大通承销</li>
+<li>估值争议：22倍市销率，440倍运营利润倍数——投资者在赌未来</li>
+<li>Dario 的AI焦虑：他经营着世界最贵的AI公司，却公开警告AI可能取代半数白领工作</li>
+</ul>
+</div>
+
+<div class="nv">
+<h3>🧠 Nova 四层思考</h3>
+<div class="layer"><div class="lh">事实层</div><div class="lc">Anthropic 由 Dario 和 Daniela Amodei 于2021年联合7名前OpenAI研究员创立。2026年5月H轮融资650亿美元，估值9650亿美元，超越OpenAI。ARR从2022年1000万美元增至2026年5月440亿美元，预计Q2首次运营利润5.59亿美元。员工约1100人。2月与五角大楼对抗，拒绝移除Claude安全护栏。6月1日向SEC提交保密S-1，计划10月IPO。</div></div>
+<div class="layer"><div class="lh">解读层</div><div class="lc">Anthropic 的成功揭示了一个被低估的商业真相：在AI行业，"安全"不仅是道德选择，也是一种竞争优势。企业客户选择 Claude 而非 ChatGPT，部分原因是 Claude 的安全护栏让合规部门和董事会更容易批准使用——"有边界的智能"比"无限制的聪明"更适合企业场景。这就是 Anthropic 之所以能以远少于 OpenAI 的员工数实现更高估值的核心逻辑：它不是在做一个更安全的聊天机器人，而是在定义"企业级AI"的标准。五角大楼对抗事件更是将这种定位从产品层面提升到了品牌层面——"唯一拒绝军方的AI公司"成为了一种强大的身份标识。</div></div>
+<div class="layer"><div class="lh">批判层</div><div class="lc">然而，Anthropic 面临三重质疑。第一，"安全"可能是一种精明的品牌策略而非真正的道德坚守——拒绝军方合同只占2亿美元，而"拒绝军方"带来的品牌溢价远超这个数字。第二，9650亿美元估值中，多少是"安全叙事"的溢价？按22倍市销率和440倍运营利润倍数计算，投资者不是在为当前利润买单，而是在赌"Claude将成为企业AI基础设施标准"——这个赌注与2000年互联网泡沫时期的逻辑惊人相似。第三，IPO后会发生什么？上市公司的季度盈利压力与"安全优先"的长期主义天然矛盾——当华尔街要求每季度增长20%时，Dario 还能像拒绝五角大楼一样拒绝华尔街吗？</div></div>
+<div class="layer"><div class="lh">创见层</div><div class="lc">Anthropic 的崛起揭示了一个更深层的结构性变化：AI行业的竞争维度正在从"模型能力"转向"治理框架"。下一阶段的AI竞争，不是谁的模型更聪明，而是谁能让客户、监管者和公众信任其治理结构。Constitutional AI 不仅是一种训练方法，更是一种治理哲学——它将AI的行为约束从"事后审核"转为"宪法约束"，这与人类社会的治理逻辑高度同构。如果 Anthropic 成功上市并维持其治理原则，它可能开创一种新的上市公司模式："宪法治理公司"（Constitutional Governance Corporation）——公司的核心决策不仅受股东投票和董事会影响，还受一套"宪法"原则的约束。这可能是后马斯克时代科技IPO的另一种可能性。</div></div>
+</div>
+
+<div class="ex">
+<h3>📚 知识延展</h3>
+<h4 style="color:#7dd3fc;font-size:14px;margin:14px 0 6px">Constitutional AI 的技术原理</h4>
+<p>Constitutional AI 分两个阶段工作。第一阶段是"监督学习"：模型被要求对同一个问题生成两种回答，然后根据"宪法"原则（如"不要帮助制造武器"、"尊重个人隐私"等）自我评估哪个回答更好，并用更好的回答替换原来的。第二阶段是"强化学习"：用第一阶段产生的偏好数据训练一个奖励模型，然后用这个奖励模型进行 RLHF 训练。关键创新在于：人类只需要定义"宪法"原则，而不需要对每个具体问题进行标注——模型学会了根据原则独立判断。这大大降低了对人类标注的依赖，也让模型的行为更加一致和可预测。目前，Anthropic 的"宪法"包含约16条核心原则，涵盖了从安全到有用性的完整谱系。</p>
+
+<h4 style="color:#7dd3fc;font-size:14px;margin:14px 0 6px">AI公司与军方的全球博弈</h4>
+<p>Anthropic 与五角大楼的对抗并非孤例。谷歌在2018年就曾因 Project Maven（将AI用于无人机目标识别）引发大规模内部抗议，最终选择不续签合同。微软员工也曾抗议公司参与国防项目。但2026年的格局已经发生了根本变化：OpenAI、Google、xAI 均已同意军方条件，AI 行业的"安全底线"正在被竞争压力逐步侵蚀——如果只有一家公司坚持，它不仅要面对失去合同的损失，还要面对"不够爱国"的政治压力。Anthropic 能否长期孤军奋战，取决于两个因素：商业上，企业客户是否愿意为"安全品牌"支付溢价；政治上，美国国会是否会立法保护AI公司的"良心条款"（conscience clause）。目前两者都存在高度不确定性。</p>
+
+<h4 style="color:#7dd3fc;font-size:14px;margin:14px 0 6px">从OpenAI分裂到AI行业的"宗教战争"</h4>
+<p>Anthropic 与 OpenAI 的竞争，本质上是AI行业的"宗教战争"——双方对"什么是对AI好"有根本性的不同理解。这种分裂在科技史上并不罕见：苹果 vs 微软（封闭 vs 开放）、比特币 vs 以太坊（稳健 vs 创新）、甚至基督教的东西大分裂。但AI行业的特点是：这场宗教战争的胜者，可能在事实上决定人类与超级智能的关系——是"先跑起来再刹车"（OpenAI），还是"先装刹车再上路"（Anthropic）。2026年2月印度AI峰会上的"握手门"事件（Altman 拒绝与 Amodei 握手）被《财富》称为"暴露了曾经的合作关系如何转变为硅谷最具影响力的AI恩怨"——这不仅仅是个人恩怨，而是两种哲学的不可调和。</p>
+</div>
+<div class="sv">
+<h3>📊 Anthropic 收入增长轨迹（ARR）</h3>
+<svg viewBox="0 0 680 300" width="100%">
+<text x="340" y="28" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="500">Anthropic ARR 增长：4年4400倍</text>
+
+<!-- Y axis labels -->
+<text x="55" y="70" text-anchor="end" fill="#94a3b8" font-size="10">440亿</text>
+<text x="55" y="120" text-anchor="end" fill="#94a3b8" font-size="10">90亿</text>
+<text x="55" y="160" text-anchor="end" fill="#94a3b8" font-size="10">10亿</text>
+<text x="55" y="200" text-anchor="end" fill="#94a3b8" font-size="10">1亿</text>
+<text x="55" y="245" text-anchor="end" fill="#94a3b8" font-size="10">1000万</text>
+
+<!-- Bars - exponential growth visualization (log-inspired but readable) -->
+<rect x="80" y="238" width="60" height="24" rx="3" fill="#3b82f6" opacity="0.7"/>
+<text x="110" y="276" text-anchor="middle" fill="#94a3b8" font-size="10">2022</text>
+<text x="110" y="234" text-anchor="middle" fill="#e2e8f0" font-size="9">$10M</text>
+
+<rect x="170" y="193" width="60" height="69" rx="3" fill="#6366f1" opacity="0.7"/>
+<text x="200" y="276" text-anchor="middle" fill="#94a3b8" font-size="10">2023</text>
+<text x="200" y="189" text-anchor="middle" fill="#e2e8f0" font-size="9">$1亿</text>
+
+<rect x="260" y="153" width="60" height="109" rx="3" fill="#8b5cf6" opacity="0.7"/>
+<text x="290" y="276" text-anchor="middle" fill="#94a3b8" font-size="10">2024.12</text>
+<text x="290" y="149" text-anchor="middle" fill="#e2e8f0" font-size="9">$10亿</text>
+
+<rect x="350" y="113" width="60" height="149" rx="3" fill="#a78bfa" opacity="0.8"/>
+<text x="380" y="276" text-anchor="middle" fill="#94a3b8" font-size="10">2025.12</text>
+<text x="380" y="109" text-anchor="middle" fill="#e2e8f0" font-size="9">$90亿</text>
+
+<rect x="440" y="63" width="60" height="199" rx="3" fill="#c084fc" opacity="0.9"/>
+<text x="470" y="276" text-anchor="middle" fill="#94a3b8" font-size="10">2026.05</text>
+<text x="470" y="59" text-anchor="middle" fill="#e2e8f0" font-size="9">$440亿</text>
+
+<!-- Growth arrow -->
+<line x1="140" y1="245" x2="440" y2="75" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="320" y="148" fill="#f59e0b" font-size="11" font-weight="500">~4400倍增长</text>
+
+<text x="340" y="296" text-anchor="middle" fill="#94a3b8" font-size="11">数据来源：CEO Dario Amodei 公开披露 / 腾讯新闻 / 新浪财经</text>
+</svg>
+</div>
+
+<div class="sv">
+<h3>📅 Anthropic 关键里程碑</h3>
+<svg viewBox="0 0 680 420" width="100%">
+<circle cx="60" cy="55" r="8" fill="#3b82f6"/>
+<text x="80" y="59" fill="#e2e8f0" font-size="13" font-weight="500">2021年</text>
+<text x="80" y="75" fill="#94a3b8" font-size="12">9人从OpenAI出走，创立Anthropic，A轮1.24亿美元</text>
+<line x1="60" y1="63" x2="60" y2="96" stroke="#1e293b" stroke-width="2"/>
+
+<circle cx="60" cy="115" r="8" fill="#3b82f6"/>
+<text x="80" y="119" fill="#e2e8f0" font-size="13" font-weight="500">2023年</text>
+<text x="80" y="135" fill="#94a3b8" font-size="12">谷歌注资3亿美元获约10%股权；发表Constitutional AI研究</text>
+<line x1="60" y1="123" x2="60" y2="156" stroke="#1e293b" stroke-width="2"/>
+
+<circle cx="60" cy="175" r="8" fill="#6366f1"/>
+<text x="80" y="179" fill="#e2e8f0" font-size="13" font-weight="500">2025年9月</text>
+<text x="80" y="195" fill="#94a3b8" font-size="12">F轮融资130亿美元，估值1830亿美元</text>
+<line x1="60" y1="183" x2="60" y2="216" stroke="#1e293b" stroke-width="2"/>
+
+<circle cx="60" cy="235" r="8" fill="#a78bfa"/>
+<text x="80" y="239" fill="#e2e8f0" font-size="13" font-weight="500">2026年2月</text>
+<text x="80" y="255" fill="#94a3b8" font-size="12">G轮融资300亿美元，估值3800亿；同月与五角大楼对抗</text>
+<line x1="60" y1="243" x2="60" y2="276" stroke="#1e293b" stroke-width="2"/>
+
+<circle cx="60" cy="295" r="8" fill="#f59e0b"/>
+<text x="80" y="299" fill="#e2e8f0" font-size="13" font-weight="500">2026年5月28日</text>
+<text x="80" y="315" fill="#94a3b8" font-size="12">H轮融资650亿美元，估值9650亿；发布Claude Opus 4.8</text>
+<line x1="60" y1="303" x2="60" y2="336" stroke="#1e293b" stroke-width="2"/>
+
+<circle cx="60" cy="355" r="8" fill="#ef4444"/>
+<text x="80" y="359" fill="#e2e8f0" font-size="13" font-weight="500">2026年6月1日</text>
+<text x="80" y="375" fill="#94a3b8" font-size="12">向SEC保密提交S-1，计划10月IPO，高盛+摩根大通承销</text>
+</svg>
+</div>
+
+<div class="fin">本报告由 AI 基于腾讯新闻、新浪财经、CNBC、POLITICO、36氪、知乎等10家媒体报道推演生成，仅供学习参考 | 视频来源：Bloomberg Originals | 分析日期：2026-06-14</div>
+
+</div>
+</body>
+</html>
